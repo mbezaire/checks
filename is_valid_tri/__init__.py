@@ -17,7 +17,7 @@ def compiles():
 @check50.check(compiles)
 def test_valid_tri():
     """Valid triangle yields true"""
-    check50.run("./is_valid_tri").stdin("4").stdin("2").stdin("1").stdout("true\n", "true\n").exit(0)
+    check50.run("./is_valid_tri").stdin("4").stdin("2").stdin("3").stdout("true\n", "true\n").exit(0)
 
 @check50.check(compiles)
 def test_invalid_tri():

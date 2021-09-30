@@ -33,7 +33,7 @@ def largest_digit_tie():
     """One digit is returned in a tie"""
     check50.run("./largest_digit").stdin("4444").stdout("4\n").exit(0)
 
-@check50.check("compiles")
+@check50.check(compiles)
 def largest_digit_zero():
     """Zero returns zero"""
     check50.run("./largest_digit").stdin("0").stdout("0\n").exit(0)

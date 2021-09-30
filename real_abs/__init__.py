@@ -10,7 +10,7 @@ import check50
 @check50.check()
 def exists():
     """real_abs.c exists"""
-    check50.require("real_abs.c")
+    check50.exists("real_abs.c")
 
 @check50.check(exists)
 def compiles():

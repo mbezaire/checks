@@ -10,34 +10,34 @@ import check50
 @check50.check()
 def exists():
     """restaurant.c exists"""
-    check50.require("restaurant.c")
+    check50.exists("restaurant.c")
 
-@check50.check("exists")
+@check50.check(exists)
 def compiles():
     """restaurant.c compiles"""
     check50.c.compile("restaurant.c", lcs50=True)
 
-@check50.check("compiles")
+@check50.check(compiles)
 def restaurant_style_you():
     """A stylish date and me"""
-    check50.spawn("./restaurant").stdin("8").stdin("5").stdout("2\n").exit(0)
+    check50.run("./restaurant").stdin("8").stdin("5").stdout("2\n").exit(0)
 
-@check50.check("compiles")
+@check50.check(compiles)
 def restaurant_style_me():
     """A  date and stylish me"""
-    check50.spawn("./restaurant").stdin("3").stdin("8").stdout("2\n").exit(0)
+    check50.run("./restaurant").stdin("3").stdin("8").stdout("2\n").exit(0)
 
-@check50.check("compiles")
+@check50.check(compiles)
 def restaurant_you_me():
     """A  date and  me"""
-    check50.spawn("./restaurant").stdin("3").stdin("5").stdout("1\n").exit(0)
+    check50.run("./restaurant").stdin("3").stdin("5").stdout("1\n").exit(0)
 
-@check50.check("compiles")
+@check50.check(compiles)
 def restaurant_noyou_me():
     """A non-stylish date and  me"""
-    check50.spawn("./restaurant").stdin("8").stdin("1").stdout("0\n").exit(0)
+    check50.run("./restaurant").stdin("8").stdin("1").stdout("0\n").exit(0)
 
-@check50.check("compiles")
+@check50.check(compiles)
 def restaurant_you_nome():
     """A  date and non-stylish me"""
-    check50.spawn("./restaurant").stdin("1").stdin("8").stdout("0\n").exit(0)
+    check50.run("./restaurant").stdin("1").stdin("8").stdout("0\n").exit(0)

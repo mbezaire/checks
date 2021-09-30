@@ -10,7 +10,7 @@ import check50
 @check50.check()
 def exists():
     """largest_digit.c exists"""
-    check50.require("largest_digit.c")
+    check50.exists("largest_digit.c")
 
 @check50.check(exists)
 def compiles():

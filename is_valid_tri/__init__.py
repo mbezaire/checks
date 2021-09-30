@@ -1,6 +1,4 @@
 import check50
-
-import check50
 import check50.c
 
 
@@ -19,9 +17,9 @@ def compiles():
 @check50.check(compiles)
 def test_valid_tri():
     """Valid triangle yields true"""
-    check50.run("./is_valid_tri").stdin("4","2","1").stdout("true\n", "true\n").exit(0)
+    check50.run("./is_valid_tri").stdin("4").stdin("2").stdin("1").stdout("true\n", "true\n").exit(0)
 
 @check50.check(compiles)
 def test_invalid_tri():
     """Invalid triangle yields false"""
-    check50.run("./is_valid_tri").stdin("4","2","7").stdout("false\n", "false\n").exit(0)
+    check50.run("./is_valid_tri").stdin("4").stdin("2").stdin("7").stdout("false\n", "false\n").exit(0)

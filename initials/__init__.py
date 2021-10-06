@@ -11,7 +11,7 @@ import check50.c
 @check50.check()
 def exists():
     """initials.c exists"""
-    check50.exists("largest_digit.c")
+    check50.exists("initials.c")
 
 @check50.check(exists)
 def compiles():

@@ -21,7 +21,7 @@ def compiles():
 @check50.check(compiles)
 def full_name():
     """A full name returns both initials"""
-    check50.run("./initials").stdin("Tina Fey").stdout("T F", "T F\n").exit(0)
+    check50.run("./initials").stdin("Tina Fey").stdout("TF", "TF\n").exit(0)
 
 @check50.check(compiles)
 def three_word():
@@ -31,4 +31,4 @@ def three_word():
 @check50.check(compiles)
 def extra():
     """Extraneous characters are ignored"""
-    check50.run("./initials").stdin("Grace #Hopper").stdout("G H", "G H\n").exit(0)
+    check50.run("./initials").stdin("Grace #Hopper").stdout("GH", "GH\n").exit(0)

@@ -12,6 +12,8 @@ import check50.c
 def exists():
     """words.c exists"""
     check50.exists("words.c")
+    check50.include("essay.txt")
+
 
 @check50.check(exists)
 def compiles():

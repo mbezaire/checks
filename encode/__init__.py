@@ -27,3 +27,9 @@ def spacey_word():
 def short_phrase():
     """A phrase is encoded"""
     check50.run("./encode").stdin("today is monday").stdout("tid osa dmy ao yn", "tid osa dmy ao yn\n").exit(0)
+
+
+@check50.check(compiles)
+def other_phrase():
+    """A phrase is encoded"""
+    check50.run("./encode").stdin("today is friday").stdout("tid osa dfy ar yi", "tid osa dfy ar yi\n").exit(0)

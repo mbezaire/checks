@@ -12,6 +12,7 @@ import check50.c
 def exists():
     """enlarge.c exists"""
     check50.exists("enlarge.c")
+    check50.exists("bmp.h")
 
 @check50.check(exists)
 def compiles():

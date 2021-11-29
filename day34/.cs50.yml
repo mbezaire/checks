@@ -1,0 +1,8 @@
+check50: 
+  files: &check50_files
+    - !exclude "*"
+    - !require warmup2.c
+    - !require warmup1.txt
+
+submit50:
+  files: *check50_files

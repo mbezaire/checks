@@ -1,0 +1,8 @@
+check50: 
+  files: &check50_files
+    - !exclude "*"
+    - !require struct_address.c
+    - !require time_program.c
+
+submit50:
+  files: *check50_files

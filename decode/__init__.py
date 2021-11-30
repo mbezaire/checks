@@ -26,4 +26,4 @@ def spacey_word():
 @check50.check(compiles)
 def short_phrase():
     """Another phrase is decoded"""
-    check50.run("./decode").stdin("tid osa dtz ao zn").stdout("todazistondaz", "todayismonday\n").exit(0)
+    check50.run("./decode").stdin("tid osa dtz ao zn").stdout("todazistondaz", "todazistondaz\n").exit(0)

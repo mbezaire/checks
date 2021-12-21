@@ -20,14 +20,14 @@ def compiles():
 
 @check50.check(compiles)
 def calc_ex1():
-    """+ - 3 4 5 yields 4.000000"""
+    """+ - 3 4 5 yields"""
     check50.run("./calculator + - 3 4 5").stdout("4.000000\n", "4.000000\n").exit(0)
 
 
 @check50.check(compiles)
 def calc_ex2():
     """x - 3.4 5.6 7.9 yields"""
-    check50.run("./calculator x - 3.4 5.6 7.9").stdout("-17.3799999\n", "-17.3799999\n").exit(0)
+    check50.run("./calculator x - 3.4 5.6 7.9").stdout("-17.379999\n", "-17.379999\n").exit(0)
 
 
 @check50.check(compiles)

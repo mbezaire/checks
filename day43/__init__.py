@@ -35,7 +35,7 @@ def compiles():
     
 @check50.check(exists1)
 def compiles1():
-    """llstack.c compiles"""
+    """aqueue.c compiles"""
     check50.c.compile("aqueue.c", lcs50=True)
     
 @check50.check(exists2)

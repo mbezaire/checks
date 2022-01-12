@@ -19,13 +19,13 @@ def exists():
 @check50.check(exists)
 def imports():
     """shoppinglist.py imports"""
-    check50.py.import_("shoppinglist.py").stdin("done\n")
+    check50.py.import_("shoppinglist.py").stdin("done\n").exit(0)
 
 
 @check50.check(imports)
 def shop():
     """check the list"""
-    out = check50.run("python3 shoppinglist.py").stdin("carrots").stdin("parsnips").stdin("done").stdout()
+    out = check50.run("python3 shoppinglist.py").stdin("carrots").stdin("parsnips").stdin("done").stdout().exit(0)
     if out.strip() != "Buy eggs":
         raise check50.Mismatch("Buy carrots", out, help="Check your logic")
 

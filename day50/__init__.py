@@ -22,11 +22,12 @@ def imports():
     check50.py.import_("shoppinglist.py")
 
 
-# @check50.check(imports)
-# def sim_tournament_2():
-#     """simulate_tournament handles a bracket of size 2"""
-#     check_tournament()
-
+@check50.check(imports)
+def shop():
+    """check the list"""
+    out = check50.run("python3 shoppinglist.py").stdin("carrots").stdin("parsnips").stdin("done").stdout()
+    if out.strip() != "Buy eggs":
+        raise check50.Mismatch("Buy carrots", out, help="Check your logic")
 
 # def check_tournament(*args):
 #     tournament = check50.py.import_("tournament.py")

@@ -19,7 +19,7 @@ def exists():
 @check50.check(exists)
 def imports():
     """shoppinglist.py imports"""
-    check50.py.import_("shoppinglist.py").stdin("done")
+    check50.py.import_("shoppinglist.py").stdin("done\n")
 
 
 @check50.check(imports)

@@ -12,8 +12,9 @@ import check50.py
 
 @check50.check()
 def exists():
-    """grade_program.py was submitted"""
+    """grade_program.py and grades.csv were submitted"""
     check50.exists("grade_program.py")
+    check50.exists("grades.csv")
 
 
 @check50.check(exists)

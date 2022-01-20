@@ -20,7 +20,7 @@ def exists():
 @check50.check(exists)
 def imports():
     """grade_program.py imports"""
-    check50.py.import_("grade_program.py").exit(0)
+    check50.py.import_("grade_program.py")
 
 
 @check50.check(exists)

@@ -19,7 +19,7 @@ def exists():
 
 @check50.check(exists)
 def imports():
-    """shoppinglist.py imports"""
+    """grade_program.py imports"""
     check50.py.import_("grade_program.py").exit(0)
 
 

@@ -26,7 +26,7 @@ def imports():
 @check50.check(exists)
 def extra():
     """check the missing list and the averages dictionary"""
-    check50.run("python3 grade_program.py").stdout("['Ron - Aparecium', 'Ginny - Levicorpus', 'Ginny - Fidelius Charm', 'Luna - Aparecium'] {'Rictusempra': 15.375, 'Levicorpus': 17.642857142857142, 'Fidelius Charm': 17.714285714285715, 'Aparecium': 10.0}").exit(0)
+    check50.run("python3 grade_program.py").stdout("['Ron - Aparecium', 'Ginny - Levicorpus', 'Ginny - Fidelius Charm', 'Luna - Aparecium']").stdout("{'Rictusempra': 15.375, 'Levicorpus': 17.642857142857142, 'Fidelius Charm': 17.714285714285715, 'Aparecium': 10.0}").exit(0)
 
 # def check_tournament(*args):
 #     tournament = check50.py.import_("tournament.py")

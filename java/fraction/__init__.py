@@ -55,7 +55,7 @@ def divide():
     check50.log(out)
     check50.log(check50.run("pwd").stdout())
     check50.log(check50.run("ls ./").stdout())
-    check50.run("/opt/jdk-18.0.1.1/bin/java F2Client").stdout("12/1\n").exit(0)
+    check50.run("/opt/jdk-18.0.1.1/bin/java F2Client").stdin("1", prompt=False).stdin("3", prompt=False).stdin("1", prompt=False).stdin("4", prompt=False).stdout("12/1\n").exit(0)
 
 
 # @check50.check(compiles)

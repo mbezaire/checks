@@ -10,6 +10,10 @@ import check50.c
 
 check50.include("FClient.java", "F1Client.java", "F2Client.java", "F3Client.java", "F4Client.java", "F5Client.java", "F6Client.java", "F7Client.java")
 
+out = check50.run("ls .").stdout()
+check50.log(out)
+out = check50.run("ls ..").stdout()
+check50.log(out)
 
 less = check50.import_checks("../fraction")
 from less import *

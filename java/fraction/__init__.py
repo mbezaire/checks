@@ -24,37 +24,19 @@ def compiles():
 def runs():
     """Fraction.java runs"""
     out = check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ FClient.java").stdout(timeout = 60)
-    check50.log(out)
-    check50.log(check50.run("pwd").stdout())
-    check50.log(check50.run("ls ./").stdout())
+    # check50.log(out)
+    # check50.log(check50.run("pwd").stdout())
+    # check50.log(check50.run("ls ./").stdout())
     check50.run("/opt/jdk-18.0.1.1/bin/java FClient").stdout("1/4\n")
-    #out = check50.run("/opt/jdk-18.0.1.1/bin/java FClient").stdout()
-    #if out != "1/4\n":
-    #    raise check50.Failure("Instead it printed:\n" + ".", help=out)
-    
-@check50.check(compiles)
-def makequarter():
-    """A 1/2 fraction is instantiated and prints"""
-    out = check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ F1Client.java").stdout(timeout = 60)
-    check50.log(out)
-    check50.log(check50.run("pwd").stdout())
-    check50.log(check50.run("ls ./").stdout())
-    check50.run("/opt/jdk-18.0.1.1/bin/java F1Client").stdin("1", prompt=False).stdin("2", prompt=False).stdout("1/2\n")
-    #out = check50.run("/opt/jdk-18.0.1.1/bin/java F1Client").stdin("1 2").stdout()
-    #if out != "1/2\n":
-    #    raise check50.Failure("Instead it printed:\n" + ".", help=out)
 
-    #check50.run("/opt/jdk-18.0.1.1/bin/javac ./FClient.java")
-    #check50._api.run("/opt/jdk-18.0.1.1/bin/java ./FClient").stdout("1/4\n").exit(0)
-    #check50._api.run("/opt/jdk-18.0.1.1/bin/java ./FClient.class").stdout("1/4\n").exit(0)
     
 @check50.check(compiles)
 def divide():
     """Fractions can be divided"""
     out = check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ F2Client.java").stdout(timeout = 60)
-    check50.log(out)
-    check50.log(check50.run("pwd").stdout())
-    check50.log(check50.run("ls ./").stdout())
+    # check50.log(out)
+    # check50.log(check50.run("pwd").stdout())
+    # check50.log(check50.run("ls ./").stdout())
     check50.run("/opt/jdk-18.0.1.1/bin/java F2Client").stdin("1", prompt=False).stdin("3", prompt=False).stdin("1", prompt=False).stdin("4", prompt=False).stdout("4/3\n").exit(0)
 
 
@@ -62,9 +44,9 @@ def divide():
 def multiply():
     """Fractions can be multiplied"""
     out = check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ F3Client.java").stdout(timeout = 60)
-    check50.log(out)
-    check50.log(check50.run("pwd").stdout())
-    check50.log(check50.run("ls ./").stdout())
+    # check50.log(out)
+    # check50.log(check50.run("pwd").stdout())
+    # check50.log(check50.run("ls ./").stdout())
     check50.run("/opt/jdk-18.0.1.1/bin/java F3Client").stdin("1", prompt=False).stdin("3", prompt=False).stdin("1", prompt=False).stdin("4", prompt=False).stdout("1/12\n").exit(0)
 
 
@@ -72,16 +54,16 @@ def multiply():
 def add():
     """Fractions can be added"""
     out = check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ F4Client.java").stdout(timeout = 60)
-    check50.log(out)
-    check50.log(check50.run("pwd").stdout())
-    check50.log(check50.run("ls ./").stdout())
+    # check50.log(out)
+    # check50.log(check50.run("pwd").stdout())
+    # check50.log(check50.run("ls ./").stdout())
     check50.run("/opt/jdk-18.0.1.1/bin/java F4Client").stdin("1", prompt=False).stdin("3", prompt=False).stdin("1", prompt=False).stdin("4", prompt=False).stdout("7/12\n").exit(0)
 
 @check50.check(compiles)
 def subtract():
     """Fractions can be subtracted"""
     out = check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ F5Client.java").stdout(timeout = 60)
-    check50.log(out)
-    check50.log(check50.run("pwd").stdout())
-    check50.log(check50.run("ls ./").stdout())
+    # check50.log(out)
+    # check50.log(check50.run("pwd").stdout())
+    # check50.log(check50.run("ls ./").stdout())
     check50.run("/opt/jdk-18.0.1.1/bin/java F5Client").stdin("1", prompt=False).stdin("3", prompt=False).stdin("1", prompt=False).stdin("4", prompt=False).stdout("1/12\n").exit(0)

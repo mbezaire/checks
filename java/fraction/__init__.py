@@ -20,11 +20,11 @@ def compiles():
     """Fraction.java compiles"""
     check50.run("javac Fraction.java")
 
-# @check50.compiles()
-# def runs():
-#     """Fraction.java runs"""
-#     check50.run("javac FClient.java")
-#     check50.run("java FClient")
+@check50.compiles()
+def runs():
+    """Fraction.java runs"""
+    check50.run("javac FClient.java")
+    check50.run("java FClient")
     
 # @check50.check()
 # def makequarter():

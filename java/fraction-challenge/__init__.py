@@ -11,7 +11,7 @@ import check50.c
 check50.include("FClient.java", "F1Client.java", "F2Client.java", "F3Client.java", "F4Client.java", "F5Client.java", "F6Client.java", "F7Client.java")
 
 
-less = check50.import_checks("https://github.com/mbezaire/checks/tree/main/java/fraction")
+less = check50.import_checks("https://github.com/mbezaire/checks/main/java/fraction")
 from less import *
 
 

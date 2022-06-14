@@ -23,20 +23,19 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """Fraction.java runs"""
-    check50.run("javac FClient.java")
-    check50.run("java FClient")
+    check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ FClient.java").stdout()
+    out = check50.run("/opt/jdk-18.0.1.1/bin/java FClient").stdout()
+    if out != "1/4\n":
+        raise check50.Failure("Instead it printed:\n" + ".", help=out)
     
 @check50.check(compiles)
 def makequarter():
     """A 1/4 fraction is instantiated and prints"""
-    out = check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ FClient.java").stdout()
-    check50.log("compile in current dir: " + out)
-
-    out = check50.run("/opt/jdk-18.0.1.1/bin/java FClient").stdout()
-    
-    check50.log(check50.run("ls").stdout())
+    check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ F1Client.java")
+    out = check50.run("/opt/jdk-18.0.1.1/bin/java F1Client").stdin("1 2 1 4").stdout("6/8\n").exit(0)
     if out != "1/4\n":
         raise check50.Failure("Instead it printed:\n" + ".", help=out)
+
     
     #check50.run("/opt/jdk-18.0.1.1/bin/javac ./FClient.java")
     #check50._api.run("/opt/jdk-18.0.1.1/bin/java ./FClient").stdout("1/4\n").exit(0)

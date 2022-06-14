@@ -23,7 +23,8 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """Fraction.java runs"""
-    check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ FClient.java  F1Client.java F2Client.java").stdout()
+    out = check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ FClient.java  F1Client.java F2Client.java").stdout()
+    check50.log(out)
     check50.run("/opt/jdk-18.0.1.1/bin/java FClient").stdout("1/4\n")
     #out = check50.run("/opt/jdk-18.0.1.1/bin/java FClient").stdout()
     #if out != "1/4\n":

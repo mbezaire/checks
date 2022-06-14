@@ -23,7 +23,7 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """Fraction.java runs"""
-    out = check50.run("javac ./ FClient.java  F1Client.java F2Client.java").stdout()
+    out = check50.run("javac FClient.java  F1Client.java F2Client.java").stdout()
     check50.log(out)
     check50.log(check50.run("pwd").stdout())
     check50.log(check50.run("ls ./").stdout())

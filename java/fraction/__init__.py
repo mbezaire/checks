@@ -32,7 +32,7 @@ def makequarter():
     out = check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ FClient.java").stdout()
     check50.log("compile in current dir: " + out)
 
-    out = check50.run("/opt/jdk-18.0.1.1/bin/java FClient.class").stdout()
+    out = check50.run("/opt/jdk-18.0.1.1/bin/java FClient").stdout()
     
     check50.log(check50.run("ls").stdout())
     if out != "1/4\n":

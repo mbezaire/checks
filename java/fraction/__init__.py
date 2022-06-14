@@ -23,7 +23,7 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """Fraction.java runs"""
-    out = check50.run("javac/opt/jdk-18.0.1.1/bin/javac -d ./ FClient.java").stdout()
+    out = check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ FClient.java").stdout()
     check50.log(out)
     check50.log(check50.run("pwd").stdout())
     check50.log(check50.run("ls ./").stdout())
@@ -35,7 +35,7 @@ def runs():
 @check50.check(compiles)
 def makequarter():
     """A 1/2 fraction is instantiated and prints"""
-    out = check50.run("javac/opt/jdk-18.0.1.1/bin/javac -d ./ F1Client.java").stdout()
+    out = check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ F1Client.java").stdout()
     check50.log(out)
     check50.log(check50.run("pwd").stdout())
     check50.log(check50.run("ls ./").stdout())
@@ -51,7 +51,7 @@ def makequarter():
 @check50.check(compiles)
 def divide():
     """Fractions can be divided"""
-    out = check50.run("javac/opt/jdk-18.0.1.1/bin/javac -d ./ F2Client.java").stdout()
+    out = check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ F2Client.java").stdout()
     check50.log(out)
     check50.log(check50.run("pwd").stdout())
     check50.log(check50.run("ls ./").stdout())

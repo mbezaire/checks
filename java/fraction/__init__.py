@@ -12,7 +12,7 @@ check50.include("FClient.java", "F1Client.java", "F2Client.java", "F3Client.java
 
 @check50.check()
 def exists():
-    """encode.c exists"""
+    """Fraction.java exists"""
     check50.exists("Fraction.java")
 
 @check50.check(exists)

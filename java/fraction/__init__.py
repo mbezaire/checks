@@ -42,11 +42,11 @@ def makequarter():
     #check50._api.run("/opt/jdk-18.0.1.1/bin/java ./FClient").stdout("1/4\n").exit(0)
     #check50._api.run("/opt/jdk-18.0.1.1/bin/java ./FClient.class").stdout("1/4\n").exit(0)
     
-# @check50.check(compiles)
-# def divide():
-#     """Fractions can be divided"""
-#     check50.run("javac F2Client.java")
-#     check50._api.run("java F2Client").stdin("1 4 1 3").stdout("12/1\n").exit(0)
+@check50.check(compiles)
+def divide():
+    """Fractions can be divided"""
+    check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ F2Client.java")
+    check50.run("/opt/jdk-18.0.1.1/bin/java F2Client").stdout("12/1\n").exit(0)
 
 
 # @check50.check(compiles)

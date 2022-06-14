@@ -4,15 +4,9 @@ public class F2Client
 {
    public static void main(String[] args)
    {
-      Scanner reader = new Scanner(System.in);
-      
-      int n = reader.nextInt();
-      int d = reader.nextInt();
-      Fraction dividend = new Fraction(n, d);
-      
-      n = reader.nextInt();
-      d = reader.nextInt();
-      Fraction divisor = new Fraction(n, d);
+
+      Fraction dividend = new Fraction(1,3);
+      Fraction divisor = new Fraction(1,4);
       
       System.out.println(dividend.divide(divisor));
    }

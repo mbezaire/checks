@@ -39,9 +39,11 @@ def runs():
 def makedouble():
     """Fractions can be constructed from a double"""
     out = check50.run("javac -d ./ F7Client.java").stdout(timeout = 60)
-    # check50.log(out)
-    # check50.log(check50.run("pwd").stdout())
-    # check50.log(check50.run("ls ./").stdout())
+    check50.log(out)
+    check50.log(check50.run("pwd").stdout())
+    check50.log(check50.run("ls ./").stdout())
+    check50.log(check50.run("pwd").stdout())
+    check50.log(check50.run("ls ../").stdout())
     check50.run("java F7Client").stdin("1.25", prompt=False).stdout("5/4\n").exit(0)
 
 @check50.check(compiles)

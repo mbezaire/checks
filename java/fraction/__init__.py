@@ -30,7 +30,7 @@ def runs():
 def makequarter():
     """A 1/4 fraction is instantiated and prints"""
     check50.run("javac F1Client.java")
-    check50._api.run("whereis java").stdout("1/4\n").exit(0)
+    check50._api.run("/opt/jdk-18.0.1.1/bin/java FClient").stdout("1/4\n").exit(0)
     
 # @check50.check(compiles)
 # def divide():

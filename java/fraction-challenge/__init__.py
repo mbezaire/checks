@@ -9,6 +9,8 @@ import check50
 import check50.c
 
 check50.include("FClient.java", "F1Client.java", "F2Client.java", "F3Client.java", "F4Client.java", "F5Client.java", "F6Client.java", "F7Client.java")
+
+@check50.check()
 def reduce():
     """Fractions can be reduced"""
     out = check50.run("ls .").stdout()

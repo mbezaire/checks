@@ -20,36 +20,40 @@ def compiles():
     """Fraction.java compiles"""
     check50.run("javac Fraction.java")
 
-@check50.compiles()
-def runs():
-    """Fraction.java runs"""
-    check50.run("javac FClient.java")
-    check50.run("java FClient")
+# @check50.compiles()
+# def runs():
+#     """Fraction.java runs"""
+#     check50.run("javac FClient.java")
+#     check50.run("java FClient")
     
-@check50.check()
-def makequarter():
-    """A 1/4 fraction is instantiated and prints"""
-    check50.run("javac F1Client.java").stdin("1 4").stdout("1/4\n").exit(0)
+# @check50.check()
+# def makequarter():
+#     """A 1/4 fraction is instantiated and prints"""
+#     check50.run("javac F1Client.java")
+#     check50.run("java F1Client").stdin("1 4").stdout("1/4\n").exit(0)
     
-@check50.check()
-def divide():
-    """Fractions can be divided"""
-    check50.run("javac F2Client.java").stdin("1 4 1 3").stdout("12/1\n").exit(0)
+# @check50.check()
+# def divide():
+#     """Fractions can be divided"""
+#     check50.run("javac F2Client.java")
+#     check50.run("java F2Client").stdin("1 4 1 3").stdout("12/1\n").exit(0)
 
 
-@check50.check()
-def multiply():
-    """Fractions can be multiplied"""
-    check50.run("javac F3Client.java").stdin("1 4 1 3").stdout("1/12\n").exit(0)
+# @check50.check()
+# def multiply():
+#     """Fractions can be multiplied"""
+#     check50.run("javac F3Client.java")
+#     check50.run("java F3Client").stdin("1 4 1 3").stdout("1/12\n").exit(0)
 
 
-@check50.check()
-def add():
-    """Fractions can be added"""
-    check50.run("javac F4Client.java").stdin("1 4 1 3").stdout("7/12\n").exit(0)
+# @check50.check()
+# def add():
+#     """Fractions can be added"""
+#     check50.run("javac F4Client.java")
+#     check50.run("java F4Client").stdin("1 4 1 3").stdout("7/12\n").exit(0)
 
-
-@check50.check()
-def subtract():
-    """Fractions can be subtracted"""
-    check50.run("javac F5Client.java").stdin("1 3 1 4").stdout("1/12\n").exit(0)
+# @check50.check()
+# def subtract():
+#     """Fractions can be subtracted"""
+#     check50.run("javac F5Client.java")
+#     check50.run("java F5Client").stdin("1 3 1 4").stdout("1/12\n").exit(0)

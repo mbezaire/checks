@@ -24,9 +24,10 @@ def compiles():
 def runs():
     """Fraction.java runs"""
     check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ FClient.java").stdout()
-    out = check50.run("/opt/jdk-18.0.1.1/bin/java FClient").stdout()
-    if out != "1/4\n":
-        raise check50.Failure("Instead it printed:\n" + ".", help=out)
+    check50.run("/opt/jdk-18.0.1.1/bin/java FClient").stdout("1/4\n")
+    #out = check50.run("/opt/jdk-18.0.1.1/bin/java FClient").stdout()
+    #if out != "1/4\n":
+    #    raise check50.Failure("Instead it printed:\n" + ".", help=out)
     
 @check50.check(compiles)
 def makequarter():

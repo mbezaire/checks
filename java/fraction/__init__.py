@@ -20,7 +20,7 @@ def compiles():
     """Fraction.java compiles"""
     check50.run("javac Fraction.java")
 
-@check50.compiles()
+@check50.check(compiles)
 def runs():
     """Fraction.java runs"""
     check50.run("javac FClient.java")

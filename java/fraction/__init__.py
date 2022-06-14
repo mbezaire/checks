@@ -32,9 +32,9 @@ def runs():
 def makequarter():
     """A 1/4 fraction is instantiated and prints"""
     check50.run("/opt/jdk-18.0.1.1/bin/javac -d ./ F1Client.java")
-    out = check50.run("/opt/jdk-18.0.1.1/bin/java F1Client").stdin("1 2 1 4").stdout("6/8\n").exit(0)
-    if out != "1/4\n":
-        raise check50.Failure("Instead it printed:\n" + ".", help=out)
+    check50.run("/opt/jdk-18.0.1.1/bin/java F1Client").stdin("1 2").stdout("1/2\n").exit(0)
+    #if out != "1/2\n":
+    #    raise check50.Failure("Instead it printed:\n" + ".", help=out)
 
     
     #check50.run("/opt/jdk-18.0.1.1/bin/javac ./FClient.java")

@@ -67,3 +67,13 @@ def subtract():
     # check50.log(check50.run("pwd").stdout())
     # check50.log(check50.run("ls ./").stdout())
     check50.run("java F5Client").stdin("1", prompt=False).stdin("3", prompt=False).stdin("1", prompt=False).stdin("4", prompt=False).stdout("1/12\n").exit(0)
+
+
+@check50.check(compiles)
+def getvalue():
+    """Fraction value can be computed"""
+    out = check50.run("javac -d ./ F0Client.java").stdout(timeout = 60)
+    # check50.log(out)
+    # check50.log(check50.run("pwd").stdout())
+    # check50.log(check50.run("ls ./").stdout())
+    check50.run("java F0Client").stdin("1", prompt=False).stdin("4", prompt=False).stdout("0.25\n").exit(0)

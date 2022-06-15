@@ -8,7 +8,7 @@ Created on Wed Sep 29 18:28:44 2021
 import check50
 import check50.c
 
-check50.include("FClient.java", "F1Client.java", "F2Client.java", "F3Client.java", "F4Client.java", "F5Client.java")
+check50.include("FClient.java", "F0Client.java", "F1Client.java", "F2Client.java", "F3Client.java", "F4Client.java", "F5Client.java")
 
 @check50.check()
 def exists():

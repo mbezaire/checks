@@ -12,12 +12,11 @@ def exists():
     """seaslug.py was submitted"""
     check50.exists("seaslug.py")
 
+
 @check50.check(exists)
-def calc_ex1():
+def test50():
     """No habituation"""
-    out = check50.run("python seaslug.py").stdin("0", prompt=True).stdout()
-    check50.log(out)
-    check50.run("python seaslug.py").stdin("0", prompt=True).stdout("[0, 0, 4, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0]").exit(0)
+    check50.run("python3 seaslug.py").stdin("0", prompt=True).stdout("[0, 0, 4, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0]").exit()
 
 
 @check50.check(exists)

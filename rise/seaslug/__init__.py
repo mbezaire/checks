@@ -16,7 +16,8 @@ def exists():
 @check50.check(exists)
 def test50():
     """No habituation"""
-    check50.run("python3 seaslug.py").stdin("0", prompt=True).stdout("[0, 0, 4, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0]").exit()
+#    check50.run("python3 seaslug.py").stdin("0", prompt=False).stdout("[0, 0, 4, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0]").exit()
+    check50.run("python3 seaslug.py").stdin("0", prompt=False).stdout("hello").exit()
 
 
 @check50.check(exists)

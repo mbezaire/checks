@@ -15,7 +15,7 @@ def exists():
 @check50.check(exists)
 def calc_ex1():
     """No habituation"""
-    check50.run("python seaslug.py").stdin("0", prompt=False).stdout("[0, 0, 4, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0]", timeout = 60).exit(0)
+    check50.run("python seaslug.py").stdin("0", prompt=True).stdout("[0, 0, 4, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0]", timeout = 60).exit(0)
 
 
 @check50.check(exists)

@@ -25,7 +25,7 @@ def calc_ex2():
 
 
 @check50.check(exists)
-def calc_ex2():
+def calc_ex3():
     """Sodium reversal potential"""
     check50.run("python3 nernst.py").stdin("1").stdin("15").stdin("145").stdout("58.25578423688606").exit()
 

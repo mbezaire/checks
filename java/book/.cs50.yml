@@ -1,7 +1,7 @@
 check50: 
   files: &check50_files
     - !exclude "*"
-    - !require Fraction.java
+    - !require Book.java
 
 submit50:
   files: *check50_files

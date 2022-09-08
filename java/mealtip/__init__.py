@@ -25,5 +25,6 @@ def runs():
     """MealTip.java runs"""
     # check50.log(check50.run("pwd").stdout())
     # check50.log(check50.run("ls ./").stdout())
+    check50.run("javac MealTip.java")
     out = check50.run("java MealTip").stdout()
     check50.log(out)

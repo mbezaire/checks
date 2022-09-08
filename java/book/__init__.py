@@ -28,7 +28,7 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """Book.java runs"""
-    out = check50.run("javac -d ./ BClient.java").stdout(timeout = 60)
+    out = check50.run("javac -d ./ *.java").stdout(timeout = 60)
     check50.log(out)
     check50.log(check50.run("pwd").stdout())
     check50.log(check50.run("ls ./").stdout())

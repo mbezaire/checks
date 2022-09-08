@@ -8,7 +8,7 @@ Created on Wed Sep 29 18:28:44 2021
 import check50
 import check50.c
 
-check50.include("BClient.java", "B1Client.java")
+check50.include("BClient.java")
 
 # not working in sandbox
 # less = check50.import_checks("https://github.com/mbezaire/checks/main/java/fraction")
@@ -23,12 +23,12 @@ def exists():
 @check50.check(exists)
 def compiles():
     """Book.java compiles"""
-    check50.run("javac *.java")
+    check50.run("javac Book.java")
 
 @check50.check(compiles)
 def runs():
     """Book.java runs"""
-    out = check50.run("javac -d ./ *.java").stdout(timeout = 60)
+    out = check50.run("javac -d ./ BClient.java").stdout(timeout = 60)
     check50.log(out)
     check50.log(check50.run("pwd").stdout())
     check50.log(check50.run("ls ./").stdout())

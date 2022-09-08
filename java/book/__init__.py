@@ -29,24 +29,24 @@ def compiles():
 def runs():
     """Book.java runs"""
     out = check50.run("javac -d ./ BClient.java").stdout(timeout = 60)
-    # check50.log(out)
-    # check50.log(check50.run("pwd").stdout())
-    # check50.log(check50.run("ls ./").stdout())
+    check50.log(out)
+    check50.log(check50.run("pwd").stdout())
+    check50.log(check50.run("ls ./").stdout())
     out2 = check50.run("java BClient").stdout()
     check50.log(out2)
 
 
-@check50.check(compiles)
-def reduce():
-    """A book has a price and a toString"""
-    out = check50.run("javac -d ./ B1Client.java").stdout(timeout = 60)
+# @check50.check(compiles)
+# def reduce():
+#     """A book has a price and a toString"""
+#     out = check50.run("javac -d ./ B1Client.java").stdout(timeout = 60)
 
     
-    from re import match
+#     from re import match
 
-    expected = "[Aa]n {Ii]mmense [Ww]orld[\n\t\s]*[bByY :]+Ed Yong[\n\t\s]*[$0-9\.]+"
-    actual = check50.run("java B1Client").stdout()
-    if not match(expected, actual):
-        help = None
-        raise check50.Mismatch("An Immense World\nBy Ed Yong\n$85.43", actual, help=help)
+#     expected = "[Aa]n {Ii]mmense [Ww]orld[\n\t\s]*[bByY :]+Ed Yong[\n\t\s]*[$0-9\.]+"
+#     actual = check50.run("java B1Client").stdout()
+#     if not match(expected, actual):
+#         help = None
+#         raise check50.Mismatch("An Immense World\nBy Ed Yong\n$85.43", actual, help=help)
 

@@ -2,6 +2,7 @@ check50:
   files: &check50_files
     - !exclude "*"
     - !require Book.java
+    - !require Author.java
 
 submit50:
   files: *check50_files

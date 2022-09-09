@@ -20,20 +20,32 @@ def exists():
     """Book.java exists"""
     check50.exists("Book.java")
 
+
+@check50.check()
+def authexists():
+    """Author.java exists"""
+    check50.exists("Author.java")
+    
 @check50.check(exists)
 def compiles():
     """Book.java compiles"""
     check50.run("javac Book.java")
+    
+@check50.check(authexists)
+def authcompiles():
+    """Author.java compiles"""
+    check50.run("javac Author.java")
 
-@check50.check(compiles)
-def runs():
-    """Book.java runs"""
-    out = check50.run("javac -d ./ BClient.java").stdout(timeout = 60)
-    check50.log(out)
-    check50.log(check50.run("pwd").stdout())
-    check50.log(check50.run("ls ./").stdout())
-    out2 = check50.run("java BClient").stdout()
-    check50.log(out2)
+
+# @check50.check(compiles)
+# def runs():
+#     """Book.java runs"""
+#     out = check50.run("javac -d ./ BClient.java").stdout(timeout = 60)
+#     check50.log(out)
+#     check50.log(check50.run("pwd").stdout())
+#     check50.log(check50.run("ls ./").stdout())
+#     out2 = check50.run("java BClient").stdout()
+#     check50.log(out2)
 
 
 # @check50.check(compiles)

@@ -1,0 +1,7 @@
+check50: 
+  files: &check50_files
+    - !exclude "*"
+    - !require Warmup2.java
+
+submit50:
+  files: *check50_files

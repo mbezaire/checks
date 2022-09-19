@@ -1,0 +1,11 @@
+check50: 
+  files: &check50_files
+    - !exclude "*"
+    - !include "*.java"
+    - !include "*.c"
+    - !include "*.py"
+    - !include "*.txt"
+    - !include "*.md"
+
+submit50:
+  files: *check50_files

@@ -1,0 +1,10 @@
+check50: 
+  files: &check50_files
+    - !exclude "*"
+    - !require Book.java
+    - !require Author.java
+    - !require DemoClient.java
+    - !require CustomBookstore.java
+
+submit50:
+  files: *check50_files

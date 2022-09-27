@@ -21,9 +21,9 @@ def compiles():
 @check50.check(compiles)
 def real_abs_pos():
     """A positive number stays positive"""
-    check50.run("./real_abs").stdin("5").stdout("5\n").exit(0)
+    check50.run("./real_abs").stdin("5").stdout("5.000000\n").exit(0)
 
 @check50.check(compiles)
 def real_abs_neg():
     """A negative number goes positive"""
-    check50.run("./real_abs").stdin("-5").stdout("5\n").exit(0)
+    check50.run("./real_abs").stdin("-5").stdout("5.000000\n").exit(0)

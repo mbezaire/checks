@@ -4,7 +4,9 @@ Created on Wed Sep 29 18:28:44 2021
 
 @author: marianne.bezaire
 """
+# out = 'TestBalloon.java:7: error: incompatible types: String cannot be converted to Color\n        Balloon greenie = new Balloon(50, 100, 30, "green");\n                                                   ^\n\n1 error\n'
 
+import re
 import check50
 import check50.c
 
@@ -18,8 +20,8 @@ def compiles():
     """TestBalloon.java compiles"""
     out = check50.run("javac -d ./ TestBalloon.java 2>&1").stdout(timeout = 60).replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output","")
     if "error" in out:
-        
-        raise check50.Failure("Failed to compile", help="|"+out+"|")
+        result = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out).groups()
+        raise check50.Failure("Failed to compile due to " + result[1], help=result[0].strip())
 
 @check50.check(compiles)
 def runs():

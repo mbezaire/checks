@@ -10,6 +10,8 @@ import re
 import check50
 import check50.c
 
+check50.include("Color.java")
+
 @check50.check()
 def exists():
     """TestBalloon.java exists"""
@@ -26,8 +28,6 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """TestBalloon.java runs"""
-    out = check50.run("javac -d ./ TestBalloon.java").stdout(timeout = 60)
-    check50.log(out)
     out2 = check50.run("java TestBalloon").stdout()
     check50.log(out2)
 

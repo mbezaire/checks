@@ -3,6 +3,7 @@ check50:
     - !exclude "*"
     - !require TestBalloon.java
     - !require Balloon.java
+    - !require Color.java
 
 submit50:
   files: *check50_files

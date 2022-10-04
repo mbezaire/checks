@@ -10,7 +10,7 @@ import re
 import check50
 import check50.c
 
-check50.include("Color.java")
+# check50.include("Color.java")
 
 @check50.check()
 def exists():

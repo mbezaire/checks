@@ -1,0 +1,8 @@
+check50: 
+  files: &check50_files
+    - !exclude "*"
+    - !require TestBalloon.java
+    - !require Balloon.java
+
+submit50:
+  files: *check50_files

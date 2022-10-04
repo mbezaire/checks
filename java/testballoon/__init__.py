@@ -16,7 +16,9 @@ def exists():
 @check50.check(exists)
 def compiles():
     """TestBalloon.java compiles"""
-    check50.run("javac -d ./ TestBalloon.java 2>&1").stdout("",timeout = 60)
+    out = check50.run("javac -d ./ TestBalloon.java 2>&1").stdout(timeout = 60)
+    if "error" in out:
+        raise check50.Failure("Failed to compile", help=out)
 
 @check50.check(compiles)
 def runs():

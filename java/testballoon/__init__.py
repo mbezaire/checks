@@ -18,7 +18,7 @@ def compiles():
     """TestBalloon.java compiles"""
     out = check50.run("javac -d ./ TestBalloon.java 2>&1").stdout(timeout = 60)
     if "error" in out:
-        raise check50.Failure("Failed to compile", help=out)
+        raise check50.Failure("Failed to compile", help=out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output",""))
 
 @check50.check(compiles)
 def runs():

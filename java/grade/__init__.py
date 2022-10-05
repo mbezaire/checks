@@ -18,7 +18,7 @@ def exists():
 @check50.check(exists)
 def compiles():
     """Grade.java compiles"""
-    out = check50.run("javac -d ./ TestBalloon.java 2>&1").stdout(timeout = 60)
+    out = check50.run("javac -d ./ Grade.java 2>&1").stdout(timeout = 60)
     if "error" in out:
         finderror = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output",""))
         if finderror != None:

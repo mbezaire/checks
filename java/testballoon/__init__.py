@@ -26,9 +26,9 @@ def compiles():
     check50.log(out2)
     ou32 = check50.run("javac -d ./ Balloon.java Color.java TestBalloon.java 2>&1").stdout(timeout = 60)
     check50.log(ou32)
-    out = check50.run("javac -d ./ TestBalloon.java 2>&1").stdout(timeout = 60).replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output","")
+    out = check50.run("javac -d ./ TestBalloon.java 2>&1").stdout(timeout = 60)
     if "error" in out:
-        result = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out).groups()
+        result = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output","")).groups()
         raise check50.Failure("Failed to compile due to " + result[1], help=result[0].strip())
 
 @check50.check(compiles)

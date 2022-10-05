@@ -21,13 +21,7 @@ def exists():
 def compiles():
     """TestBalloon.java compiles"""
     check50.include("Color.java","Balloon.java")
-    check50.log(" ".join(os.listdir()))
-    out1 = check50.run("ls *.java").stdout(timeout = 60)
-    check50.log(out1)
-    out2 = check50.run("javac -d ./ *.java 2>&1").stdout(timeout = 60)
-    check50.log(out2)
-    ou32 = check50.run("javac -d ./ Balloon.java Color.java TestBalloon.java 2>&1").stdout(timeout = 60)
-    check50.log(ou32)
+    # out2 = check50.run("javac -d ./ *.java 2>&1").stdout(timeout = 60)
     out = check50.run("javac -d ./ TestBalloon.java 2>&1").stdout(timeout = 60)
     if "error" in out:
         result = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output","")).groups()
@@ -37,7 +31,8 @@ def compiles():
 def runs():
     """TestBalloon.java runs"""
     out2 = check50.run("java TestBalloon").stdout()
-    check50.log(out2)
+    if len(out2) < 60 or 'border' not in out2:
+        raise check50.Failure("Your TestBalloon code seems to be missing some print statements: ", help=out2.strip())
 
 # @check50.check(compiles)
 # def getvalue():

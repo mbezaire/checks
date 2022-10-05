@@ -20,6 +20,12 @@ def exists():
 @check50.check(exists)
 def compiles():
     """TestBalloon.java compiles"""
+    out1 = check50.run("ls *.java")
+    check50.log(out1)
+    out2 = check50.run("javac -d ./ *.java 2>&1").stdout(timeout = 60)
+    check50.log(out2)
+    ou32 = check50.run("javac -d ./ Balloon.java Color.java TestBalloon.java 2>&1").stdout(timeout = 60)
+    check50.log(ou32)
     out = check50.run("javac -d ./ TestBalloon.java 2>&1").stdout(timeout = 60).replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output","")
     if "error" in out:
         result = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out).groups()

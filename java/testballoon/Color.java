@@ -6,29 +6,29 @@ public class Color
 {
     public static Color	black = new Color();
     public static Color	BLACK = black;
-    public static Color	blue = new Color(0,0,1);
+    public static Color	blue = new Color(0,0,255);
     public static Color	BLUE = blue;
-    public static Color	cyan = new Color(0,1,1);
+    public static Color	cyan = new Color(0,255,255);
     public static Color	CYAN = cyan;
-    public static Color	DARK_GRAY = new Color(0.2,0.2,.2);
+    public static Color	DARK_GRAY = new Color(50,50,50);
     public static Color	darkGray = DARK_GRAY;
-    public static Color	gray = new Color(0.5,0.5,.5);
+    public static Color	gray = new Color(128,128,128);
     public static Color	GRAY = gray;
-    public static Color	green = new Color(0,1,0);
+    public static Color	green = new Color(0,255,0);
     public static Color	GREEN = green;
-    public static Color	LIGHT_GRAY = new Color(0.7,0.7,.7);
+    public static Color	LIGHT_GRAY = new Color(176,176,176);
     public static Color	lightGray = LIGHT_GRAY;
-    public static Color	magenta = new Color(1,0,1);
+    public static Color	magenta = new Color(255,0,255);
     public static Color	MAGENTA = magenta;
-    public static Color	orange = new Color(1,.5,0);
+    public static Color	orange = new Color(255,128,0);
     public static Color	ORANGE = orange;
-    public static Color	pink = new Color(1,.8,.8);
+    public static Color	pink = new Color(255,200,200);
     public static Color	PINK = pink;
-    public static Color	red = new Color(1,0,0);
+    public static Color	red = new Color(255,0,0);
     public static Color	RED = red;
-    public static Color	white = new Color(1,1,1);
+    public static Color	white = new Color(255,255,255);
     public static Color	WHITE = white;
-    public static Color	yellow = new Color(1,1,0);
+    public static Color	yellow = new Color(255,255,0);
     public static Color	YELLOW = yellow;
 
     private int r;
@@ -40,9 +40,9 @@ public class Color
 
     public Color(int r, int g, int b)
     {
-        this.r = setR(r);
-        this.g = setG(g);
-        this.b = setB(b);
+        setR(r);
+        setG(g);
+        setB(b);
     }
 
     public int getR()

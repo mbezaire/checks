@@ -4,7 +4,6 @@ Created on Wed Sep 29 18:28:44 2021
 
 @author: marianne.bezaire
 """
-# out = 'TestBalloon.java:7: error: incompatible types: String cannot be converted to Color\n        Balloon greenie = new Balloon(50, 100, 30, "green");\n                                                   ^\n\n1 error\n'
 
 import re
 import check50

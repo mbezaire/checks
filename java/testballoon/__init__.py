@@ -21,7 +21,7 @@ def exists():
 def compiles():
     """TestBalloon.java compiles"""
     check50.include("Color.java","Balloon.java")
-    check50.log(os.listdir())
+    check50.log(" ".join(os.listdir()))
     out1 = check50.run("ls *.java").stdout(timeout = 60)
     check50.log(out1)
     out2 = check50.run("javac -d ./ *.java 2>&1").stdout(timeout = 60)

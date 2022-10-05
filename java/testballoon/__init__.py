@@ -20,7 +20,7 @@ def exists():
 @check50.check(exists)
 def compiles():
     """TestBalloon.java compiles"""
-    out1 = check50.run("ls *.java")
+    out1 = check50.run("ls *.java").stdout(timeout = 60)
     check50.log(out1)
     out2 = check50.run("javac -d ./ *.java 2>&1").stdout(timeout = 60)
     check50.log(out2)

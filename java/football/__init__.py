@@ -31,21 +31,21 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """Football.java says "Go for it" when down by 6 with 5 minutes left in the game"""
-    check50.run("java Grade").stdin("21", prompt = False).stdin("27", prompt = False).stdin("300", prompt = False).stdout("Go for it", timeout = 60)
+    check50.run("java Football").stdin("21").stdin("27").stdin("300").stdout("Go for it", timeout = 60)
 
 
 @check50.check(compiles)
 def kicks():
     """Football.java says "Kick" when down by 2 with 5 minutes left in the game"""
-    check50.run("java Grade").stdin("21", prompt = False).stdin("23", prompt = False).stdin("300", prompt = False).stdout("Kick", timeout = 60)
+    check50.run("java Football").stdin("21").stdin("23").stdin("300").stdout("Kick", timeout = 60)
 
 @check50.check(compiles)
 def kicks2():
     """Football.java says "Kick" when down by 6 with 2 minutes left in the game"""
-    check50.run("java Grade").stdin("14", prompt = False).stdin("20", prompt = False).stdin("120", prompt = False).stdout("Kick", timeout = 60)
+    check50.run("java Football").stdin("14").stdin("20").stdin("120").stdout("Kick", timeout = 60)
 
 
 @check50.check(compiles)
 def kicks3():
     """Football.java says "Kick" when up by 2 with 5 minutes left in the game"""
-    check50.run("java Grade").stdin("21", prompt = False).stdin("19", prompt = False).stdin("300", prompt = False).stdout("Kick", timeout = 60)
+    check50.run("java Football").stdin("21").stdin("19").stdin("300").stdout("Kick", timeout = 60)

@@ -31,8 +31,8 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """Football.java says "Go for it" when down by 6 with 5 minutes left in the game"""
-    check50.run("java Grade").stdin("21").stdin("27").stdin("305").stdin("35").stdin("50").stdin("55").stdout("Go for it", timeout = 60)
+    check50.run("java Football").stdin("21").stdin("27").stdin("305").stdin("35").stdin("50").stdin("55").stdout("Go for it", timeout = 60)
 
 def kicks():
     """Football.java says "Go for it" when down by 6 with 5 minutes left in the game"""
-    check50.run("java Grade").stdin("21").stdin("27").stdin("305").stdin("35").stdin("60").stdin("45").stdout("Kick", timeout = 60)
+    check50.run("java Football").stdin("21").stdin("27").stdin("305").stdin("35").stdin("60").stdin("45").stdout("Kick", timeout = 60)

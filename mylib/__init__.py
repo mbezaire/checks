@@ -23,7 +23,7 @@ def exists():
 @check50.check(exists)
 def mylib():
     """mylib contains isvowel and isconsonant"""
-    check50.include("testmylib.c","testmylibvowel.c", "testmylibconsonant.c")
+    check50.include("testmylib.c","testmylibvowel.c", "testmylibcons.c")
     check50.c.compile("testmylib.c", lcs50=True)
     check50.c.compile("testmylibvowel.c", lcs50=True)
     check50.c.compile("testmylibcons.c", lcs50=True)

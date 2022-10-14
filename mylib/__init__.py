@@ -29,24 +29,24 @@ def mylib():
 @check50.check(mylib)
 def isvowelyes():
     """isvowel returns 1 for vowel chars"""
-    check50.run("./testmylibvowel").stdin("u").stdout("1").exit(0)
+    check50.run("./testmylibvowel").stdin("U").stdout("1").exit(0)
 
 @check50.check(mylib)
 def isvowelno():
     """isvowel returns 0 for nonvowel chars"""
-    out = check50.run("./testmylibvowel").stdin("z").stdout("0").exit(0)
+    check50.run("./testmylibvowel").stdin("z").stdout("0").exit(0)
 
 @check50.check(mylib)
 def isconsonantyes():
     """isconsonant returns 1 for consonant chars"""
-    out = check50.run("./testmylibcons").stdin("z").stdout("1").exit(0)
+    check50.run("./testmylibcons").stdin("Z").stdout("1").exit(0)
 
 @check50.check(mylib)
 def isconsonantno():
     """isconsonant returns 0 for nonconsonant chars"""
-    out = check50.run("./testmylibcons").stdin("a").stdout("0").exit(0)
+    check50.run("./testmylibcons").stdin("a").stdout("0").exit(0)
 
 @check50.check(mylib)
 def isconsonantnope():
     """isconsonant returns 0 for numeric chars"""
-    out = check50.run("./testmylibcons").stdin("5").stdout("0").exit(0)
+    check50.run("./testmylibcons").stdin("5").stdout("0").exit(0)

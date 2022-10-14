@@ -15,17 +15,19 @@ def exists():
     """mylib.c exists"""
     check50.exists("mylib.c")
 
-# @check50.check(exists)
-# def compiles():
-#     """mylib.c compiles"""
-#     check50.c.compile("mylib.c", lcs50=True)
+@check50.check(exists)
+def compiles():
+    """testmylib.c compiles"""
+    check50.c.compile("testmylib.c", lcs50=True)
 
 @check50.check(exists)
 def mylib():
     """mylib contains isvowel and isconsonant"""
     check50.include("testmylib.c","testmylibvowel.c", "testmylibcons.c")
-    check50.run("clang -c mylib.c")
-    check50.run("clang testmylib.c -lcs50 mylib.o -o testmylib")
+    out = check50.run("clang -c mylib.c 2>&1").stdout()
+    check50.log(out)
+    out = check50.run("clang testmylib.c -lcs50 mylib.o -o testmylib 2>&1").stdout()
+    check50.log(out)
     out = check50.run("ls").stdout()
     check50.log(out)
     check50.run("./testmylib").stdin("u").stdout("okay", "okay\n", timeout = 60).exit(0)

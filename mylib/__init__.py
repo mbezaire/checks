@@ -26,7 +26,7 @@ def mylib():
     check50.include("testmylib.c","testmylibvowel.c", "testmylibcons.c")
     check50.run("clang -c mylib.c")
     check50.run("clang testmylib.c -lcs50 mylib.o -o testmylib")
-    out = check50.run("ls")
+    out = check50.run("ls").stdout()
     check50.log(out)
     check50.run("./testmylib").stdin("u").stdout("okay", "okay\n", timeout = 60).exit(0)
 

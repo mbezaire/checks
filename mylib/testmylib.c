@@ -1,4 +1,4 @@
-#include "mylib.c"
+#include "mylib.h"
 #include <stdio.h>
 #include <cs50.h>
 

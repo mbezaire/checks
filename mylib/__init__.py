@@ -24,9 +24,10 @@ def exists():
 def mylib():
     """mylib contains isvowel and isconsonant"""
     check50.include("testmylib.c","testmylibvowel.c", "testmylibcons.c")
-    check50.c.compile("testmylib.c", lcs50=True)
-    check50.c.compile("testmylibvowel.c", lcs50=True)
-    check50.c.compile("testmylibcons.c", lcs50=True)
+    check50.run("clang -c mylib.c")
+    check50.run("clang testmylib.c -lcs50 mylib.o -o testmylib")
+    check50.run("clang testmylibvowel.c -lcs50 mylib.o -o testmylib")
+    check50.run("clang testmylibcons.c -lcs50 mylib.o -o testmylib")
     check50.run("./testmylib").stdin("u").stdin("u").stdout("okay", "okay\n").exit(0)
 
 @check50.check(mylib)

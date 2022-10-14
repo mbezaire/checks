@@ -13,7 +13,7 @@ check50.include("testmylib.c") #, "testmylibvowel.c", "testmylibconsonant.c" ])
 @check50.check()
 def exists():
     """mylib.c exists"""
-    check50.exists("mylib.c")
+    check50.exists("mylib.c").exists("mylib.h")
 
 @check50.check(exists)
 def compiles():

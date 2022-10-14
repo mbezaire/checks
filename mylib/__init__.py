@@ -28,7 +28,7 @@ def mylib():
     check50.run("clang testmylib.c -lcs50 mylib.o -o testmylib")
     check50.run("clang testmylibvowel.c -lcs50 mylib.o -o testmylib")
     check50.run("clang testmylibcons.c -lcs50 mylib.o -o testmylib")
-    check50.run("./testmylib").stdin("u").stdin("u").stdout("okay", "okay\n").exit(0)
+    check50.run("./testmylib").stdin("u").stdout("okay", "okay\n").exit(0)
 
 @check50.check(mylib)
 def isvowelyes():

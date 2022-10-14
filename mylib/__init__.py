@@ -20,10 +20,12 @@ def exists():
 def mylib():
     """mylib contains isvowel and isconsonant"""
     check50.include("testmylib.c","testmylibvowel.c", "testmylibcons.c")
-    check50.run("clang -c mylib.c 2>&1")
-    check50.run("clang testmylib.c -lcs50 mylib.o -o testmylib 2>&1").stdout()
-    check50.run("./testmylib").stdin("u").stdout("okay", "okay\n").exit(0)
-
+    check50.run("clang -c mylib.c")
+    check50.run("clang testmylib.c -lcs50 mylib.o -o testmylib").stdout()
+    out = check50.run("./testmylib").stdin("u").stdout()#"okay", "okay\n").exit(0)
+    check50.log(out)
+    check50.log("That was the output")
+    
 @check50.check(mylib)
 def isvowelyes():
     """isvowel returns 1 for vowel chars"""

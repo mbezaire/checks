@@ -31,7 +31,7 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """LeapYear.java should say 1896 was a leap year"""
-    check50.run("java LunchTime").stdin("1896").stdout("1896 was a leap year", timeout = 60)
+    check50.run("java LeapYear").stdin("1896").stdout("1896 was a leap year", timeout = 60)
     # if len(out2) < 60 or 'border' not in out2:
     #     raise check50.Failure("Your TestBalloon code seems to be missing some print statements.\nHere's what printed:\n", help=out2.strip())
     # else:
@@ -41,7 +41,7 @@ def runs():
 @check50.check(compiles)
 def runs2():
     """LeapYear.java should say 1900 was not a leap year"""
-    check50.run("java LunchTime").stdin("1900").stdout("1900 was not a leap year", timeout = 60)
+    check50.run("java LeapYear").stdin("1900").stdout("1900 was not a leap year", timeout = 60)
     # if len(out2) < 60 or 'border' not in out2:
     #     raise check50.Failure("Your TestBalloon code seems to be missing some print statements.\nHere's what printed:\n", help=out2.strip())
     # else:
@@ -51,7 +51,7 @@ def runs2():
 @check50.check(compiles)
 def runs3():
     """LeapYear.java should say 2005 was not a leap year"""
-    check50.run("java LunchTime").stdin("2005").stdout("2005 was not a leap year", timeout = 60)
+    check50.run("java LeapYear").stdin("2005").stdout("2005 was not a leap year", timeout = 60)
     # if len(out2) < 60 or 'border' not in out2:
     #     raise check50.Failure("Your TestBalloon code seems to be missing some print statements.\nHere's what printed:\n", help=out2.strip())
     # else:
@@ -61,7 +61,7 @@ def runs3():
 @check50.check(compiles)
 def runs4():
     """LeapYear.java should say 2000 was a leap year"""
-    check50.run("java LunchTime").stdin("2000").stdout("2000 was a leap year", timeout = 60)
+    check50.run("java LeapYear").stdin("2000").stdout("2000 was a leap year", timeout = 60)
     # if len(out2) < 60 or 'border' not in out2:
     #     raise check50.Failure("Your TestBalloon code seems to be missing some print statements.\nHere's what printed:\n", help=out2.strip())
     # else:

@@ -13,12 +13,12 @@ classname = 'DayOfWeek'
 
 @check50.check()
 def exists():
-    f"""{classname}.java exists"""
+    """Program file exists"""
     check50.exists(f"{classname}.java")
 
 @check50.check(exists)
 def compiles():
-    f"""{classname}.java compiles"""
+    """Program compiles"""
     out = check50.run(f"javac -d ./ {classname}.java 2>&1").stdout(timeout = 60)
     if "error" in out:
         finderror = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output",""))
@@ -31,21 +31,21 @@ def compiles():
 
 @check50.check(compiles)
 def runs():
-    f"""{classname}.java should say Jan 5, 2022 is Wednesday (3)"""
+    """Program should say Jan 5, 2022 is Wednesday (3)"""
     check50.run(f"java {classname}").stdin("6").stdin("5").stdout("3", timeout = 60)
 
 @check50.check(compiles)
 def runs60():
-    f"""{classname}.java should say Jan 30, 2023 is Monday (1)"""
+    """Program should say Jan 30, 2023 is Monday (1)"""
     check50.run(f"java {classname}").stdin("0").stdin("30").stdout("1", timeout = 60)
 
 @check50.check(compiles)
 def runs59():
-    f"""{classname}.java should say Jan 22, 2023 is Sunday (0)"""
+    """Program should say Jan 22, 2023 is Sunday (0)"""
     check50.run(f"java {classname}").stdin("0").stdin("22").stdout("0", timeout = 60)
  
 @check50.check(compiles)
 def runs89():
-    f"""{classname}.java should say Jan 13, 2024 is Saturday (6)"""
-    check50.run(f"java {classname}").stdin("1").stdin("13").stdout("6S", timeout = 60)
+    """Program should say Jan 13, 2024 is Saturday (6)"""
+    check50.run(f"java {classname}").stdin("1").stdin("13").stdout("6", timeout = 60)
 

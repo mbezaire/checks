@@ -32,20 +32,20 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """Program should say more evens"""
-    output = check50.run(f"java {classname}").stdin("8").stdin("6").stdin("4").stdin("5").stdout()
+    output = check50.run(f"java {classname}").stdin("8").stdin("6", prompt = False).stdin("4", prompt = False).stdin("5", prompt = False).stdout()
     if "ven" not in output:
         raise check50.Mismatch("More evens", output)
     
 @check50.check(compiles)
 def runs60():
     """Program should say same number"""
-    output = check50.run(f"java {classname}").stdin("0").stdin("2").stdin("1").stdin("3").stdout()
+    output = check50.run(f"java {classname}").stdin("0").stdin("2", prompt = False).stdin("1", prompt = False).stdin("3", prompt = False).stdout()
     if "ame" not in output:
         raise check50.Mismatch("Same number of evens and odds", output)
 
 @check50.check(compiles)
 def runs59():
     """Program should say more odds"""
-    output = check50.run(f"java {classname}").stdin("1").stdin("3").stdin("1").stdin("3").stdout()
+    output = check50.run(f"java {classname}").stdin("1").stdin("3", prompt = False).stdin("1", prompt = False).stdin("3", prompt = False).stdout()
     if "dd" not in output:
         raise check50.Mismatch("More odds", output)

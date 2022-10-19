@@ -31,7 +31,7 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """TenSwap.java swaps 3 to 30"""
-    check50.run("java TenSwap").stdin("3").stdout("30", timeout = 60)
+    check50.run("java TenSwap").stdin("  3  ").stdout("30", timeout = 60)
     # if len(out2) < 60 or 'border' not in out2:
     #     raise check50.Failure("Your TestBalloon code seems to be missing some print statements.\nHere's what printed:\n", help=out2.strip())
     # else:
@@ -41,22 +41,22 @@ def runs():
 @check50.check(compiles)
 def runs60():
     """TenSwap.java swaps 30 to 3"""
-    check50.run("java TenSwap").stdin("30").stdout("3", timeout = 60)        
+    check50.run("java TenSwap").stdin(" 30   ").stdout("3", timeout = 60)        
 
 @check50.check(compiles)
 def runs59():
     """TenSwap.java swaps 212 to 221"""
-    check50.run("java TenSwap").stdin("212").stdout("221", timeout = 60)        
+    check50.run("java TenSwap").stdin("    212  ").stdout("221", timeout = 60)        
  
 @check50.check(compiles)
 def runs89():
     """TenSwap.java swaps 1001 to 1010"""
-    check50.run("java TenSwap").stdin("1001").stdout("1010", timeout = 60)        
+    check50.run("java TenSwap").stdin("    1001  ").stdout("1010", timeout = 60)        
  
 @check50.check(compiles)
 def runs90():
     """TenSwap.java swaps 890 to 809"""
-    check50.run("java TenSwap").stdin("890").stdout("809", timeout = 60)
+    check50.run("java TenSwap").stdin("890   ").stdout("809", timeout = 60)
     # if len(out2) < 60 or 'border' not in out2:
     #     raise check50.Failure("Your TestBalloon code seems to be missing some print statements.\nHere's what printed:\n", help=out2.strip())
     # else:

@@ -33,9 +33,18 @@ def compiles():
 def runs():
     """Program should provide 14 cupcakes for 2 parties"""
     check50.include("CupCakeRestaurant.java")
+    out = check50.run("javac -d ./ CupCakeRestaurant.java 2>&1").stdout(timeout = 60)
+    if "error" in out:
+        finderror = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output",""))
+        if finderror != None:
+            result = finderror.groups()
+            raise check50.Failure("Failed to compile due to " + result[1], help=result[0].strip())
+        else:
+            raise check50.Failure("Failed to compile", help=finderror)
+
     check50.run(f"java CupCakeRestaurant").stdin("6", prompt = False).stdin("6", prompt = False).stdin("8", prompt = False).stdout("14", timeout = 60)
 
-@check50.check(compiles)
+@check50.check(runs)
 def runs60():
     """Program should provide 28 cupcakes for 2 other parties"""
     check50.include("CupCakeRestaurant.java")

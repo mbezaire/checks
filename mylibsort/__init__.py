@@ -53,7 +53,7 @@ def linsearch():
     check50.run("./testlin").stdin("5").stdout("true").exit(0)
 
 @check50.check(mylib2)
-def linsearch():
+def linsearch2():
     """linear search does not find 0 in 5, 1, 2, 3, 4"""
     check50.run("./testlin").stdin("0").stdout("false").exit(0)
 

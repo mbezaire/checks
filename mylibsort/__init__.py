@@ -24,7 +24,7 @@ def mylib():
     check50.run("clang testmylib.c -lcs50 mylib.o -o testmylib").exit(0)
     check50.run("clang testselection.c -lcs50 mylib.o -o testselection").exit(0)
     check50.run("clang testbubble.c -lcs50 mylib.o -o testbubble").exit(0)
-    check50.run("./testmylib").stdin("u").stdout("okay","okay\n").exit(0)
+    check50.run("./testmylib").stdout("okay","okay\n").exit(0)
 
 @check50.check(mylib)
 def selsort():
@@ -45,7 +45,7 @@ def mylib2():
     check50.run("clang testmylibsearch.c -lcs50 mylib.o -o testmylibsearch").exit(0)
     check50.run("clang testlin.c -lcs50 mylib.o -o testlin").exit(0)
     check50.run("clang testbin.c -lcs50 mylib.o -o testbin").exit(0)
-    check50.run("./testmylibsearch").stdin("u").stdout("okay","okay\n").exit(0)
+    check50.run("./testmylibsearch").stdout("okay","okay\n").exit(0)
 
 @check50.check(mylib2)
 def linsearch():

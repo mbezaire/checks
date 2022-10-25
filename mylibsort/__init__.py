@@ -19,12 +19,12 @@ def exists():
 @check50.check(exists)
 def mylib():
     """mylib contains selectionsort and bubblesort"""
-    check50.include("testmylibsort.c","testselection.c", "testbubble.c")
+    check50.include("testmylib.c","testselection.c", "testbubble.c")
     check50.run("clang -c mylib.c").exit(0)
-    check50.run("clang testmylibsort.c -lcs50 mylib.o -o testmylibsort").exit(0)
+    check50.run("clang testmylib.c -lcs50 mylib.o -o testmylib").exit(0)
     check50.run("clang testselection.c -lcs50 mylib.o -o testselection").exit(0)
     check50.run("clang testbubble.c -lcs50 mylib.o -o testbubble").exit(0)
-    check50.run("./testmylibsort").stdin("u").stdout("okay","okay\n").exit(0)
+    check50.run("./testmylib").stdin("u").stdout("okay","okay\n").exit(0)
 
 @check50.check(mylib)
 def selsort():

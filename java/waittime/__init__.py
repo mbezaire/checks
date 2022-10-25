@@ -42,7 +42,7 @@ def runs60():
 @check50.check(compiles)
 def runs59():
     """Program should say wait time is 0 hours and 44 minutes"""
-    check50.run(f"java {classname}").stdin("2").stdin("51").stdin("3").stdin("37").stdout("0 hours and 44 minutes", timeout = 60)
+    check50.run(f"java {classname}").stdin("2").stdin("51").stdin("3").stdin("35").stdout("0 hours and 44 minutes", timeout = 60)
  
 @check50.check(compiles)
 def runs89():

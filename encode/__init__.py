@@ -21,15 +21,21 @@ def compiles():
 @check50.check(compiles)
 def spacey_word():
     """A phrase with several spaces is encoded"""
-    check50.run("./encode").stdin("csAP  is    a super   awesome  class").stdout("caae sswc Auel Ppsa ieos srms", "caae sswc Auel Ppsa ieos srms\n").exit(0)
+    out = check50.run("./encode").stdin("csAP  is    a super   awesome  class")
+    if out.strip() != "caae sswc Auel Ppsa ieos srms":
+        raise check50.Mismatch("caae sswc Auel Ppsa ieos srms\n", out, help='Can your code skip multiple spaces in a row?')
 
 @check50.check(compiles)
 def short_phrase():
     """A phrase is encoded"""
-    check50.run("./encode").stdin("today is monday").stdout("tid osa dmy ao yn", "tid osa dmy ao yn\n").exit(0)
+    out = check50.run("./encode").stdin("today is monday").stdout()
+    if out.strip() != "tid osa dmy ao yn":
+        raise check50.Mismatch("tid osa dmy ao yn\n", out, help='Mondays ARE tough')
 
 
 @check50.check(compiles)
 def other_phrase():
-    """A phrase is encoded"""
-    check50.run("./encode").stdin("today is friday").stdout("tid osa dfy ar yi", "tid osa dfy ar yi\n").exit(0)
+    """Another phrase is encoded"""
+    out = check50.run("./encode").stdin("today is friday").stdout()
+    if out.strip() != "tid osa dfy ar yi":
+        raise check50.Mismatch("tid osa dfy ar yi\n", out, help='Hmm, better try again')

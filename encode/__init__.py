@@ -21,7 +21,7 @@ def compiles():
 @check50.check(compiles)
 def spacey_word():
     """A phrase with several spaces is encoded"""
-    out = check50.run("./encode").stdin("csAP  is    a super   awesome  class")
+    out = check50.run("./encode").stdin("csAP  is    a super   awesome  class").stdout()
     if out.strip() != "caae sswc Auel Ppsa ieos srms":
         raise check50.Mismatch("caae sswc Auel Ppsa ieos srms\n", out, help='Can your code skip multiple spaces in a row?')
 

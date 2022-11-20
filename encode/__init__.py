@@ -29,7 +29,7 @@ def short_phrase():
         ans = "tid osa dmy ao yn"
         null_str = ""
         for i, char in enumerate(out):
-            if ord(out[i]) == 0:
+            if ord(out[i]) == 0 and i < len(out):
                 err_null = True
                 null_str += "NULL"
             else:
@@ -37,7 +37,7 @@ def short_phrase():
     except Exception as ME:
         raise check50.Failure("Code failed due to error", help = repr(ME))    
     if err_null:
-        check50.log(null_str)
+        check50.log("Any premature null characters in your string were replaced with 'NULL' to make them more visible")
         raise check50.Mismatch(ans, null_str, help='Do you have a premature null character?')
     elif out!=ans:
         raise check50.Mismatch(ans, out)
@@ -55,7 +55,7 @@ def other_phrase(short_phrase):
         ans = "tid osa dfy ar yi"
         null_str = ""
         for i, char in enumerate(out):
-            if ord(out[i]) == 0:
+            if ord(out[i]) == 0 and i < len(out):
                 err_null = True
                 null_str += "NULL"
             else:
@@ -63,7 +63,7 @@ def other_phrase(short_phrase):
     except Exception as ME:
         raise check50.Failure("Code failed due to error", help = repr(ME))   
     if err_null:
-        check50.log(null_str)
+        check50.log("Any premature null characters in your string were replaced with 'NULL' to make them more visible")
         raise check50.Mismatch(ans, null_str, help='Do you have a premature null character?')
     elif out!=ans:
         raise check50.Mismatch(ans, out)

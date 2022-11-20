@@ -29,7 +29,7 @@ def short_phrase():
         ans = "tid osa dmy ao yn"
         null_str = ""
         for i, char in enumerate(out):
-            if ord(out[i]) == 0 and i < len(out):
+            if ord(out[i]) == 0 and i < len(out)-1:
                 err_null = True
                 null_str += "NULL"
             else:
@@ -55,7 +55,7 @@ def other_phrase(short_phrase):
         ans = "tid osa dfy ar yi"
         null_str = ""
         for i, char in enumerate(out):
-            if ord(out[i]) == 0 and i < len(out):
+            if ord(out[i]) == 0 and i < len(out)-1:
                 err_null = True
                 null_str += "NULL"
             else:

@@ -24,18 +24,21 @@ def short_phrase():
     err_null = False
     try:
         out = check50.run("./encode").stdin("today is monday").stdout()
-        if out[-1] == "\n":
+        out = out.strip()
+        if out[-1] == "\n" or ord(out[-1]) == 32:
             out = out[:-1]
         ans = "tid osa dmy ao yn"
         null_str = ""
+        check_end = len(out)
         for i, char in enumerate(out):
-            if ord(out[i]) == 0 and i < len(out)-1:
+            if ord(out[i]) == 0 and i < check_end-1:
                 err_null = True
                 null_str += "NULL"
-            else:
+                check_end -= 1
+            elif ord(out[i]) != 0:
                 null_str += out[i]
     except Exception as ME:
-        raise check50.Failure("Code failed due to error", help = repr(ME))    
+        raise check50.Failure("Code failed due to error", help = repr(ME))
     if err_null:
         check50.log("Any premature null characters in your string were replaced with 'NULL' to make them more visible")
         raise check50.Mismatch(ans, null_str, help='Do you have a premature null character?')
@@ -50,7 +53,8 @@ def other_phrase():
     err_null = False
     try:
         out = check50.run("./encode").stdin("today is friday").stdout()
-        if out[-1] == "\n":
+        out = out.strip()
+        if out[-1] == "\n" or ord(out[-1]) == 32:
             out = out[:-1]
         ans = "tid osa dfy ar yi"
         null_str = ""
@@ -61,7 +65,7 @@ def other_phrase():
             else:
                 null_str += out[i]
     except Exception as ME:
-        raise check50.Failure("Code failed due to error", help = repr(ME))   
+        raise check50.Failure("Code failed due to error", help = repr(ME))
     if err_null:
         check50.log("Any premature null characters in your string were replaced with 'NULL' to make them more visible")
         raise check50.Mismatch(ans, null_str, help='Do you have a premature null character?')
@@ -74,7 +78,8 @@ def spacey_word():
     """A phrase with several spaces is encoded"""
     try:
         out = check50.run("./encode").stdin("csAP  is    a super   awesome  class").stdout()
-        if out[-1] == "\n":
+        out = out.strip()
+        if out[-1] == "\n" or ord(out[-1]) == 32:
             out = out[:-1]
     except Exception as ME:
         raise check50.Failure("Code failed due to error", help = repr(ME))

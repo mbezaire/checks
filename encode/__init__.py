@@ -21,20 +21,62 @@ def compiles():
 @check50.check(compiles)
 def short_phrase():
     """A phrase is encoded"""
-    out = check50.run("./encode").stdin("today is monday").stdout()
-    if out.strip() != "tid osa dmy ao yn":
-        raise check50.Mismatch("tid osa dmy ao yn\n", out, help='Mondays ARE tough')
+    try:
+        out = check50.run("./encode").stdin("today is monday").stdout()
+        if out[-1] == "\n":
+            out = out[:-1]
+        ans = "tid osa dmy ao yn"
+        err_null = False
+        null_str = ""
+        for i, char in enumerate(out):
+            if ord(out[i]) == 0:
+                err_null = True
+                null_str += "NULL"
+            else:
+                null_str += out[i]
+    
+        if err_null:
+            check50.log(null_str)
+            raise check50.Mismatch(ans, null_str, help='Do you have a premature null character?')
+        elif out!=ans:
+            raise check50.Mismatch(ans, out)
+    except Exception as ME:
+        raise check50.Failure("Code failed due to error", help = repr(ME))
+
 
 @check50.check(compiles)
-def other_phrase():
+def other_phrase(short_phrase):
     """Another phrase is encoded"""
-    out = check50.run("./encode").stdin("today is friday").stdout()
-    if out.strip() != "tid osa dfy ar yi":
-        raise check50.Mismatch("tid osa dfy ar yi\n", out, help='Hmm, better try again')
+    try:
+        out = check50.run("./encode").stdin("today is friday").stdout()
+        if out[-1] == "\n":
+            out = out[:-1]
+        ans = "tid osa dfy ar yi"
+        err_null = False
+        null_str = ""
+        for i, char in enumerate(out):
+            if ord(out[i]) == 0:
+                err_null = True
+                null_str += "NULL"
+            else:
+                null_str += out[i]
+    
+        if err_null:
+            check50.log(null_str)
+            raise check50.Mismatch(ans, null_str, help='Do you have a premature null character?')
+        elif out!=ans:
+            raise check50.Mismatch(ans, out)
+    except Exception as ME:
+        raise check50.Failure("Code failed due to error", help = repr(ME))
 
-@check50.check(compiles)
+@check50.check(other_phrase)
 def spacey_word():
     """A phrase with several spaces is encoded"""
-    out = check50.run("./encode").stdin("csAP  is    a super   awesome  class").stdout()
-    if out.strip() != "caae sswc Auel Ppsa ieos srms":
-        raise check50.Mismatch("caae sswc Auel Ppsa ieos srms\n", out, help='Can your code skip multiple spaces in a row?')
+    try:
+        out = check50.run("./encode").stdin("csAP  is    a super   awesome  class").stdout()
+        if out[-1] == "\n":
+            out = out[:-1]
+        if out != "caae sswc Auel Ppsa ieos srms":
+            raise check50.Mismatch("caae sswc Auel Ppsa ieos srms\n", out, help='Can your code skip multiple spaces in a row?')
+    except Exception as ME:
+        raise check50.Failure("Code failed due to error", help = repr(ME))

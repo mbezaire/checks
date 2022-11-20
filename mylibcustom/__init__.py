@@ -19,6 +19,6 @@ def exists():
 @check50.check(exists)
 def mylib():
     """mylib compiles"""
-    check50.include("testmylib.c","testmylibvowel.c", "testmylibcons.c")
+    check50.include("testmylib.c")
     check50.run("clang -c mylib.c").exit(0)
     check50.run("clang testmylib.c -lcs50 mylib.o -o testmylib").exit(0)

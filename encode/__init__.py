@@ -43,7 +43,7 @@ def short_phrase():
         check50.log("Any premature null characters in your string were replaced with 'NULL' to make them more visible")
         raise check50.Mismatch(ans, null_str, help='Do you have a premature null character?')
     elif out!=ans:
-        raise check50.Mismatch(ans, out)
+        raise check50.Mismatch(ans, out, help='Are you printing locations from your 2D array that you never assigned?')
 
 
 
@@ -70,7 +70,7 @@ def other_phrase():
         check50.log("Any premature null characters in your string were replaced with 'NULL' to make them more visible")
         raise check50.Mismatch(ans, null_str, help='Do you have a premature null character?')
     elif out!=ans:
-        raise check50.Mismatch(ans, out)
+        raise check50.Mismatch(ans, out, help='Are you printing locations from your 2D array that you never assigned?')
 
 
 @check50.check(other_phrase)

@@ -1,0 +1,9 @@
+check50: 
+  files: &check50_files
+    - !exclude "."
+    - !require mylib.c
+    - !require mylib.h
+    - !require *.md
+
+submit50:
+  files: *check50_files

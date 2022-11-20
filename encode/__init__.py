@@ -44,8 +44,8 @@ def short_phrase():
 
 
 
-@check50.check(compiles)
-def other_phrase(short_phrase):
+@check50.check(short_phrase)
+def other_phrase():
     """Another phrase is encoded"""
     err_null = False
     try:

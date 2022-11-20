@@ -3,7 +3,7 @@ check50:
     - !exclude "."
     - !require mylib.c
     - !require mylib.h
-    - !require *.md
+    - !require MyLibrary.md
 
 submit50:
   files: *check50_files

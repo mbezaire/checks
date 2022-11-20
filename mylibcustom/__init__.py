@@ -15,6 +15,7 @@ def exists():
     """files were submitted - will be graded manually"""
     check50.exists("mylib.c")
     check50.exists("mylib.h")
+    check50.exists("MyLibrary.md")
 
 @check50.check(exists)
 def mylib():

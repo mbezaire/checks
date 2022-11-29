@@ -18,10 +18,15 @@ def compiles():
     """time_program.c compiles"""
     check50.c.compile("time_program.c", lcs50=True)
 
+@check50.check(compiles)
+def runs2():
+    """time_program.c computes elapsed time"""
+    check50.c.run("./time_program").stdin("10:22:59").stdin("10:23:01").stdout("00:00:02").exit(0)
+
 
 @check50.check(compiles)
 def runs():
-    """time_program.c runs"""
+    """time_program.c computes different elapsed time"""
     check50.c.run("./time_program").stdin("02:31:15").stdin("12:05:00").stdout("09:33:45").exit(0)
 
 

@@ -8,9 +8,8 @@ public class F0Client
       
       int n = reader.nextInt();
       int d = reader.nextInt();
-      Fraction factor1 = new Fraction(n, d);
-
+      Chapter7part1 Ch7 = new Chapter7part1();
       
-      System.out.println(factor1.value());
+      System.out.println(Ch7.product(n,d));
    }
 }

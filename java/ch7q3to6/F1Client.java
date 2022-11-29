@@ -4,13 +4,8 @@ public class F1Client
 {
    public static void main(String[] args)
    {
-      Scanner reader = new Scanner(System.in);
-      
-      System.out.println("Enter the numerator:");
-      int n = reader.nextInt();
-      System.out.println("Enter the denominator:");
-      int d = reader.nextInt();
-      Fraction quarter = new Fraction(n, d);
-      System.out.println(quarter);
+      Chapter7part1 Ch7 = new Chapter7part1();
+      System.out.println(Math.abs(Ch7.nextAlgorithm(100) - .99) < 0.00000001 && 
+                         Math.abs(Ch7.nextAlgorithm(5) + 0.8) < 0.00000001);
    }
 }

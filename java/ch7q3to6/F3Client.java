@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class F0Client
+public class F3Client
 {
    public static void main(String[] args)
    {

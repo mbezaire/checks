@@ -1,0 +1,8 @@
+check50: 
+  files: &check50_files
+    - !exclude "*"
+    - !require Chapter7part1.java
+    - !require HelloNTimes.java
+
+submit50:
+  files: *check50_files

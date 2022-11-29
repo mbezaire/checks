@@ -19,6 +19,11 @@ def exists():
 def compiles():
     """Chapter7part1.java compiles"""
     check50.run("javac Chapter7part1.java")
+    check50.run("javac FClient.java")
+    check50.run("javac F0Client.java")
+    check50.run("javac F1Client.java")
+    check50.run("javac F2Client.java")
+    check50.run("javac F3Client.java")
 
 
 @check50.check()

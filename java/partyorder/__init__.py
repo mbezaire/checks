@@ -38,9 +38,9 @@ def runs():
         finderror = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output",""))
         if finderror != None:
             result = finderror.groups()
-            raise check50.Failure("Failed to compile due to " + result[1], help=result[0].strip())
+            raise check50.Failure("Failed to run due to " + result[1], help=result[0].strip())
         else:
-            raise check50.Failure("Failed to compile", help=finderror)
+            raise check50.Failure("Failed to run", help=finderror)
 
     check50.run(f"java CupCakeRestaurant").stdin("6", prompt = False).stdin("6", prompt = False).stdin("8", prompt = False).stdout("14", timeout = 60)
 

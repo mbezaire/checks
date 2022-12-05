@@ -93,7 +93,7 @@ def run4():
 @check50.check(compiles)
 def run5():
     """nextAlgorithm works correctly"""
-    out = check50.run("java F1Client").stdout()
+    out = check50.run("java F1Client").stdout(timeout = 60)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out = out.strip()
     if "true" not in out:
@@ -131,7 +131,7 @@ def run8():
 @check50.check(compiles)
 def run9():
     """populationMexico forecasts 150 correctly"""
-    out = check50.run("java F3Client").stdin("150").stdout() #"2053").exit(0)
+    out = check50.run("java F3Client").stdin("150", timeout = 60).stdout(timeout = 60) #"2053").exit(0)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out = out.strip()
     if  "2053" not in out:
@@ -140,7 +140,7 @@ def run9():
 @check50.check(compiles)
 def run10():
     """populationMexico goes back in time"""
-    out = check50.run("java F3Client").stdin("120").stdout() #"2014").exit(0)
+    out = check50.run("java F3Client").stdin("120", timeout = 60).stdout(timeout = 60) #"2014").exit(0)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out = out.strip()
     if "2014" not in out:
@@ -149,7 +149,7 @@ def run10():
 @check50.check(compiles)
 def run11():
     """populationMexico forecasts 130 alright"""
-    out = check50.run("java F3Client ").stdin("130").stdout() #"2024").exit(0)
+    out = check50.run("java F3Client ").stdin("130", timeout = 60).stdout(timeout = 60) #"2024").exit(0)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out = out.strip()
     if "2024" not in out:
@@ -158,9 +158,9 @@ def run11():
 @check50.check(dcompiles)
 def druns1():
     """HelloNTimes.java prints correctly"""
-    check50.run("java HelloNTimes.java").stdin("2").stdin("Hello").stdout("Hello\nHello\n").exit(0)
+    check50.run("java HelloNTimes.java").stdin("2", timeout = 60).stdin("Hello", timeout = 60).stdout("Hello\nHello\n", timeout = 60).exit(0)
 
 @check50.check(dcompiles)
 def druns2():
     """HelloNTimes.java prints Santa's message correctly"""
-    check50.run("java HelloNTimes.java").stdin("3").stdin("Ho").stdout("Ho\nHo\nHo\n").exit(0)
+    check50.run("java HelloNTimes.java").stdin("3", timeout = 60).stdin("Ho", timeout = 60).stdout("Ho\nHo\nHo\n", timeout = 60).exit(0)

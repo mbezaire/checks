@@ -220,12 +220,12 @@ def run5():
 @check50.check(dcompiles)
 def druns1():
     """AverageScore.java calculates correctly"""
-    out = check50.run("java AverageScore.java").stdin("scores.dat", prompt = False, timeout = 60).stdout()
+    out = check50.run("java AverageScore.java").stdin("scores.dat", prompt = True, timeout = 60).stdout()
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out = out.strip()
     if abs(float(out) - 92.42857143) > 0.0001:
         raise check50.Failure("expected 92.42857143, actual " + str(out))
-    out = check50.run("java AverageScore.java").stdin("scores2.dat", prompt = False, timeout = 60).stdout()
+    out = check50.run("java AverageScore.java").stdin("scores2.dat", prompt = True, timeout = 60).stdout()
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out = out.strip()
     if abs(float(out) - 68) > 0.0001:

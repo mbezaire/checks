@@ -8,7 +8,7 @@ Created on Wed Sep 29 18:28:44 2021
 import check50
 import re
 
-check50.include("FClient.java", "F0Client.java", "F1Client.java", "F2Client.java", "F3Client.java", "F4Client.java", "scores.dat", "scores2.dat")
+check50.include("FClient.java", "F0Client.java", "F1Client.java", "F2Client.java", "F3Client.java", "F4Client.java", "F5Client.java", "scores.dat", "scores2.dat")
 
 @check50.check()
 def exists():
@@ -33,6 +33,7 @@ def compiles():
     check50.run("javac -d ./ F2Client.java").stdout(timeout = 60)
     check50.run("javac -d ./ F3Client.java").stdout(timeout = 60)
     check50.run("javac -d ./ F4Client.java").stdout(timeout = 60)
+    check50.run("javac -d ./ F5Client.java").stdout(timeout = 60)
 
 
 @check50.check()
@@ -214,6 +215,37 @@ def run5():
     out = out.strip()
     if out != "29":
         raise check50.Failure("expected 29, actual " + str(out))
+
+
+@check50.check(compiles)
+def run5():
+    """printPairs prints correct pairs"""
+    out = check50.run("java F5Client").stdout(timeout = 60) #"45").exit(0)
+    out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
+    out = out.strip()
+    pairs = [(5, 3),\
+(7, 5),\
+(13, 11),\
+(19, 17),\
+(31, 29),\
+(43, 41),\
+(61, 59),\
+(73, 71),\
+(103, 101),\
+(109, 107),\
+(139, 137),\
+(151, 149),\
+(181, 179),\
+(193, 191),\
+(199, 197),\
+(229, 227),\
+(241, 239),\
+(271, 269),\
+(283, 281),\
+(313, 311)]
+    for pair in pairs:
+        if f"{pair[0]} and {pair[1]}" not in out and f"{pair[1]} and {pair[0]}" not in out:
+            raise check50.Failure(f"expected {pair[1]} and {pair[0]} but not found in:\n{out}")
 
 
 

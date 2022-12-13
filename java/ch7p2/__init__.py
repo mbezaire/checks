@@ -56,12 +56,12 @@ def dcompiles():
 @check50.check(compiles)
 def run1():
     """addOdds works correctly"""
-    out5 = check50.run("java F0Client").stdin("5").stdout()
+    out5 = check50.run("java F0Client").stdin("5", prompt = False).stdout()
     out5 = out5.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out5 = out5.strip()
     if out5 != "9":
         raise check50.Failure("Given addOdds(5), expected 9, actual " + str(out5))
-    out5 = check50.run("java F0Client").stdin("8").stdout()
+    out5 = check50.run("java F0Client").stdin("8", prompt = False).stdout()
     out5 = out5.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out5 = out5.strip()
     if out5 != "16":

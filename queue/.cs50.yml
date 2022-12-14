@@ -1,0 +1,9 @@
+check50: 
+  files: &check50_files
+    - !exclude "."
+    - !require testqueue.c
+    - !require queue.c
+    - !require queue.h
+
+submit50:
+  files: *check50_files

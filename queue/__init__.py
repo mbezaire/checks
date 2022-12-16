@@ -22,7 +22,9 @@ def compiles():
     """queue contains enqueue and dequeue"""
     check50.include("slugqueue.c","queueup.c","queuedown.c")
     check50.run("clang -c queue.c").exit(0)
-    check50.run("clang testqueue.c -lcs50 queue.o -o testqueue").exit(0)
+    outcode = check50.run("clang testqueue.c -lcs50 queue.o -o testqueue").exit()
+    if outcode == 1:
+        check50.log('Did you #include "queue.c" or "queue.h" in your testqueue.c?')
     check50.run("clang slugqueue.c -lcs50 queue.o -o slugqueue").exit(0)
     check50.run("clang queueup.c -lcs50 queue.o -o queueup").exit(0)
     check50.run("clang queuedown.c -lcs50 queue.o -o queuedown").exit(0)

@@ -20,7 +20,7 @@ def exists():
 @check50.check(exists)
 def compiles():
     """queue contains enqueue and dequeue"""
-    check50.include("testqueue.c","slugqueue.c","queueup.c","queuedown.c","queue.c","queue.h")
+    check50.include("slugqueue.c","queueup.c","queuedown.c")
     check50.run("clang -c queue.c").exit(0)
     check50.run("clang testqueue.c -lcs50 queue.o -o testqueue").exit(0)
     check50.run("clang slugqueue.c -lcs50 queue.o -o slugqueue").exit(0)

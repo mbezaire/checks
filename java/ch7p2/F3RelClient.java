@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class F3Client
+public class F3RelClient
 {
    public static void main(String[] args)
    {

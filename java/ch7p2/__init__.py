@@ -8,7 +8,7 @@ Created on Wed Sep 29 18:28:44 2021
 import check50
 import re
 
-check50.include("FClient.java", "F0Client.java", "F1Client.java", "F2Client.java", "F3Client.java", "F4Client.java", "F5Client.java", "scores.dat", "scores2.dat")
+check50.include("FClient.java", "F0Client.java", "F1Client.java", "F2Client.java", "F3Client.java", "F3RelClient.java", "F4Client.java", "F5Client.java", "scores.dat", "scores2.dat")
 
 @check50.check()
 def exists():
@@ -32,6 +32,7 @@ def compiles():
     check50.run("javac -d ./ F1Client.java").stdout(timeout = 60)
     check50.run("javac -d ./ F2Client.java").stdout(timeout = 60)
     check50.run("javac -d ./ F3Client.java").stdout(timeout = 60)
+    check50.run("javac -d ./ F3RelClient.java").stdout(timeout = 60)
     check50.run("javac -d ./ F4Client.java").stdout(timeout = 60)
     check50.run("javac -d ./ F5Client.java").stdout(timeout = 60)
 
@@ -147,43 +148,43 @@ def run4():
 @check50.check(compiles)
 def run4():
     """isRelPrime correctly reports prime numbers"""
-    out = check50.run("java F3Client").stdin("2", prompt = False).stdout() #"5").exit(0)
+    out = check50.run("java F3RelClient").stdin("2", prompt = False).stdout() #"5").exit(0)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out = out.strip()
     if out != "true":
         raise check50.Failure("expected true, actual " + str(out))
-    out = check50.run("java F3Client").stdin("3", prompt = False).stdout() #"5").exit(0)
+    out = check50.run("java F3RelClient").stdin("3", prompt = False).stdout() #"5").exit(0)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out = out.strip()
     if out != "true":
         raise check50.Failure("expected true, actual " + str(out))
-    out = check50.run("java F3Client").stdin("4", prompt = False).stdout() #"5").exit(0)
+    out = check50.run("java F3RelClient").stdin("4", prompt = False).stdout() #"5").exit(0)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out = out.strip()
     if out != "false":
         raise check50.Failure("expected false, actual " + str(out))
-    out = check50.run("java F3Client").stdin("11", prompt = False).stdout() #"5").exit(0)
+    out = check50.run("java F3RelClient").stdin("11", prompt = False).stdout() #"5").exit(0)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out = out.strip()
     if out != "true":
         raise check50.Failure("expected true, actual " + str(out))
-    out = check50.run("java F3Client").stdin("5", prompt = False).stdout() #"5").exit(0)
+    out = check50.run("java F3RelClient").stdin("5", prompt = False).stdout() #"5").exit(0)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out = out.strip()
     if out != "true":
         raise check50.Failure("expected true, actual " + str(out))
 
-    out = check50.run("java F3Client").stdin("6", prompt = False).stdout() #"5").exit(0)
+    out = check50.run("java F3RelClient").stdin("6", prompt = False).stdout() #"5").exit(0)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out = out.strip()
     if out != "false":
         raise check50.Failure("expected true, false " + str(out))
-    out = check50.run("java F3Client").stdin("25", prompt = False).stdout() #"5").exit(0)
+    out = check50.run("java F3RelClient").stdin("25", prompt = False).stdout() #"5").exit(0)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out = out.strip()
     if out != "false":
         raise check50.Failure("expected false, actual " + str(out))
-    out = check50.run("java F3Client").stdin("65", prompt = False).stdout() #"5").exit(0)
+    out = check50.run("java F3RelClient").stdin("65", prompt = False).stdout() #"5").exit(0)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out = out.strip()
     if out != "false":

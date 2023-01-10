@@ -25,9 +25,14 @@ def compiles():
     outcode = check50.run("clang testqueue.c -lcs50 queue.o -o testqueue").exit()
     if outcode == 1:
         check50.log('Did you #include "queue.c" or "queue.h" in your testqueue.c?')
-    check50.run("clang slugqueue.c -lcs50 queue.o -o slugqueue").exit(0)
+    out = check50.run("clang slugqueue.c -lcs50 queue.o -o slugqueue").stdout()
+    if len(out) > 0:
+        raise check50.Failure("Failed to compile test code", help=str(out))
     check50.run("clang queueup.c -lcs50 queue.o -o queueup").exit(0)
     check50.run("clang queuedown.c -lcs50 queue.o -o queuedown").exit(0)
+    #out = check50.run("./slugqueue").stdout("okay","okay\n").exit()
+    #if out.length() > 0:
+    #    raise check50.Failure("Failed to run test code", help=out)
     check50.run("./slugqueue").stdout("okay","okay\n").exit(0)
 
 @check50.check(compiles)

@@ -22,12 +22,12 @@ def compiles():
 def short_phrase():
     """A phrase is encoded"""
     err_null = False
+    out = check50.run("./encode").stdin("today is monday").stdout()
+    out = out.strip()
+    ans = "tid osa dmy ao yn"
+    if len(out) == 0:
+        raise check50.Mismatch(ans, "", help='You may be printing an empty string or only white space')
     try:
-        out = check50.run("./encode").stdin("today is monday").stdout()
-        out = out.strip()
-        ans = "tid osa dmy ao yn"
-        if len(out) == 0:
-            raise check50.Mismatch(ans, "", help='You may be printing an empty string or only white space')
         if out[-1] == "\n" or ord(out[-1]) == 32:
             out = out[:-1]
         null_str = ""

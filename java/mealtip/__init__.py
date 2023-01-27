@@ -30,7 +30,7 @@ def compiles():
 def runs():
     """MealTip.java runs"""
     out = check50.run("java MealTip").stdin("25.50").stdin("20").stdout()
-    if abs(float(out) - 25.50*1.2) > 0.0001:
-        raise check50.Mismatch(25.50*1.2, out)
+    if abs(float(out.strip()) - 25.50*1.2) > 0.0001:
+        raise check50.Mismatch(25.50*1.2, out.strip())
 
 

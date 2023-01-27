@@ -29,7 +29,7 @@ def compiles():
 
 @check50.check(compiles)
 def runs():
-    """MealTip.java runs"""
+    """MealTip.java calculates the correct cost"""
     dollars = random.randint(5,500)
     cents = random.randint(0,99)/100
     tip = random.randint(15,45)

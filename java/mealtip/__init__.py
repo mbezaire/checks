@@ -30,8 +30,6 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """MealTip.java runs"""
-    check50.include("Client.java", "M1Client.java")
-    check50.run("javac Client.java M1Client.java")
     out = check50.run("java MealTip").stdin("25.50").stdin("20").stdout()
     if math.abs(float(out) - 25.50*1.2) > 0.0001:
         raise check50.Mismatch(25.50*1.2, out)

@@ -7,7 +7,6 @@ Created on Wed Sep 29 18:28:44 2021
 
 import check50
 import re
-import math
 
 @check50.check()
 def exists():
@@ -31,7 +30,7 @@ def compiles():
 def runs():
     """MealTip.java runs"""
     out = check50.run("java MealTip").stdin("25.50").stdin("20").stdout()
-    if math.abs(float(out) - 25.50*1.2) > 0.0001:
+    if abs(float(out) - 25.50*1.2) > 0.0001:
         raise check50.Mismatch(25.50*1.2, out)
 
 

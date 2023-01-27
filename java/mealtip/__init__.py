@@ -7,6 +7,7 @@ Created on Wed Sep 29 18:28:44 2021
 
 import check50
 import re
+import random
 
 @check50.check()
 def exists():
@@ -25,12 +26,20 @@ def compiles():
             raise check50.Failure("Failed to compile due to " + result[1], help=result[0].strip())
         else:
             raise check50.Failure("Failed to compile", help=finderror)
-            
+
 @check50.check(compiles)
 def runs():
     """MealTip.java runs"""
-    out = check50.run("java MealTip").stdin("25.50").stdin("20").stdout()
-    if abs(float(out.strip()) - 25.50*1.2) > 0.0001:
-        raise check50.Mismatch(25.50*1.2, out.strip())
+    dollars = random.randint(5,500)
+    cents = random.randint(0,99)/100
+    tip = random.randint(15,45)
+    mealcost = dollars + cents
+    out = check50.run("java MealTip").stdin(str(mealcost)).stdin(str(tip)).stdout()
+    findtemp = re.search(r'([0-9]+.[0-9]+)', out)
+    if findtemp != None:
+        result = findtemp.groups()
+    ans = mealcost*(1 + tip/100)
+    if abs(float(result[0]) - ans) > 0.0001:
+        raise check50.Mismatch(ans, out.strip())
 
 

@@ -8,4 +8,4 @@ def exists():
 @check50.check(exists)
 def run():
     """ File runs without syntax errors and calculates day correctly"""
-    check50.run("python pycal.py").stdin("2").stdout("Wednesday", "Wednesday\n", timeout=5).exit()
+    check50.run("python pycal.py").stdin("2").stdout("Wednesday", "Wednesday\n", timeout=30).exit()

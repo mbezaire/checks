@@ -8,18 +8,35 @@ Created on Wed Sep 29 18:28:44 2021
 import check50
 import re
 
-check50.include("FClient.java")
+helperfile = "FClient"
+theirfile = "Repeat"
+
+### DON'T CHANGE THIS SECTION USUALLY #############
+if len(helperfile) > 0:
+    check50.include(f"{helperfile}.java")
+
+def runcheck(helperfile=helperfile, theirfile=theirfile, input = "Hello", expected = "Hello"):
+    if len(helperfile) > 0:
+        check50.include(f"{helperfile}.java")
+        out5 = check50.run(f"java {helperfile}").stdin(input, prompt = False).stdout()
+    else:
+        out5 = check50.run(f"java {theirfile}").stdin(input, prompt = False).stdout()
+    out5 = out5.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
+    out5 = out5.strip()
+    if out5 != expected:
+        raise check50.Failure(f'Given "{input}", expected {expected}, actual ' + str(out5))
 
 @check50.check()
 def exists():
-    """Repeat.java exists"""
-    check50.exists("Repeat.java")
+    """Your program exists exists"""
+    check50.exists(f"{theirfile}.java")
 
 @check50.check(exists)
 def compiles():
-    """Repeat.java compiles"""
-    check50.include("FClient.java")
-    out = check50.run("javac -d ./ Repeat.java").stdout(timeout = 60)
+    """Your program compiles"""
+    if len(helperfile) > 0:
+        check50.include(f"{helperfile}.java")
+    out = check50.run(f"javac -d ./ {theirfile}.java").stdout(timeout = 60)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     if "error" in out:
         finderror = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output",""))
@@ -28,36 +45,33 @@ def compiles():
             raise check50.Failure("Failed to compile due to " + result[1], help=result[0].strip())
         else:
             raise check50.Failure("Failed to compile", help=finderror)
-    check50.run("javac -d ./ FClient.java").stdout(timeout = 60)
+    if len(helperfile) > 0:
+        check50.run(f"javac -d ./ {helperfile}.java").stdout(timeout = 60)
 
+################################################
+# BELOW HERE IS FINE TO CHANGE
 
 @check50.check(compiles)
 def run0():
     """Repeat with no space in middle should be true"""
-    check50.include("FClient.java")
-    out5 = check50.run("java FClient").stdin("HAHA", prompt = False).stdout()
-    out5 = out5.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
-    out5 = out5.strip()
-    if out5 != "true":
-        raise check50.Failure('Given "HAHA", expected true, actual ' + str(out5))
+    input = "HAHA"
+    expected = "true"
+    runcheck(input = input, expected = expected)
+
 
 @check50.check(compiles)
 def run1():
     """Repeat with space in middle should be true"""
-    check50.include("FClient.java")
-    out5 = check50.run("java FClient").stdin("orange orange", prompt = False).stdout()
-    out5 = out5.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
-    out5 = out5.strip()
-    if out5 != "true":
-        raise check50.Failure('Given "orange orange", expected true, actual ' + str(out5))
+    input = "orange orange"
+    expected = "true"
+    runcheck(input = input, expected = expected)
+
 
 
 @check50.check(compiles)
 def run3():
     """Non-repeating should be false"""
-    check50.include("FClient.java")
-    out5 = check50.run("java FClient").stdin("orange range", prompt = False).stdout()
-    out5 = out5.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
-    out5 = out5.strip()
-    if out5 != "false":
-        raise check50.Failure('Given "orange range", expected false, actual ' + str(out5))
+    input = "orange range"
+    expected = "false"
+    runcheck(input = input, expected = expected)
+

@@ -24,11 +24,11 @@ def runcheck(helperfile=helperfile, theirfile=theirfile, input = "Hello", expect
     out5 = out5.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out5 = out5.strip()
     if out5 != expected:
-        raise check50.Failure(f'Given "{input}", expected {expected}, actual ' + str(out5))
+        raise check50.Failure(f'Given "{input}", expected: {expected}, your program gave: ' + str(out5))
 
 @check50.check()
 def exists():
-    """Your program exists exists"""
+    """Your program exists"""
     check50.exists(f"{theirfile}.java")
 
 @check50.check(exists)

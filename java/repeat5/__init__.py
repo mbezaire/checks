@@ -49,5 +49,5 @@ def run3():
     out5 = check50.run("java FClient").stdin("bonus points are extra credit", prompt = False).stdout()
     out5 = out5.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out5 = out5.strip()
-    if out5 != "true":
+    if out5 != "false":
         raise check50.Failure('Given "bonus points are extra credit", expected false, actual ' + str(out5))

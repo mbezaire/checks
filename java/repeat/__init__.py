@@ -18,6 +18,7 @@ def exists():
 @check50.check(exists)
 def compiles():
     """Repeat.java compiles"""
+    check50.include("FClient.java")
     out = check50.run("javac -d ./ Repeat.java").stdout(timeout = 60)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     if "error" in out:
@@ -33,6 +34,7 @@ def compiles():
 @check50.check(compiles)
 def run0():
     """Repeat with no space in middle should be true"""
+    check50.include("FClient.java")
     out5 = check50.run("java FClient").stdin("HAHA", prompt = False).stdout()
     out5 = out5.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out5 = out5.strip()
@@ -42,6 +44,7 @@ def run0():
 @check50.check(compiles)
 def run1():
     """Repeat with space in middle should be true"""
+    check50.include("FClient.java")
     out5 = check50.run("java FClient").stdin("orange orange", prompt = False).stdout()
     out5 = out5.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out5 = out5.strip()
@@ -52,7 +55,8 @@ def run1():
 @check50.check(compiles)
 def run3():
     """Non-repeating should be false"""
-    out5 = check50.run("java F2Client").stdin("orange range", prompt = False).stdout()
+    check50.include("FClient.java")
+    out5 = check50.run("java FClient").stdin("orange range", prompt = False).stdout()
     out5 = out5.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out5 = out5.strip()
     if out5 != "true":

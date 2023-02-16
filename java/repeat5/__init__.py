@@ -18,6 +18,7 @@ def exists():
 @check50.check(exists)
 def compiles():
     """Repeat5.java compiles"""
+    check50.include("FClient.java")
     out = check50.run("javac -d ./ Repeat5.java").stdout(timeout = 60)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     if "error" in out:
@@ -33,6 +34,7 @@ def compiles():
 @check50.check(compiles)
 def run1():
     """First 5 and last 5 should match"""
+    check50.include("FClient.java")
     out5 = check50.run("java FClient").stdin("bonus points are bonus", prompt = False).stdout()
     out5 = out5.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out5 = out5.strip()
@@ -43,7 +45,8 @@ def run1():
 @check50.check(compiles)
 def run3():
     """First 5 and last 5 don't match"""
-    out5 = check50.run("java F2Client").stdin("bonus points are extra credit", prompt = False).stdout()
+    check50.include("FClient.java")
+    out5 = check50.run("java FClient").stdin("bonus points are extra credit", prompt = False).stdout()
     out5 = out5.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out5 = out5.strip()
     if out5 != "true":

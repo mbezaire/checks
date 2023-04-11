@@ -28,6 +28,17 @@ def compiles():
             raise check50.Failure("Failed to compile", help=finderror)
 
 @check50.check(compiles)
+def recurses():
+    """Vowels.java contains no loops"""
+
+    with open("Vowels.java", "r") as f:
+        textlines = f.read()
+
+    if "for" in textlines or "while" in textlines:
+        raise check50.Failure("Looks like you have a loop in your code")
+
+
+@check50.check(recurses)
 def runs():
     """Vowels.java calculates the correct number of vowels in awesome"""
 
@@ -39,7 +50,7 @@ def runs():
         raise check50.Mismatch(4, out.strip())
 
 
-@check50.check(compiles)
+@check50.check(recurses)
 def runs2():
     """Vowels.java calculates the correct number of vowels in shhhh"""
 
@@ -51,7 +62,7 @@ def runs2():
         raise check50.Mismatch(0, out.strip())
 
 
-@check50.check(compiles)
+@check50.check(recurses)
 def runs3():
     """Vowels.java calculates the correct number of vowels in aeiou"""
 

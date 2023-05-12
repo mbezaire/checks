@@ -23,7 +23,12 @@ def compiles():
         finderror = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output",""))
         if finderror != None:
             result = finderror.groups()
-            raise check50.Failure("Failed to compile due to " + result[1], help=result[0].strip())
+            if len(result) > 1:
+            	raise check50.Failure("Failed to compile due to " + result[1], help=result[0].strip())
+            elif len(result) > 0:
+            	raise check50.Failure("Failed to compile due to " + "; ".join(result))
+            else:
+            	raise check50.Failure("Failed to compile")
         else:
             raise check50.Failure("Failed to compile", help=finderror)
 

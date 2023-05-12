@@ -1,0 +1,8 @@
+check50: 
+  files: &check50_files
+    - !exclude "*"
+    - !require pycal.py
+    - !require ahs_day2023.csv
+
+submit50:
+  files: *check50_files

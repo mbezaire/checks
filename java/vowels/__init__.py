@@ -51,8 +51,13 @@ def runs():
     findtemp = re.search(r'([0-9]+)', out)
     if findtemp != None:
         result = findtemp.groups()
-    if int(result[0]) != 4:
-        raise check50.Mismatch(4, out.strip())
+        if len(result) < 1:
+            raise check50.Failure("Failed to run")
+        elif int(result[0]) != 4:
+            raise check50.Mismatch(4, out.strip())
+    else:
+        raise check50.Mismatch(4, out.strip(), help = "Couldn't find number of vowels in your output")
+        
 
 
 @check50.check(recurses)
@@ -63,8 +68,10 @@ def runs2():
     findtemp = re.search(r'([0-9]+)', out)
     if findtemp != None:
         result = findtemp.groups()
-    if int(result[0]) != 0:
-        raise check50.Mismatch(0, out.strip())
+        if int(result[0]) != 0:
+            raise check50.Mismatch(0, out.strip())
+    else:
+        raise check50.Mismatch(0, out.strip(), help = "Couldn't find number of vowels in your output")
 
 
 @check50.check(recurses)
@@ -75,6 +82,8 @@ def runs3():
     findtemp = re.search(r'([0-9]+)', out)
     if findtemp != None:
         result = findtemp.groups()
-    if int(result[0]) != 5:
-        raise check50.Mismatch(5, out.strip())
+        if int(result[0]) != 5:
+            raise check50.Mismatch(5, out.strip())
+    else:
+        raise check50.Mismatch(5, out.strip(), help = "Couldn't find number of vowels in your output")
 

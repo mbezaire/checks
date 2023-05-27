@@ -23,57 +23,34 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """Fraction.java runs"""
-    out = check50.run("javac -d ./ FClient.java").stdout(timeout = 60)
-    # check50.log(out)
-    # check50.log(check50.run("pwd").stdout())
-    # check50.log(check50.run("ls ./").stdout())
+    out = check50.run("javac -d ./ FClient.java F2Client.java F3Client.java F4Client.java  F5Client.java F0Client.java").stdout(timeout = 60)
+    check50.log(out)
     check50.run("java FClient").stdout("1/4\n")
-
     
-@check50.check(compiles)
+@check50.check(runs)
 def divide():
     """Fractions can be divided"""
-    out = check50.run("javac -d ./ F2Client.java").stdout(timeout = 60)
-    # check50.log(out)
-    # check50.log(check50.run("pwd").stdout())
-    # check50.log(check50.run("ls ./").stdout())
     check50.run("java F2Client").stdin("1", prompt=False).stdin("3", prompt=False).stdin("1", prompt=False).stdin("4", prompt=False).stdout("4/3\n").exit(0)
 
 
-@check50.check(compiles)
+@check50.check(runs)
 def multiply():
     """Fractions can be multiplied"""
-    out = check50.run("javac -d ./ F3Client.java").stdout(timeout = 60)
-    # check50.log(out)
-    # check50.log(check50.run("pwd").stdout())
-    # check50.log(check50.run("ls ./").stdout())
     check50.run("java F3Client").stdin("1", prompt=False).stdin("3", prompt=False).stdin("1", prompt=False).stdin("4", prompt=False).stdout("1/12\n").exit(0)
 
 
-@check50.check(compiles)
+@check50.check(runs)
 def add():
     """Fractions can be added"""
-    out = check50.run("javac -d ./ F4Client.java").stdout(timeout = 60)
-    # check50.log(out)
-    # check50.log(check50.run("pwd").stdout())
-    # check50.log(check50.run("ls ./").stdout())
     check50.run("java F4Client").stdin("1", prompt=False).stdin("3", prompt=False).stdin("1", prompt=False).stdin("4", prompt=False).stdout("7/12\n").exit(0)
 
-@check50.check(compiles)
+@check50.check(runs)
 def subtract():
     """Fractions can be subtracted"""
-    out = check50.run("javac -d ./ F5Client.java").stdout(timeout = 60)
-    # check50.log(out)
-    # check50.log(check50.run("pwd").stdout())
-    # check50.log(check50.run("ls ./").stdout())
     check50.run("java F5Client").stdin("1", prompt=False).stdin("3", prompt=False).stdin("1", prompt=False).stdin("4", prompt=False).stdout("1/12\n").exit(0)
 
 
-@check50.check(compiles)
+@check50.check(runs)
 def getvalue():
     """Fraction value can be computed"""
-    out = check50.run("javac -d ./ F0Client.java").stdout(timeout = 60)
-    # check50.log(out)
-    # check50.log(check50.run("pwd").stdout())
-    # check50.log(check50.run("ls ./").stdout())
     check50.run("java F0Client").stdin("1", prompt=False).stdin("4", prompt=False).stdout("0.25\n").exit(0)

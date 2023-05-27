@@ -8,7 +8,6 @@ Created on Wed Sep 29 18:28:44 2021
 import check50
 import check50.c
 
-check50.include("FClient.java", "F0Client.java", "F1Client.java", "F2Client.java", "F3Client.java", "F4Client.java", "F5Client.java")
 
 @check50.check()
 def exists():
@@ -23,7 +22,8 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """Fraction.java runs"""
-    out = check50.run("javac -d ./ FClient.java F2Client.java F3Client.java F4Client.java  F5Client.java F0Client.java").stdout(timeout = 60)
+    check50.include("FClient.java", "F0Client.java", "F1Client.java", "F2Client.java", "F3Client.java", "F4Client.java", "F5Client.java")
+    out = check50.run("javac -d ./ FClient.java F2Client.java F3Client.java F4Client.java  F5Client.java F0Client.java").stdout(timeout = 180)
     check50.log(out)
     check50.run("java FClient").stdout("1/4\n")
     

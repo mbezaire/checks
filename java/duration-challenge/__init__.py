@@ -66,25 +66,25 @@ def tostring3():
 @check50.check(tostring3)
 def longer1():
     """Duration.java correctly reports the longer Duration"""
-    out = check50.run("java CBlient").stdin("3 hours", prompt = True).stdin("45039 seconds", prompt = True).stdout(timeout = 120)
+    out = check50.run("java CBlient").stdin("3 hours", timeout = 120, prompt = True).stdin("45039 seconds", timeout = 120, prompt = True).stdout(timeout = 120)
     checkit(out, "false\nfalse\true")
 
 
 @check50.check(tostring3)
 def longer2():
     """Duration.java again correctly reports the longer Duration"""
-    out = check50.run("java CBlient").stdin("63 minutes", prompt = True).stdin("1 hours", prompt = True).stdout(timeout = 120)
+    out = check50.run("java CBlient").stdin("63 minutes", timeout = 120, prompt = True).stdin("1 hours", timeout = 120, prompt = True).stdout(timeout = 120)
     checkit(out, "false\nfalse\true")
 
 
 @check50.check(longer2)
 def add1():
     """Duration.java correctly adds Durations"""
-    out = check50.run("java CClient").stdin("63 minutes", prompt = True).stdin("1 hours", prompt = True).stdout(timeout = 120)
+    out = check50.run("java CClient").stdin("63 minutes", timeout = 120, prompt = True).stdin("1 hours", timeout = 120, prompt = True).stdout(timeout = 120)
     checkit(out, "0 days, 2 hours, 3 minutes, 0 seconds\n123 minutes")
 
 @check50.check(longer2)
 def add1():
     """Duration.java again correctly adds Durations"""
-    out = check50.run("java CClient").stdin("370 seconds", prompt = True).stdin("0 hours", prompt = True).stdout(timeout = 120)
+    out = check50.run("java CClient").stdin("370 seconds", timeout = 120, prompt = True).stdin("0 hours", timeout = 120, prompt = True).stdout(timeout = 120)
     checkit(out, "0 days, 0 hours, 6 minutes, 10 seconds\n370 seconds")

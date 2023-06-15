@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class CClient {
+public class CBlient {
     public static void main(String[] args) {
         Scanner ear = new Scanner(System.in);
         int num = ear.nextInt();ear.nextLine();

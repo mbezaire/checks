@@ -74,7 +74,7 @@ def longer1():
 def longer2():
     """Duration.java again correctly reports the longer Duration"""
     out = check50.run("java CBlient").stdin("63 minutes", timeout = 120, prompt = True).stdin("1 hours", timeout = 120, prompt = True).stdout(timeout = 120)
-    checkit(out, "false\nfalse\ntrue")
+    checkit(out, "true\nfalse\nfalse")
 
 
 @check50.check(longer2)

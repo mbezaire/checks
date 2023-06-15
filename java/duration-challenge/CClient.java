@@ -9,7 +9,7 @@ public class CClient {
         num = ear.nextInt();ear.nextLine();
         units = ear.nextLine();
         Duration other = new Duration(num, units);
-        Duration longer = test.addTime(other)
+        Duration longer = test.addTime(other);
         System.out.println(longer + "\n" + longer.getTimeNumber() + " " + longer.getTimeUnits());
     }
 }

@@ -84,7 +84,7 @@ def add1():
     checkit(out, "0 days, 2 hours, 3 minutes, 0 seconds\n123 minutes")
 
 @check50.check(longer2)
-def add1():
+def add2():
     """Duration.java again correctly adds Durations"""
     out = check50.run("java CClient").stdin("370 seconds", timeout = 120, prompt = True).stdin("0 hours", timeout = 120, prompt = True).stdout(timeout = 120)
     checkit(out, "0 days, 0 hours, 6 minutes, 10 seconds\n370 seconds")

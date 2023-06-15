@@ -67,14 +67,14 @@ def tostring3():
 def longer1():
     """Duration.java correctly reports the longer Duration"""
     out = check50.run("java CBlient").stdin("3 hours", timeout = 120, prompt = True).stdin("45039 seconds", timeout = 120, prompt = True).stdout(timeout = 120)
-    checkit(out, "false\nfalse\true")
+    checkit(out, "false\nfalse\ntrue")
 
 
 @check50.check(tostring3)
 def longer2():
     """Duration.java again correctly reports the longer Duration"""
     out = check50.run("java CBlient").stdin("63 minutes", timeout = 120, prompt = True).stdin("1 hours", timeout = 120, prompt = True).stdout(timeout = 120)
-    checkit(out, "false\nfalse\true")
+    checkit(out, "false\nfalse\ntrue")
 
 
 @check50.check(longer2)

@@ -26,12 +26,14 @@ def checkit(out, answer):
 def compiles():
     """Tadpole.java exists and compiles"""
     check50.exists("Tadpole.java")
-    check50.run("javac Tadpole.java")
+    out = check50.run("javac -d ./ Tadpole.java").stdout(timeout = 180)
+    check50.log(out)
 
 @check50.check(compiles)
 def runs1():
     """Tadpole.java runs a full frog population correctly"""
     out = check50.run("javac -d ./ Tadpole.java").stdout(timeout = 180)
+    check50.log(out)
     out = check50.run("java Tadpole").stdin("1234").stdout(timeout = 1000)
     checkit(out, ["1234 eggs left at day ","135 tadpoles left at day ","36 froglets left at day ","6 frogs left at day "])
 
@@ -39,6 +41,7 @@ def runs1():
 def runs2():
     """Tadpole.java ensures realistic nest size"""
     out = check50.run("javac -d ./ Tadpole.java").stdout(timeout = 180)
+    check50.log(out)
     out = check50.run("java Tadpole").stdin("2392").stdout(timeout = 1000)
     checkit(out, ["2000 eggs left at day ","220 tadpoles left at day ","59 froglets left at day ","10 frogs left at day "])
 
@@ -47,5 +50,6 @@ def runs2():
 def runs3():
     """Tadpole.java ensures realistic nest size on other end"""
     out = check50.run("javac -d ./ Tadpole.java").stdout(timeout = 180)
+    check50.log(out)
     out = check50.run("java Tadpole").stdin("-55").stdout(timeout = 1000)
     checkit(out, ["1 eggs left at day ","0 tadpoles left at day ","0 froglets left at day ","0 frogs left at day "])

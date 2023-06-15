@@ -22,7 +22,7 @@ def compiles():
     """Duration.java exists and compiles"""
     check50.exists("Duration.java")
     check50.run("javac Duration.java")
-    check50.include("Client.java CBlient.java CClient.java")
+    check50.include("Client.java","CBlient.java","CClient.java")
     out = check50.run("javac -d ./ Client.java CBlient.java CClient.java").stdout(timeout = 180)
     check50.log(out)
 
@@ -80,11 +80,11 @@ def longer2():
 @check50.check(longer2)
 def add1():
     """Duration.java correctly adds Durations"""
-    out = check50.run("java CBlient").stdin("63 minutes", prompt = True).stdin("1 hours", prompt = True).stdout(timeout = 120)
+    out = check50.run("java CClient").stdin("63 minutes", prompt = True).stdin("1 hours", prompt = True).stdout(timeout = 120)
     checkit(out, "0 days, 2 hours, 3 minutes, 0 seconds\n123 minutes")
 
 @check50.check(longer2)
 def add1():
     """Duration.java correctly adds Durations"""
-    out = check50.run("java CBlient").stdin("370 seconds", prompt = True).stdin("0 hours", prompt = True).stdout(timeout = 120)
+    out = check50.run("java CClient").stdin("370 seconds", prompt = True).stdin("0 hours", prompt = True).stdout(timeout = 120)
     checkit(out, "0 days, 0 hours, 6 minutes, 10 seconds\n370 seconds")

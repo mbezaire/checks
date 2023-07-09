@@ -18,7 +18,7 @@ def importlater():
     """ No import statements allowed in this program """
 
     # Read in the file
-    with open('calc.py', 'r') as file:
+    with open('tip.py', 'r') as file:
         filedata = file.read()
 
     import_pos = filedata.count("import")

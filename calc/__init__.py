@@ -11,6 +11,7 @@ def exists():
 @check50.check(exists)
 def run():
     """ File runs without syntax errors"""
+    check50.include("calc.py")
     out = check50.run("python calc.py").exit(0) # stdout(timeout = 60) #
 
 

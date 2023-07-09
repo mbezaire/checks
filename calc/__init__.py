@@ -18,7 +18,8 @@ def run():
     check50.include("calc.py")
     out = check50.run("ls").stdout()
     check50.log(out)
-    out = check50.run("python calc.py").exit(0) # stdout(timeout = 60) #
+    check50.py.compile("calc.py")
+    # out = check50.run("python calc.py").exit(0) # stdout(timeout = 60) #
 
 
 

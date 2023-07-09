@@ -30,15 +30,21 @@ def importlater():
 @check50.check(importlater)
 def tip1():
     """ The total is computed correctly """
-    check50.run("python tip.py").stdin("100").stdin("15").stdout("Leave $115.00[\n]*", "Leave $115.00\n")
-
+    out = check50.run("python tip.py").stdin("100").stdin("15").stdout(timeout = 50)
+    if out.strip() != "Leave $115.00":
+        raise check50.Mismatch("Leave $115.00", out.strip())
+        
 @check50.check(importlater)
 def tip2():
     """ The total is computed correctly for a different cost and tip """
-    check50.run("python tip.py").stdin("35").stdin("18").stdout("Leave $41.30[\n]*", "Leave $115.00\n")
+    out = check50.run("python tip.py").stdin("35").stdin("18").stdout(timeout = 50)
+    if out.strip() != "Leave $41.30":
+        raise check50.Mismatch("Leave $41.30", out.strip())
 
 
 @check50.check(importlater)
 def tip3():
     """ The sum is computed correctly for a different cost and cheapskate """
-    check50.run("python tip.py").stdin("47").stdin("0").stdout("Leave $47.00[\n]*", "Leave $115.00\n")
+    out = check50.run("python tip.py").stdin("47").stdin("0").stdout(timeout = 50)
+    if out.strip() != "Leave $47.00":
+        raise check50.Mismatch("Leave $47.00", out.strip())

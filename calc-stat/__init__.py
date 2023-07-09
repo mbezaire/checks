@@ -33,7 +33,6 @@ def std1():
 @check50.check(useimport)
 def std2():
     """ The standard deviation of a list is computed correctly using NumPy """
-    # check50.include("calc.py")
     check50.log("Checking list of [1, 2, 3, 4, 5, 10, 15, 20, 25, 36, 49, 64]")
 
     # Read in the file

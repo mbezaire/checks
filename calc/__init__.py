@@ -15,9 +15,6 @@ def run():
     check50.log(out)
     out = check50.run("ls").stdout()
     check50.log(out)
-    check50.include("calc.py")
-    out = check50.run("ls").stdout()
-    check50.log(out)
     check50.py.compile("calc.py")
     # out = check50.run("python calc.py").exit(0) # stdout(timeout = 60) #
 
@@ -26,7 +23,7 @@ def run():
 @check50.check(run)
 def importlater():
     """ First calculations don't use imported packages """
-    check50.include("calc.py")
+    # check50.include("calc.py")
 
     # Read in the file
     with open('calc.py', 'r') as file:
@@ -44,7 +41,7 @@ def importlater():
 @check50.check(importlater)
 def sum1():
     """ The sum is computed correctly """
-    check50.include("calc.py")
+    # check50.include("calc.py")
     check50.log("Checking list of [5, 2, 0, 6, 1, 8]")
 
     # Read in the file
@@ -68,7 +65,7 @@ def sum1():
 @check50.check(sum1)
 def sum2():
     """ The sum is computed correctly for a different list """
-    check50.include("calc.py")
+    # check50.include("calc.py")
     check50.log("Checking list of [10, 12, 8]")
 
     # Read in the file
@@ -93,7 +90,7 @@ def sum2():
 @check50.check(sum)
 def sum3():
     """ The sum is computed correctly for a longer list """
-    check50.include("calc.py")
+    # check50.include("calc.py")
     check50.log("Checking list of [100, 102, 104, 106, 44, 21, 19, 50, 1]")
 
     # Read in the file
@@ -117,7 +114,7 @@ def sum3():
 @check50.check(importlater)
 def avg1():
     """ The mean of a list is computed correctly  """
-    check50.include("calc.py")
+    # check50.include("calc.py")
     check50.log("Checking list of [1, 2, 3, 4, 5, 10, 15, 20, 25, 36, 49, 64]")
 
     # Read in the file
@@ -140,7 +137,7 @@ def avg1():
 @check50.check(importlater)
 def useimport():
     """ Later calculations use NumPy """
-    check50.include("calc.py")
+    # check50.include("calc.py")
 
     # Read in the file
     with open('calc.py', 'r') as file:
@@ -155,7 +152,7 @@ def useimport():
 @check50.check(useimport)
 def sumnp():
     """ The sum is computed correctly using NumPy """
-    check50.include("calc.py")
+    # check50.include("calc.py")
     check50.log("Checking list of [5, 2, 0, 6, 1, 8]")
 
     # Read in the file
@@ -179,7 +176,7 @@ def sumnp():
 @check50.check(sumnp)
 def sumnplong():
     """ The sum of a longer list is computed correctly using NumPy """
-    check50.include("calc.py")
+    # check50.include("calc.py")
     check50.log("Checking list of [1, 2, 3, 4, 5, 10, 15, 20, 25, 36, 49, 64]")
 
     # Read in the file
@@ -202,7 +199,7 @@ def sumnplong():
 @check50.check(useimport)
 def mean1():
     """ The mean of a list is computed correctly using NumPy """
-    check50.include("calc.py")
+    # check50.include("calc.py")
     check50.log("Checking list of [1, 2, 3, 4, 5, 10, 15, 20, 25, 36, 49, 64]")
 
     # Read in the file

@@ -11,13 +11,7 @@ def exists():
 @check50.check(exists)
 def run():
     """ File runs without syntax errors"""
-    out = check50.run("pwd").stdout()
-    check50.log(out)
-    out = check50.run("ls").stdout()
-    check50.log(out)
     check50.py.compile("calc.py")
-
-
 
 @check50.check(run)
 def importlater():

@@ -157,8 +157,6 @@ def run7(f_results):
     out = check50.run(f"javac -d ./ Tester2.java").stdout(timeout = 60)
     check50.log(out)
     out = check50.run(f"java Tester2").stdout(timeout = 360)
-    check50.log("Just ran Tester2")
-    check50.log(out)
 
     if "{" in out:
         f_results = json.loads(out[out.index("{"):])

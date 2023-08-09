@@ -262,7 +262,7 @@ public class Tester2 {
 
             Object reval = runMethod("Bank", local, "deposit", new Object[]{"Name3", pin3-1, 10});
            boolean shFalse33 = true;
-           if (reval instanceof boolean) 
+           if (reval instanceof Boolean) 
                shFalse33 = (boolean)reval;
            else if (reval instanceof Throwable)
                throw reval;

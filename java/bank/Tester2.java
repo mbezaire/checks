@@ -241,13 +241,13 @@ public class Tester2 {
             int pin1 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name1", 50});
             int pin2 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name2", 50});
             int pin3 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name3", 100});
-            boolean shTrue1 = (boolean)runMethod("Bank", local, "withdraw", new Object[]{"Name1", pin1, 10.50});
-            boolean shFalse1 = (boolean)runMethod("Bank", local, "withdraw", new Object[]{"Name1", pin1, -20.25});
+            double shTrue1 = (double)runMethod("Bank", local, "withdraw", new Object[]{"Name1", pin1, 10.50});
+            double shFalse1 = (double)runMethod("Bank", local, "withdraw", new Object[]{"Name1", pin1, -20.25});
             String expected1 = "" + (50 - 10.50);
             String notExpected1 = "" + (50 - 10.50 + 20.25);
 
-            boolean shTrue2 = (boolean)runMethod("Bank", local, "withdraw", new Object[]{"Name2", pin2, 10.50});
-            boolean shTrue22 = (boolean)runMethod("Bank", local, "withdraw", new Object[]{"Name2", pin2, 50.25});
+            double shTrue2 = (double)runMethod("Bank", local, "withdraw", new Object[]{"Name2", pin2, 10.50});
+            double shTrue22 = (double)runMethod("Bank", local, "withdraw", new Object[]{"Name2", pin2, 50.25});
             String expected2 = "0.0";
             String notExpected2 = "" + (50 - 10.50 - 50.25);
 
@@ -262,7 +262,7 @@ public class Tester2 {
 
             boolean shFalse33 = (boolean)runMethod("Bank", local, "deposit", new Object[]{"Name3", pin3-1, 10});
 
-            if (!(shTrue1 && !shFalse1 && shTrue2 && shTrue22
+            if (!(shTrue1>0 && shFalse1<0  && shTrue2>0 && shTrue22>0
                 && shTrue3 && !shFalse3 && !shFalse33)) {
                    depdraw.setRationale("Return boolean values incorrect");
                     depdraw.setHelp("Make sure that successful transactions return true and unsucessful ones return false.");

@@ -201,6 +201,7 @@ public class Tester2 {
                 return;
             }
         } catch (Exception e) {
+           accountview.setFailStatus(1);
             accountview.setRationale(getMsg(e));
             checks.add(accountview);
             closeJson();
@@ -334,6 +335,7 @@ public class Tester2 {
                     return;
                 }
         } catch (Exception e) {
+           bankstring.setFailStatus(1);
             bankstring.setRationale(getMsg(e));
             checks.add(bankstring);
             closeJson();

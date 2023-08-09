@@ -273,6 +273,7 @@ public class Tester2 {
 
             if (!(shTrue1>0 && shFalse1<0  && shTrue2>0 && shTrue22>0
                 && shTrue3 && !shFalse3 && !shFalse33)) {
+                    depdraw.setFailStatus(1);
                    depdraw.setRationale("Values returned from the methods are incorrect.");
                     depdraw.setHelp(" Check that you handle null accounts correctly. Also make sure that successful transactions return true and unsucessful ones return false.");
                     checks.add(depdraw);

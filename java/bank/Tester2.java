@@ -265,7 +265,7 @@ public class Tester2 {
            if (reval instanceof Boolean) 
                shFalse33 = (boolean)reval;
            else if (reval instanceof Throwable)
-               throw reval;
+               throw (Throwable)reval;
                 
             if (!(shTrue1>0 && shFalse1<0  && shTrue2>0 && shTrue22>0
                 && shTrue3 && !shFalse3 && !shFalse33)) {

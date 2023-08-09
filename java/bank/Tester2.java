@@ -262,15 +262,19 @@ public class Tester2 {
 
             Object reval = runMethod("Bank", local, "deposit", new Object[]{"Name3", pin3-1, 10});
            boolean shFalse33 = true;
-           if (reval instanceof Boolean) 
+           Throwable throwme = null;
+           if (reval instanceof Boolean)
                shFalse33 = (boolean)reval;
-           else if (reval instanceof Throwable)
-               throw (Throwable)reval;
-                
+           else if (reval instanceof Throwable) {
+                throwme = (Throwable)reval;
+                throw throwme;
+           }
+
+
             if (!(shTrue1>0 && shFalse1<0  && shTrue2>0 && shTrue22>0
                 && shTrue3 && !shFalse3 && !shFalse33)) {
-                   depdraw.setRationale("Return boolean values incorrect");
-                    depdraw.setHelp("Make sure that successful transactions return true and unsucessful ones return false.");
+                   depdraw.setRationale("Values returned from the methods are incorrect.");
+                    depdraw.setHelp(" Check that you handle null accounts correctly. Also make sure that successful transactions return true and unsucessful ones return false.");
                     checks.add(depdraw);
                     closeJson();
                     return;
@@ -290,6 +294,12 @@ public class Tester2 {
                     return;
                 }
         } catch (Exception e) {
+           depdraw.setFailStatus(1);
+            depdraw.setRationale(getMsg(e));
+            checks.add(depdraw);
+            closeJson();
+            return;
+        } catch (Throwable e) {
            depdraw.setFailStatus(1);
             depdraw.setRationale(getMsg(e));
             checks.add(depdraw);
@@ -457,6 +467,14 @@ public class Tester2 {
     }
 
     public static String getMsg(Error e) {
+      StringWriter sw = new StringWriter();
+      PrintWriter pw = new PrintWriter(sw);
+      e.printStackTrace(pw);
+      String msg = Check.toString(sw);
+      return msg.substring(0,msg.indexOf("Tester.main")-5);
+   }
+
+    public static String getMsg(Throwable e) {
       StringWriter sw = new StringWriter();
       PrintWriter pw = new PrintWriter(sw);
       e.printStackTrace(pw);

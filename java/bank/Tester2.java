@@ -260,8 +260,13 @@ public class Tester2 {
             String a2 = (String)runMethod("Bank", local, "showAccount", new Object[]{"Name2", pin2});
             String a3 = (String)runMethod("Bank", local, "showAccount", new Object[]{"Name3", pin3});
 
-            boolean shFalse33 = (boolean)runMethod("Bank", local, "deposit", new Object[]{"Name3", pin3-1, 10});
-
+            Object reval = runMethod("Bank", local, "deposit", new Object[]{"Name3", pin3-1, 10});
+           boolean shFalse33 = true;
+           if (reval instanceof boolean) 
+               shFalse33 = (boolean)reval;
+           else if (reval instanceof Throwable)
+               throw reval;
+                
             if (!(shTrue1>0 && shFalse1<0  && shTrue2>0 && shTrue22>0
                 && shTrue3 && !shFalse3 && !shFalse33)) {
                    depdraw.setRationale("Return boolean values incorrect");
@@ -423,7 +428,7 @@ public class Tester2 {
         }
         catch (Throwable e) {
             System.err.println(e);
-            return null;
+            return e;
         }
     }
 

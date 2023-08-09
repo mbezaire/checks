@@ -284,6 +284,7 @@ public class Tester2 {
                     return;
                 }
         } catch (Exception e) {
+           depdraw.setFailStatus(1);
             depdraw.setRationale(getMsg(e));
             checks.add(depdraw);
             closeJson();

@@ -114,8 +114,8 @@ public class Tester {
 
          if (
             within(((Double)runMethod("BankAccount", first, "getBalance")), 3.5) &&
-            within(((Double)runMethod("BankAccount", second, "getBalance")), 100) &&
-            within(((Double)runMethod("BankAccount", third, "getBalance")), 55)
+            within(((Double)runMethod("BankAccount", second, "getBalance")), 100.0) &&
+            within(((Double)runMethod("BankAccount", third, "getBalance")), 55.0)
 
          )
             deposit.setPass(true);
@@ -136,9 +136,9 @@ public class Tester {
         double secondd = (Double)(runMethod("BankAccount", second, "withdraw", new Object[]{5}));
         double thirdd = (Double)(runMethod("BankAccount", third, "withdraw", new Object[]{15}));
 
-        withdraw.addCheck("" + ((Double)runMethod("BankAccount", first, "getBalance")), "10");
-        withdraw.addCheck("" + ((Double)runMethod("BankAccount", second, "getBalance")), "5");
-        withdraw.addCheck("" + ((Double)runMethod("BankAccount", third, "getBalance")), "0");
+        withdraw.addCheck("" + ((Double)runMethod("BankAccount", first, "getBalance")), "10.0");
+        withdraw.addCheck("" + ((Double)runMethod("BankAccount", second, "getBalance")), "5.0");
+        withdraw.addCheck("" + ((Double)runMethod("BankAccount", third, "getBalance")), "0.0");
 
         if (
             within(((Double)runMethod("BankAccount", first, "getBalance")), 10.0) &&

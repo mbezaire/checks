@@ -141,10 +141,10 @@ public class Tester {
         withdraw.addCheck("" + ((Double)runMethod("BankAccount", third, "getBalance")), "0");
 
         if (
-            within(((Double)runMethod("BankAccount", first, "getBalance")), 10) &&
-            within(((Double)runMethod("BankAccount", second, "getBalance")), 5) &&
-            within(((Double)runMethod("BankAccount", third, "getBalance")), 0) &&
-            within(firstd, 0) && within(secondd, 5) && within(thirdd, 10)
+            within(((Double)runMethod("BankAccount", first, "getBalance")), 10.0) &&
+            within(((Double)runMethod("BankAccount", second, "getBalance")), 5.0) &&
+            within(((Double)runMethod("BankAccount", third, "getBalance")), 0.0) &&
+            within(firstd, 0.0) && within(secondd, 5.0) && within(thirdd, 10.0)
          )
            withdraw.setPass(true);
            checks.add(withdraw);

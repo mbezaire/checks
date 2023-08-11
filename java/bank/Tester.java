@@ -125,9 +125,9 @@ public class Tester {
 
 
          // Check 6 id = withdraw
-        Check withdraw = new Check("withdraw", 0, 3);
-        withdraw.setPrintme("Create three BankAccounts with 10 each, withdraw -3, 5, and 15");
-        withdraw.setHelp("Make sure withdraw doesn't remove more than the balance from the account and ignores negative withdrawal amounts");
+        Check withdraw = new Check("withdraw", 0, 6);
+        withdraw.setPrintme("Create three BankAccounts with 10 each, withdraw -3, 5, and 15. Below shows first the balances of all 3 accounts and then the amount withdrawn from each.");
+        withdraw.setHelp("Make sure withdraw doesn't remove more than the balance from the account, ignores negative withdrawal amounts, and returns amount withdrawn");
          first = new BankAccount("Peter",10);
          second = new BankAccount("Wendy",10);
          third = new BankAccount("Tinker",10);
@@ -139,6 +139,9 @@ public class Tester {
         withdraw.addCheck("" + ((Double)runMethod("BankAccount", first, "getBalance")), "10.0");
         withdraw.addCheck("" + ((Double)runMethod("BankAccount", second, "getBalance")), "5.0");
         withdraw.addCheck("" + ((Double)runMethod("BankAccount", third, "getBalance")), "0.0");
+        withdraw.addCheck("" + firstd, "0.0");
+        withdraw.addCheck("" + secondd, "5.0");
+        withdraw.addCheck("" + thirdd, "10.0");
 
         if (
             within(((Double)runMethod("BankAccount", first, "getBalance")), 10.0) &&

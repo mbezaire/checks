@@ -275,7 +275,7 @@ public class Tester2 {
                 && shTrue3 && !shFalse3 && !shFalse33)) {
                     depdraw.setFailStatus(1);
                    depdraw.setRationale("Values returned from the methods are incorrect.");
-                    depdraw.setHelp(" Check that you handle null accounts correctly. Also make sure that successful transactions return true and unsucessful ones return false.");
+                    depdraw.setHelp(" Check that you handle null accounts correctly. Also make sure that, for deposit, successful transactions return true and unsucessful ones return false. For withdraw, successful transactions should return the amount withdrawn and unsuccessful should return a sentinel value that would never occur in a valid withdrawal.");
                     checks.add(depdraw);
                     closeJson();
                     return;

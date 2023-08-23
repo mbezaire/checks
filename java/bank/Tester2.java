@@ -271,11 +271,23 @@ public class Tester2 {
            }
 
 
-            if (!(shTrue1>0 && shFalse1<=0  && shTrue2>0 && shTrue22>0
+            if (!(shTrue1>0 && shFalse1<=0
                 && shTrue3 && !shFalse3 && !shFalse33)) {
                     depdraw.setFailStatus(1);
                    depdraw.setRationale("Values returned from the methods are incorrect.");
                     depdraw.setHelp(" Check that you handle null accounts correctly. Also make sure that, for deposit, successful transactions return true and unsucessful ones return false. For withdraw, successful transactions should return the amount withdrawn and unsuccessful should return a sentinel value that would never occur in a valid withdrawal.");
+                    checks.add(depdraw);
+                    closeJson();
+                    return;
+            }
+            else if (!(shTrue1>0 && shFalse1<=0  && shTrue2>0 && shTrue22>0
+                && shTrue3 && !shFalse3 && !shFalse33)) {
+                    depdraw.setRationale("Withdraw return value incorrect");
+                    depdraw.setPrintme(
+                        "Account 2: Start at 50\n\tWithdraw 10.50, which should return 10.5 and actually returns " + shTrue2 + 
+                        "\n\tWithdraw 50.25 (more than the balance), which should return 39.5 and actually returns " + shTrue22 + "\n\n"
+                    );
+                depdraw.setHelp(" For withdraw, successful transactions should return the amount withdrawn and unsuccessful should return a sentinel value that would never occur in a valid withdrawal.");
                     checks.add(depdraw);
                     closeJson();
                     return;

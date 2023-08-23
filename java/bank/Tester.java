@@ -125,16 +125,29 @@ public class Tester {
 
 
          // Check 6 id = withdraw
-        Check withdraw = new Check("withdraw", 0, 6);
+        Check withdraw = new Check("withdraw", 1, 6);
         withdraw.setPrintme("Create three BankAccounts with 10 each, withdraw -3, 5, and 15. Below shows first the balances of all 3 accounts and then the amount withdrawn from each.");
         withdraw.setHelp("Make sure withdraw doesn't remove more than the balance from the account, ignores negative withdrawal amounts, and returns amount withdrawn");
          first = new BankAccount("Peter",10);
          second = new BankAccount("Wendy",10);
          third = new BankAccount("Tinker",10);
 
-        double firstd = (Double)(runMethod("BankAccount", first, "withdraw", new Object[]{-3}));
-        double secondd = (Double)(runMethod("BankAccount", second, "withdraw", new Object[]{5}));
-        double thirdd = (Double)(runMethod("BankAccount", third, "withdraw", new Object[]{15}));
+
+
+        double firstd, secondd, thirdd;
+        Object firstDoubVal = runMethod("BankAccount", first, "withdraw", new Object[]{-3})
+        if (reval instanceof Double) {
+            firstd = (Double)reval;
+            secondd = (Double)(runMethod("BankAccount", second, "withdraw", new Object[]{5}));
+            thirdd = (Double)(runMethod("BankAccount", third, "withdraw", new Object[]{15}));
+            deposit.setFailStatus(0);
+       } else {
+            withdraw.setHelp("Make sure the withdraw method returns a double");
+            withdraw.setRationale("Incorrect return type for withdraw method in BankAccount");
+            checks.add(withdraw);
+            closeJson();
+            return;
+        }
 
         withdraw.addCheck("" + ((Double)runMethod("BankAccount", first, "getBalance")), "10.0");
         withdraw.addCheck("" + ((Double)runMethod("BankAccount", second, "getBalance")), "5.0");

@@ -135,9 +135,9 @@ public class Tester {
 
 
         double firstd, secondd, thirdd;
-        Object firstDoubVal = runMethod("BankAccount", first, "withdraw", new Object[]{-3})
-        if (reval instanceof Double) {
-            firstd = (Double)reval;
+        Object firstDoubVal = runMethod("BankAccount", first, "withdraw", new Object[]{-3});
+        if (firstDoubVal instanceof Double) {
+            firstd = (Double)firstDoubVal;
             secondd = (Double)(runMethod("BankAccount", second, "withdraw", new Object[]{5}));
             thirdd = (Double)(runMethod("BankAccount", third, "withdraw", new Object[]{15}));
             deposit.setFailStatus(0);

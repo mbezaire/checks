@@ -282,8 +282,10 @@ public class Tester2 {
             }
             else if (!(shTrue1>0 && shFalse1<=0  && shTrue2>0 && shTrue22>0
                 && shTrue3 && !shFalse3 && !shFalse33)) {
-                    depdraw.setRationale("Withdraw return value incorrect");
-                    depdraw.setPrintme(
+                    depdraw.setFailStatus(1);
+
+                depdraw.setRationale("Withdraw return value incorrect");
+                depdraw.setPrintme(
                         "Account 2: Start at 50\n\tWithdraw 10.50, which should return 10.5 and actually returns " + shTrue2 + 
                         "\n\tWithdraw 50.25 (more than the balance), which should return 39.5 and actually returns " + shTrue22 + "\n\n"
                     );
@@ -587,13 +589,13 @@ class Check {
         checksSoFar++;
     }
 
-    public String getHelp() {return help;}
+    public String getHelp() {return toString(help);}
     public void setHelp(String h) { help = h;}
 
-    public String getPrintme() {return printme;}
+    public String getPrintme() {return toString(printme);}
     public void setPrintme(String h) { printme = h;}
 
-    public String getRationale() {return rationale;}
+    public String getRationale() {return toString(rationale);}
     public void setRationale(String h) { rationale = h;}
 
         public static String toString(Object word) {

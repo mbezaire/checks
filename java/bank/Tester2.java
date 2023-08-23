@@ -297,6 +297,7 @@ public class Tester2 {
             else if (!(a1.contains(expected1) && !a1.contains(notExpected1)
               && a2.contains(expected2) && !a2.contains(notExpected2)
               && a3.contains(expected3) && !a3.contains(notExpected3))) {
+                    depdraw.setFailStatus(1);
                     depdraw.setRationale("Deposit or Withdraw logic incorrect");
                     depdraw.setPrintme(
                         "Account 1: Start at 50\n\tWithdraw 10.50\n\tThen try to withdraw a negative amount\nShould still be 39.50 and is:\n\t" + a1 + "\n\n" +

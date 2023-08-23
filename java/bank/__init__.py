@@ -86,7 +86,9 @@ def findCheck(f_results, id = "constructors"):
 def processCheck(f_results, id = "constructors"):
     checkId = findCheck(f_results, id)
     if 'printme' in f_results['tests'][checkId] and len(f_results['tests'][checkId]['printme']) > 0:
-        check50.log(f_results['tests'][checkId]['printme'].replace("\\\\","\\"))
+        prme = f_results['tests'][checkId]['printme'].replace("\\\\","\\")
+        for line in prme.split("\n"):
+            check50.log(line)
     if not f_results['tests'][checkId]['pass']:
         if f_results['tests'][checkId]['failStatus'] == 1:
             raise check50.Failure(f_results['tests'][checkId]['rationale'].replace("\\\\","\\"), help=f_results['tests'][checkId]['help'].replace("\\\\","\\"))

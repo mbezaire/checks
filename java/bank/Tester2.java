@@ -299,9 +299,9 @@ public class Tester2 {
               && a3.contains(expected3) && !a3.contains(notExpected3))) {
                     depdraw.setRationale("Deposit or Withdraw logic incorrect");
                     depdraw.setPrintme(
-                        "Account 1: Start at 50\n\tWithdraw 10.50\n\tTry to withdraw a negative amount\nShould be 39.50 but is:\n\t" + a1 + "\n\n" +
+                        "Account 1: Start at 50\n\tWithdraw 10.50\n\tThen try to withdraw a negative amount\nShould still be 39.50 but is:\n\t" + a1 + "\n\n" +
                         "Account 2: Start at 50\n\tWithdraw 10.50\n\tWithdraw more than the balance\nShould be 0.0 but is:\n\t" + a2 + "\n\n" +
-                        "Account 3: Start at 100\n\tDeposit 10.25\n\tTry to withdraw a negative amount\nShould be 60.25 but is:\n\t" + a3 + "\n\n"
+                        "Account 3: Start at 100\n\tDeposit 10.25\n\tTry to withdraw a negative amount\nShould be 110.25 but is:\n\t" + a3 + "\n\n"
                     );
                     depdraw.setHelp("Look back at the deposit and withdraw methods in BankAccount and test their logic.");
                     checks.add(depdraw);
@@ -543,8 +543,8 @@ class Check {
       String expect = "";
       String act = "";
       for (int i = 0; i < this.expected.length; i++) {
-        expect += this.expected[i] + "\\n";
-        act += this.actual[i] + "\\n";
+        expect += toString(this.expected[i]) + "\\n";
+        act += toString(this.actual[i]) + "\\n";
 
       }
       String result = "{\"pass\": " + pass + ",\"actual\": \"" + act + "\",\"expected\": \"" + expect + "\",\"failStatus\": " + failStatus + ",\"checkId\": \"" + checkId + "\",\"help\": \"" + help + "\",\"printme\": \"" + printme + "\",\"rationale\": \"" + rationale + "\",\"visibility\": \"" + (true ? "visible" : "hidden" ) +  "\"}";

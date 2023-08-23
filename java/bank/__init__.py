@@ -86,12 +86,12 @@ def findCheck(f_results, id = "constructors"):
 def processCheck(f_results, id = "constructors"):
     checkId = findCheck(f_results, id)
     if 'printme' in f_results['tests'][checkId] and len(f_results['tests'][checkId]['printme']) > 0:
-        check50.log(f_results['tests'][checkId]['printme'])
+        check50.log(f_results['tests'][checkId]['printme'].replace("\\\\","\\"))
     if not f_results['tests'][checkId]['pass']:
         if f_results['tests'][checkId]['failStatus'] == 1:
-            raise check50.Failure(f_results['tests'][checkId]['rationale'], help=f_results['tests'][checkId]['help'])
+            raise check50.Failure(f_results['tests'][checkId]['rationale'].replace("\\\\","\\"), help=f_results['tests'][checkId]['help'].replace("\\\\","\\"))
         else: # if failStatus is 0, choose mismatch
-            raise check50.Mismatch(f_results['tests'][checkId]['expected'], f_results['tests'][checkId]['actual'], f_results['tests'][checkId]['help'])
+            raise check50.Mismatch(f_results['tests'][checkId]['expected'].replace("\\\\","\\"), f_results['tests'][checkId]['actual'].replace("\\\\","\\"), f_results['tests'][checkId]['help'].replace("\\\\","\\"))
 
 ################################################
 # BELOW HERE IS FINE TO CHANGE

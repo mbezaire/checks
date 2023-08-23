@@ -286,7 +286,7 @@ public class Tester2 {
 
                 depdraw.setRationale("Withdraw return value incorrect");
                 depdraw.setPrintme(
-                        "Account 2: Start at 50\n\tWithdraw 10.50, which should return 10.5 and actually returns " + shTrue2 + 
+                        "Account 2: Start at 50\n\tWithdraw 10.50, which should return 10.5 and actually returns " + shTrue2 +
                         "\n\tWithdraw 50.25 (more than the balance), which should return 39.5 and actually returns " + shTrue22 + "\n\n"
                     );
                 depdraw.setHelp(" For withdraw, successful transactions should return the amount withdrawn and unsuccessful should return a sentinel value that would never occur in a valid withdrawal.");
@@ -299,9 +299,9 @@ public class Tester2 {
               && a3.contains(expected3) && !a3.contains(notExpected3))) {
                     depdraw.setRationale("Deposit or Withdraw logic incorrect");
                     depdraw.setPrintme(
-                        "Account 1: Start at 50\n\tWithdraw 10.50\n\tThen try to withdraw a negative amount\nShould still be 39.50 but is:\n\t" + a1 + "\n\n" +
-                        "Account 2: Start at 50\n\tWithdraw 10.50\n\tWithdraw more than the balance\nShould be 0.0 but is:\n\t" + a2 + "\n\n" +
-                        "Account 3: Start at 100\n\tDeposit 10.25\n\tTry to withdraw a negative amount\nShould be 110.25 but is:\n\t" + a3 + "\n\n"
+                        "Account 1: Start at 50\n\tWithdraw 10.50\n\tThen try to withdraw a negative amount\nShould still be 39.50 and is:\n\t" + a1 + "\n\n" +
+                        "Account 2: Start at 50\n\tWithdraw 10.50\n\tWithdraw more than the balance\nShould be 0.0 and is:\n\t" + a2 + "\n\n" +
+                        "Account 3: Start at 100\n\tDeposit 10.25\n\tTry to withdraw a negative amount\nShould be 110.25 and is:\n\t" + a3 + "\n\n"
                     );
                     depdraw.setHelp("Look back at the deposit and withdraw methods in BankAccount and test their logic.");
                     checks.add(depdraw);
@@ -547,7 +547,7 @@ class Check {
         act += toString(this.actual[i]) + "\\n";
 
       }
-      String result = "{\"pass\": " + pass + ",\"actual\": \"" + act + "\",\"expected\": \"" + expect + "\",\"failStatus\": " + failStatus + ",\"checkId\": \"" + checkId + "\",\"help\": \"" + help + "\",\"printme\": \"" + printme + "\",\"rationale\": \"" + rationale + "\",\"visibility\": \"" + (true ? "visible" : "hidden" ) +  "\"}";
+      String result = "{\"pass\": " + pass + ",\"actual\": \"" + act + "\",\"expected\": \"" + expect + "\",\"failStatus\": " + failStatus + ",\"checkId\": \"" + checkId + "\",\"help\": \"" + getHelp() + "\",\"printme\": \"" + getPrintme() + "\",\"rationale\": \"" + getRationale() + "\",\"visibility\": \"" + (true ? "visible" : "hidden" ) +  "\"}";
       return result; // toString(result);
     }
 
@@ -602,6 +602,9 @@ class Check {
       return toString(word.toString());
    }
     public static String toString(String word) {
+      if (word == null)
+        return "";
+
       return word.replace("\\","\\\\").replace("\n", "\\n").replace("\r", "").replace("\f", "").replace("\t", "\\t").replace("\"","\\\"");
    }
 }

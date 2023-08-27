@@ -173,9 +173,10 @@ public class Tester {
         tostring.setHelp("Make sure the toString includes the name, balance, and pin number");
          first = new BankAccount("Michael", 12.34);
          String check1 = Check.toString(first.toString());
-        tostring.addCheck(check1, "something containing Michael, 12.34, and the pin number " + first.getPinNumber());
+          int firstPin = ((Integer)runMethod("BankAccount", first, "getPinNumber"))
+        tostring.addCheck(check1, "something containing Michael, 12.34, and the pin number " + firstPin);
 
-         if (check1.contains("Michael") && check1.contains("12.34") && check1.contains("" + first.getPinNumber()))
+         if (check1.contains("Michael") && check1.contains("12.34") && check1.contains("" + firstPin))
             tostring.setPass(true);
             checks.add(tostring);
 

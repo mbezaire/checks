@@ -181,7 +181,7 @@ public class Tester {
 
          // Check 8 - pinnumber
          Check pinnumber = new Check("pinnumber", 0, 6);
-         pinnumber.setPrintme("Creating 3 BankAccounts to check their pin numbers");
+         pinnumber.setPrintme("Creating 3 BankAccounts and calling their getPinNumber method to check their pin numbers");
          pinnumber.setHelp("Ensure the pin numbers are unique, randomly assigned, don't change unexpectedly, and are 4 digits");
          second = new BankAccount();
          third = new BankAccount("John");

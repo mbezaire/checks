@@ -50,8 +50,8 @@ public class Tester {
 
         // Object output = runMethod("BankAccount", first, "getPinNumber");
          getters.setFailStatus(0);
-         getters.addCheck(((String)runMethod("BankAccount", first, "getName")), "");
-        getters.addCheck("" + ((Double)runMethod("BankAccount", first, "getBalance")), "0");
+         getters.addCheck(((String)runMethod("BankAccount", first, "getName")).trim(), "");
+        getters.addCheck("" + ((Double)runMethod("BankAccount", first, "getBalance")), "0.0");
         getters.addCheck(((Integer)runMethod("BankAccount", first, "getPinNumber")) + "", "1000 - 9999");
          if ( ((String)runMethod("BankAccount", first, "getName")).equals("") &&
          within(((Double)runMethod("BankAccount", first, "getBalance")), 0) &&

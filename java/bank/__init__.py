@@ -55,7 +55,7 @@ def exists():
 
 @check50.check(exists)
 def compiles():
-    """Your program compiles"""
+    """Your program compiles and the tester files compile with it"""
     global f_results
     if len(helperfile) > 0:
         check50.include(f"{helperfile}.java")

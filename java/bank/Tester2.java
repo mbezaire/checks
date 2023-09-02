@@ -101,7 +101,7 @@ public class Tester2 {
 
          // Check 11 - account3: Accounts are kept track of correctly, without using arrays (that check is in Python),
          //          and up to 3 can be created
-        Check account3 = new Check("account3", 1, 0);
+        Check account3 = new Check("account3", 1, 1);
         try {
         String badMethods = checkMethods("Bank", new String[]{"addAccount"});
         if (badMethods.length() > 0) {
@@ -134,6 +134,13 @@ public class Tester2 {
             int pin4 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name4", 50});
             if (pin4 == 0 && (pin1 > 0 && pin2 > 0 && pin3 > 0))
                 account3.setPass(true);
+            else {
+                account3.setRationale("Checked for 3 calls to addAccount that return real pin numbers and a 4th that returns 0 and doesn't make the account, but got these pins: " + 
+                                     pin1 + ", " + pin2 + ", " + pin3 + ", " + pin4);
+                checks.add(account3);
+                closeJson();
+                return;
+            }
         } catch (Exception e) {
             account3.setRationale(getMsg(e));
             checks.add(account3);

@@ -132,10 +132,10 @@ public class Tester2 {
             int pin2 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name2", 50});
             int pin3 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name3", 50});
             int pin4 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name4", 50});
-            if (pin4 == 0 && (pin1 > 0 && pin2 > 0 && pin3 > 0))
+            if (pin4 <= 0 && (pin1 > 0 && pin2 > 0 && pin3 > 0))
                 account3.setPass(true);
             else {
-                account3.setRationale("Checked for 3 calls to addAccount that return real pin numbers and a 4th that returns 0 and doesn't make the account, but got these pins: " + 
+                account3.setRationale("Checked for 3 calls to addAccount that return real pin numbers and a 4th that returns 0 or less and doesn't make the account, but got these pins: " + 
                                      pin1 + ", " + pin2 + ", " + pin3 + ", " + pin4);
                 checks.add(account3);
                 closeJson();

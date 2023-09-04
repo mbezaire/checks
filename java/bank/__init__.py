@@ -180,7 +180,7 @@ def run8(f_results):
     with open("Bank.java", "r") as f:
         textlines = f.read()
 
-    if "Array" in textlines or "[" in textlines or "List" in textlines:
+    if "Array" in textlines or (textlines.count("[") > textlines.count("main(String[")) or "List" in textlines:
         raise check50.Failure("Looks like your Bank code may be using Arrays or other List-type structures")
 
     processCheck(f_results, "account3")

@@ -464,26 +464,38 @@ public class Tester2 {
             return e;
         }
     }
-
-    public static Object runMethod(String cla, Object obj, String meth, Object[] params) {
+    public static Object runMethod(String cla, Object obj, String meth, Object[] params) throws ClassNotFoundException, IllegalAccessException, Exception {
         String methodsNotWorking = "";
+        newIllegalArgumentException ugh;
+        String parametersExpected = "";
         try {
             Class c = Class.forName(cla);
             Method m[] = c.getDeclaredMethods();
             Method method = methodIn(m, meth);
             if (method!=null) {
+                Class<?>[] parameter_types = method.getParameterTypes();
+                if (parameter_types.length != params.length) {
+                    throw new newIllegalArgumentException("Expected " + params.length + " parameters for method " + meth + " but you used " + parameter_types.length + " parameters.");
+                } else {
+                    for (int ii = 0; ii < params.length; ii++) {
+                        parametersExpected += params[ii].getClass() + ", ";
+
+                    }
+                }
+
                 Object res = method.invoke(c.cast(obj), params);
                 return res;
             }
-            else
+            else {
                 return null;
+            }
         }
         catch (Throwable e) {
-            System.err.println(e);
-            return null;
+           // System.err.println("~~" + e + "~~");
+           // return null;
+            throw new newIllegalArgumentException("For method " + meth + " in " + cla + ", expected parameters: " + parametersExpected.substring(0,parametersExpected.length() - 2));
         }
     }
-
 
     private static boolean within(double one, double two) {
       return Math.abs(one - two) < 0.0001;

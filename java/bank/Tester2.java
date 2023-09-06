@@ -628,3 +628,11 @@ class Check {
       return word.replace("\\","\\\\").replace("\n", "\\n").replace("\r", "").replace("\f", "").replace("\t", "\\t").replace("\"","\\\"");
    }
 }
+
+
+ class newIllegalArgumentException extends Exception {
+    public newIllegalArgumentException(String errorMessage) {
+        super(errorMessage);
+    }
+}
+

@@ -629,8 +629,8 @@ class Check {
    }
 }
 
-
- class newIllegalArgumentException extends Exception {
+    
+class newIllegalArgumentException extends Exception {
     public newIllegalArgumentException(String errorMessage) {
         super(errorMessage);
     }

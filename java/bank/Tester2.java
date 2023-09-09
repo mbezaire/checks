@@ -135,7 +135,7 @@ public class Tester2 {
             if (pin4 <= 0 && (pin1 > 0 && pin2 > 0 && pin3 > 0))
                 account3.setPass(true);
             else {
-                account3.setRationale("Checked for 3 calls to addAccount that return real pin numbers and a 4th that returns 0 or less and doesn't make the account, but got these pins: " + 
+                account3.setRationale("Checked for 3 calls to addAccount that return real pin numbers and a 4th that returns 0 or less and doesn't make the account, but got these pins: " +
                                      pin1 + ", " + pin2 + ", " + pin3 + ", " + pin4);
                 checks.add(account3);
                 closeJson();
@@ -189,6 +189,7 @@ public class Tester2 {
 
             if (!((noAcctInfo == null || noAcctInfo.equals("")) &&
                 (alsoNoAcctInfo == null || alsoNoAcctInfo.equals("")))) {
+                    accountview.setFailStatus(1);
                     accountview.setRationale("Unauthorized BankAccount access");
                     accountview.setHelp("Make sure you check that both the name and the pin match. If they don't, return an empty String or null.");
                     checks.add(accountview);
@@ -201,7 +202,8 @@ public class Tester2 {
                 accountview.setPrintme("View account details with proper validation");
                 }
             else {
-                accountview.setRationale("BankAccount not viewable");
+                accountview.setFailStatus(1);
+               accountview.setRationale("BankAccount not viewable");
                 accountview.setHelp("Make sure you check that the name and the pin match (and use String methods for the name check). If they do match, show the account name, pin, and balance.");
                 checks.add(accountview);
                 closeJson();
@@ -281,6 +283,9 @@ public class Tester2 {
             if (!(shTrue1>0 && shFalse1<=0
                 && shTrue3 && !shFalse3 && !shFalse33)) {
                     depdraw.setFailStatus(1);
+                    depdraw.setPrintme("shTrue1: " + shTrue1 + ", shFalse1: " + shFalse1
+                                        + ", shTrue3: " + shTrue3 + ", shFalse3: "
+                                        + shFalse3 + ", shFalse33: " + shFalse33);
                    depdraw.setRationale("Values returned from the methods are incorrect.");
                     depdraw.setHelp(" Check that you handle null accounts correctly. Also make sure that, for deposit, successful transactions return true and unsucessful ones return false. For withdraw, successful transactions should return the amount withdrawn and unsuccessful should return a sentinel value that would never occur in a valid withdrawal.");
                     checks.add(depdraw);

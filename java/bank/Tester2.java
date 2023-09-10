@@ -192,18 +192,28 @@ public class Tester2 {
                     accountview.setFailStatus(1);
                     accountview.setRationale("Unauthorized BankAccount access");
                     accountview.setHelp("Make sure you check that both the name and the pin match. If they don't, return an empty String or null.");
+                    accountview.setPrintme("View an account after adding, only with correct name and pin\nFor Name3 (" + pin3 + "), we get: " + acctInfo
+                                            + "\nFor Name4 (" + pin3 + "), we get: " + noAcctInfo
+                                            + "\nFor Name3 (" + (pin3 - 1) + "), we get: " + alsoNoAcctInfo
+                                            );
                     checks.add(accountview);
                     closeJson();
                     return;
                 }
-            else if (acctInfo != null && acctInfo.contains("Name3") && acctInfo.contains("" + pin3)
-                && acctInfo.contains("59.99")) {
-                accountview.setPass(true);
-                accountview.setPrintme("View account details with proper validation");
+            else if (acctInfo != null && acctInfo.contains("Name3") && acctInfo.contains("" + pin3)) {
+                if ( acctInfo.contains("59.99")) {
+                    accountview.setPass(true);
+                    accountview.setPrintme("View account details with proper validation");
+                } else  {
+                accountview.setFailStatus(1);
+               accountview.setRationale("BankAccount was viewable but didn't seem to contain the correct balance in the toString (59.99):\n" + acctInfo);
+                    accountview.setHelp("Make sure the balance of your BankAccount is correct after depositing and withdrawing. Also ensure your toString correctly reports the balance.");
+                }
                 }
             else {
                 accountview.setFailStatus(1);
-               accountview.setRationale("BankAccount not viewable");
+               accountview.setRationale("BankAccount not viewable " + (acctInfo != null) + acctInfo.contains("Name3") + acctInfo.contains("" + pin3));
+               //accountview.setPrintme("View an account after adding, only with correct name and pin\nFor Name3 (" + pin3 + "), we get: " + acctInfo);
                 accountview.setHelp("Make sure you check that the name and the pin match (and use String methods for the name check). If they do match, show the account name, pin, and balance.");
                 checks.add(accountview);
                 closeJson();
@@ -283,9 +293,9 @@ public class Tester2 {
             if (!(shTrue1>0 && shFalse1<=0
                 && shTrue3 && !shFalse3 && !shFalse33)) {
                     depdraw.setFailStatus(1);
-                    depdraw.setPrintme("shTrue1: " + shTrue1 + ", shFalse1: " + shFalse1
-                                        + ", shTrue3: " + shTrue3 + ", shFalse3: "
-                                        + shFalse3 + ", shFalse33: " + shFalse33);
+                    //depdraw.setPrintme("shTrue1: " + shTrue1 + ", shFalse1: " + shFalse1
+                     //                   + ", shTrue3: " + shTrue3 + ", shFalse3: "
+                     //                   + shFalse3 + ", shFalse33: " + shFalse33);
                    depdraw.setRationale("Values returned from the methods are incorrect.");
                     depdraw.setHelp(" Check that you handle null accounts correctly. Also make sure that, for deposit, successful transactions return true and unsucessful ones return false. For withdraw, successful transactions should return the amount withdrawn and unsuccessful should return a sentinel value that would never occur in a valid withdrawal.");
                     checks.add(depdraw);

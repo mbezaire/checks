@@ -50,8 +50,8 @@ public class Tester {
 
         // Object output = runMethod("BankAccount", first, "getPinNumber");
          getters.setFailStatus(0);
-         getters.addCheck(((String)runMethod("BankAccount", first, "getName")), "");
-        getters.addCheck("" + ((Double)runMethod("BankAccount", first, "getBalance")), "0");
+         getters.addCheck(((String)runMethod("BankAccount", first, "getName")).trim(), "");
+        getters.addCheck("" + ((Double)runMethod("BankAccount", first, "getBalance")), "0.0");
         getters.addCheck(((Integer)runMethod("BankAccount", first, "getPinNumber")) + "", "1000 - 9999");
          if ( ((String)runMethod("BankAccount", first, "getName")).equals("") &&
          within(((Double)runMethod("BankAccount", first, "getBalance")), 0) &&
@@ -114,8 +114,8 @@ public class Tester {
 
          if (
             within(((Double)runMethod("BankAccount", first, "getBalance")), 3.5) &&
-            within(((Double)runMethod("BankAccount", second, "getBalance")), 100) &&
-            within(((Double)runMethod("BankAccount", third, "getBalance")), 55)
+            within(((Double)runMethod("BankAccount", second, "getBalance")), 100.0) &&
+            within(((Double)runMethod("BankAccount", third, "getBalance")), 55.0)
 
          )
             deposit.setPass(true);
@@ -125,26 +125,43 @@ public class Tester {
 
 
          // Check 6 id = withdraw
-        Check withdraw = new Check("withdraw", 0, 3);
-        withdraw.setPrintme("Create three BankAccounts with 10 each, withdraw -3, 5, and 15");
-        withdraw.setHelp("Make sure withdraw doesn't remove more than the balance from the account and ignores negative withdrawal amounts");
+        Check withdraw = new Check("withdraw", 1, 6);
+        withdraw.setPrintme("Create three BankAccounts with 10 each, withdraw -3, 5, and 15. Below shows first the balances of all 3 accounts and then the amount withdrawn from each.");
+        withdraw.setHelp("Make sure withdraw doesn't remove more than the balance from the account, ignores negative withdrawal amounts, and returns amount withdrawn");
          first = new BankAccount("Peter",10);
          second = new BankAccount("Wendy",10);
          third = new BankAccount("Tinker",10);
 
-        double firstd = (Double)(runMethod("BankAccount", first, "withdraw", new Object[]{-3}));
-        double secondd = (Double)(runMethod("BankAccount", second, "withdraw", new Object[]{5}));
-        double thirdd = (Double)(runMethod("BankAccount", third, "withdraw", new Object[]{15}));
 
-        withdraw.addCheck("" + ((Double)runMethod("BankAccount", first, "getBalance")), "10");
-        withdraw.addCheck("" + ((Double)runMethod("BankAccount", second, "getBalance")), "5");
-        withdraw.addCheck("" + ((Double)runMethod("BankAccount", third, "getBalance")), "0");
+
+        double firstd, secondd, thirdd;
+        Object firstDoubVal = runMethod("BankAccount", first, "withdraw", new Object[]{-3});
+        if (firstDoubVal != null && firstDoubVal instanceof Double) {
+            firstd = (Double)firstDoubVal;
+            secondd = (Double)(runMethod("BankAccount", second, "withdraw", new Object[]{5}));
+            thirdd = (Double)(runMethod("BankAccount", third, "withdraw", new Object[]{15}));
+            withdraw.setFailStatus(0);
+       } else {
+            withdraw.setFailStatus(1);
+            withdraw.setHelp("Make sure the withdraw method returns a double");
+            withdraw.setRationale("Incorrect return type for withdraw method in BankAccount");
+            checks.add(withdraw);
+            closeJson();
+            return;
+        }
+
+        withdraw.addCheck("" + ((Double)runMethod("BankAccount", first, "getBalance")), "10.0");
+        withdraw.addCheck("" + ((Double)runMethod("BankAccount", second, "getBalance")), "5.0");
+        withdraw.addCheck("" + ((Double)runMethod("BankAccount", third, "getBalance")), "0.0");
+        withdraw.addCheck("" + firstd, "0.0");
+        withdraw.addCheck("" + secondd, "5.0");
+        withdraw.addCheck("" + thirdd, "10.0");
 
         if (
-            within(((Double)runMethod("BankAccount", first, "getBalance")), 10) &&
-            within(((Double)runMethod("BankAccount", second, "getBalance")), 5) &&
-            within(((Double)runMethod("BankAccount", third, "getBalance")), 0) &&
-            within(firstd, 0) && within(secondd, 5) && within(thirdd, 10)
+            within(((Double)runMethod("BankAccount", first, "getBalance")), 10.0) &&
+            within(((Double)runMethod("BankAccount", second, "getBalance")), 5.0) &&
+            within(((Double)runMethod("BankAccount", third, "getBalance")), 0.0) &&
+            within(firstd, 0.0) && within(secondd, 5.0) && within(thirdd, 10.0)
          )
            withdraw.setPass(true);
            checks.add(withdraw);
@@ -155,16 +172,17 @@ public class Tester {
         tostring.setPrintme("Making a new BankAccount with a name and a balance");
         tostring.setHelp("Make sure the toString includes the name, balance, and pin number");
          first = new BankAccount("Michael", 12.34);
-         String check1 = first.toString();
-        tostring.addCheck(check1, "something containing Michael, 12.34, and the pin number " + first.getPinNumber());
+         String check1 = Check.toString(first.toString());
+          int firstOrigPin = ((Integer)runMethod("BankAccount", first, "getPinNumber"));
+        tostring.addCheck(check1, "something containing Michael, 12.34, and the pin number " + firstOrigPin);
 
-         if (check1.contains("Michael") && check1.contains("12.34") && check1.contains("" + first.getPinNumber()))
+         if (check1.contains("Michael") && check1.contains("12.34") && check1.contains("" + firstOrigPin))
             tostring.setPass(true);
             checks.add(tostring);
 
          // Check 8 - pinnumber
          Check pinnumber = new Check("pinnumber", 0, 6);
-         pinnumber.setPrintme("Creating 3 BankAccounts to check their pin numbers");
+         pinnumber.setPrintme("Creating 3 BankAccounts and calling their getPinNumber method to check their pin numbers");
          pinnumber.setHelp("Ensure the pin numbers are unique, randomly assigned, don't change unexpectedly, and are 4 digits");
          second = new BankAccount();
          third = new BankAccount("John");

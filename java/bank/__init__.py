@@ -55,7 +55,7 @@ def exists():
 
 @check50.check(exists)
 def compiles():
-    """Your program compiles"""
+    """Your program compiles and the tester files compile with it"""
     global f_results
     if len(helperfile) > 0:
         check50.include(f"{helperfile}.java")
@@ -70,7 +70,15 @@ def compiles():
             raise check50.Failure("Failed to compile", help=finderror)
     if len(helperfile) > 0:
         out = check50.run(f"javac -d ./ {helperfile}.java").stdout(timeout = 60)
-        check50.log(out)
+        if "error" in out:
+            finderror = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output",""))
+            if finderror != None:
+                result = finderror.groups()
+                raise check50.Failure("Failed to compile due to " + result[1], help=result[0].strip())
+            else:
+                raise check50.Failure("Failed to compile", help=finderror)
+        for line in out.split("\n"):
+            check50.log(line)
         out = check50.run(f"java {helperfile}").stdout(timeout = 360)
 
         if "{" in out:
@@ -86,12 +94,14 @@ def findCheck(f_results, id = "constructors"):
 def processCheck(f_results, id = "constructors"):
     checkId = findCheck(f_results, id)
     if 'printme' in f_results['tests'][checkId] and len(f_results['tests'][checkId]['printme']) > 0:
-        check50.log(f_results['tests'][checkId]['printme'])
+        prme = f_results['tests'][checkId]['printme'].replace("\\\\","\\")
+        for line in prme.split("\n"):
+            check50.log(line)
     if not f_results['tests'][checkId]['pass']:
         if f_results['tests'][checkId]['failStatus'] == 1:
-            raise check50.Failure(f_results['tests'][checkId]['rationale'], help=f_results['tests'][checkId]['help'])
+            raise check50.Failure(f_results['tests'][checkId]['rationale'].replace("\\\\","\\"), help=f_results['tests'][checkId]['help'].replace("\\\\","\\"))
         else: # if failStatus is 0, choose mismatch
-            raise check50.Mismatch(f_results['tests'][checkId]['expected'], f_results['tests'][checkId]['actual'], f_results['tests'][checkId]['help'])
+            raise check50.Mismatch(f_results['tests'][checkId]['expected'].replace("\\\\","\\"), f_results['tests'][checkId]['actual'].replace("\\\\","\\"), f_results['tests'][checkId]['help'].replace("\\\\","\\"))
 
 ################################################
 # BELOW HERE IS FINE TO CHANGE
@@ -170,7 +180,7 @@ def run8(f_results):
     with open("Bank.java", "r") as f:
         textlines = f.read()
 
-    if "Array" in textlines or "[" in textlines or "List" in textlines:
+    if "Array" in textlines or (textlines.count("[") > textlines.count("main(String[")) or "List" in textlines:
         raise check50.Failure("Looks like your Bank code may be using Arrays or other List-type structures")
 
     processCheck(f_results, "account3")

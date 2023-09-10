@@ -101,7 +101,7 @@ public class Tester2 {
 
          // Check 11 - account3: Accounts are kept track of correctly, without using arrays (that check is in Python),
          //          and up to 3 can be created
-        Check account3 = new Check("account3", 1, 0);
+        Check account3 = new Check("account3", 1, 1);
         try {
         String badMethods = checkMethods("Bank", new String[]{"addAccount"});
         if (badMethods.length() > 0) {
@@ -132,8 +132,15 @@ public class Tester2 {
             int pin2 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name2", 50});
             int pin3 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name3", 50});
             int pin4 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name4", 50});
-            if (pin4 == 0 && (pin1 > 0 && pin2 > 0 && pin3 > 0))
+            if (pin4 <= 0 && (pin1 > 0 && pin2 > 0 && pin3 > 0))
                 account3.setPass(true);
+            else {
+                account3.setRationale("Checked for 3 calls to addAccount that return real pin numbers and a 4th that returns 0 or less and doesn't make the account, but got these pins: " +
+                                     pin1 + ", " + pin2 + ", " + pin3 + ", " + pin4);
+                checks.add(account3);
+                closeJson();
+                return;
+            }
         } catch (Exception e) {
             account3.setRationale(getMsg(e));
             checks.add(account3);
@@ -182,25 +189,38 @@ public class Tester2 {
 
             if (!((noAcctInfo == null || noAcctInfo.equals("")) &&
                 (alsoNoAcctInfo == null || alsoNoAcctInfo.equals("")))) {
+                    accountview.setFailStatus(1);
                     accountview.setRationale("Unauthorized BankAccount access");
                     accountview.setHelp("Make sure you check that both the name and the pin match. If they don't, return an empty String or null.");
+                    accountview.setPrintme("View an account after adding, only with correct name and pin\nFor Name3 (" + pin3 + "), we get: " + acctInfo
+                                            + "\nFor Name4 (" + pin3 + "), we get: " + noAcctInfo
+                                            + "\nFor Name3 (" + (pin3 - 1) + "), we get: " + alsoNoAcctInfo
+                                            );
                     checks.add(accountview);
                     closeJson();
                     return;
                 }
-            else if (acctInfo != null && acctInfo.contains("Name3") && acctInfo.contains("" + pin3)
-                && acctInfo.contains("59.99")) {
-                accountview.setPass(true);
-                accountview.setPrintme("View account details with proper validation");
+            else if (acctInfo != null && acctInfo.contains("Name3") && acctInfo.contains("" + pin3)) {
+                if ( acctInfo.contains("59.99")) {
+                    accountview.setPass(true);
+                    accountview.setPrintme("View account details with proper validation");
+                } else  {
+                accountview.setFailStatus(1);
+               accountview.setRationale("BankAccount was viewable but didn't seem to contain the correct balance in the toString (59.99):\n" + acctInfo);
+                    accountview.setHelp("Make sure the balance of your BankAccount is correct after depositing and withdrawing. Also ensure your toString correctly reports the balance.");
+                }
                 }
             else {
-                accountview.setRationale("BankAccount not viewable");
+                accountview.setFailStatus(1);
+               accountview.setRationale("BankAccount not viewable " + (acctInfo != null) + acctInfo.contains("Name3") + acctInfo.contains("" + pin3));
+               //accountview.setPrintme("View an account after adding, only with correct name and pin\nFor Name3 (" + pin3 + "), we get: " + acctInfo);
                 accountview.setHelp("Make sure you check that the name and the pin match (and use String methods for the name check). If they do match, show the account name, pin, and balance.");
                 checks.add(accountview);
                 closeJson();
                 return;
             }
         } catch (Exception e) {
+           accountview.setFailStatus(1);
             accountview.setRationale(getMsg(e));
             checks.add(accountview);
             closeJson();
@@ -259,12 +279,38 @@ public class Tester2 {
             String a2 = (String)runMethod("Bank", local, "showAccount", new Object[]{"Name2", pin2});
             String a3 = (String)runMethod("Bank", local, "showAccount", new Object[]{"Name3", pin3});
 
-            boolean shFalse33 = (boolean)runMethod("Bank", local, "deposit", new Object[]{"Name3", pin3-1, 10});
+            Object reval = runMethod("Bank", local, "deposit", new Object[]{"Name3", pin3-1, 10});
+           boolean shFalse33 = true;
+           Throwable throwme = null;
+           if (reval instanceof Boolean)
+               shFalse33 = (boolean)reval;
+           else if (reval instanceof Throwable) {
+                throwme = (Throwable)reval;
+                throw throwme;
+           }
 
-            if (!(shTrue1>0 && shFalse1<0  && shTrue2>0 && shTrue22>0
+            if (!(shTrue1>0 && shFalse1<=0  && shTrue2>0 && shTrue22>0
                 && shTrue3 && !shFalse3 && !shFalse33)) {
-                   depdraw.setRationale("Return boolean values incorrect");
-                    depdraw.setHelp("Make sure that successful transactions return true and unsucessful ones return false.");
+                    depdraw.setFailStatus(1);
+                    //depdraw.setPrintme("shTrue1: " + shTrue1 + ", shFalse1: " + shFalse1
+                     //                   + ", shTrue3: " + shTrue3 + ", shFalse3: "
+                     //                   + shFalse3 + ", shFalse33: " + shFalse33);
+                   depdraw.setRationale("Values returned from the methods are incorrect.");
+                    depdraw.setHelp(" Check that you handle null accounts correctly. Also make sure that, for deposit, successful transactions return true and unsucessful ones return false. For withdraw, successful transactions should return the amount withdrawn and unsuccessful should return a sentinel value that would never occur in a valid withdrawal.");
+                    checks.add(depdraw);
+                    closeJson();
+                    return;
+            }
+            else if (!(shTrue1>0 && shFalse1<=0  && shTrue2>0 && shTrue22>0
+                && shTrue3 && !shFalse3 && !shFalse33)) {
+                    depdraw.setFailStatus(1);
+
+                depdraw.setRationale("Withdraw return value incorrect");
+                depdraw.setPrintme(
+                        "Account 2: Start at 50\n\tWithdraw 10.50, which should return 10.5 and actually returns " + shTrue2 +
+                        "\n\tWithdraw 50.25 (more than the balance), which should return 39.5 and actually returns " + shTrue22 + "\n\n"
+                    );
+                depdraw.setHelp(" For withdraw, successful transactions should return the amount withdrawn and unsuccessful should return a sentinel value that would never occur in a valid withdrawal.");
                     checks.add(depdraw);
                     closeJson();
                     return;
@@ -272,11 +318,12 @@ public class Tester2 {
             else if (!(a1.contains(expected1) && !a1.contains(notExpected1)
               && a2.contains(expected2) && !a2.contains(notExpected2)
               && a3.contains(expected3) && !a3.contains(notExpected3))) {
+                    depdraw.setFailStatus(1);
                     depdraw.setRationale("Deposit or Withdraw logic incorrect");
                     depdraw.setPrintme(
-                        "Account 1: Start at 50\n\tWithdraw 10.50\n\tTry to withdraw a negative amount\nShould be 39.50 but is:\n\t" + a1 + "\n\n" +
-                        "Account 2: Start at 50\n\tWithdraw 10.50\n\tWithdraw more than the balance\nShould be 0.0 but is:\n\t" + a2 + "\n\n" +
-                        "Account 3: Start at 100\n\tDeposit 10.25\n\tTry to withdraw a negative amount\nShould be 60.25 but is:\n\t" + a3 + "\n\n"
+                        "Account 1: Start at 50\n\tWithdraw 10.50\n\tThen try to withdraw a negative amount\nShould still be 39.50 and is:\n\t" + a1 + "\n\n" +
+                        "Account 2: Start at 50\n\tWithdraw 10.50\n\tWithdraw more than the balance\nShould be 0.0 and is:\n\t" + a2 + "\n\n" +
+                        "Account 3: Start at 100\n\tDeposit 10.25\n\tTry to withdraw a negative amount\nShould be 110.25 and is:\n\t" + a3 + "\n\n"
                     );
                     depdraw.setHelp("Look back at the deposit and withdraw methods in BankAccount and test their logic.");
                     checks.add(depdraw);
@@ -284,6 +331,13 @@ public class Tester2 {
                     return;
                 }
         } catch (Exception e) {
+           depdraw.setFailStatus(1);
+            depdraw.setRationale(getMsg(e));
+            checks.add(depdraw);
+            closeJson();
+            return;
+        } catch (Throwable e) {
+           depdraw.setFailStatus(1);
             depdraw.setRationale(getMsg(e));
             checks.add(depdraw);
             closeJson();
@@ -333,6 +387,7 @@ public class Tester2 {
                     return;
                 }
         } catch (Exception e) {
+           bankstring.setFailStatus(1);
             bankstring.setRationale(getMsg(e));
             checks.add(bankstring);
             closeJson();
@@ -420,7 +475,7 @@ public class Tester2 {
         }
         catch (Throwable e) {
             System.err.println(e);
-            return null;
+            return e;
         }
     }
 
@@ -449,6 +504,14 @@ public class Tester2 {
     }
 
     public static String getMsg(Error e) {
+      StringWriter sw = new StringWriter();
+      PrintWriter pw = new PrintWriter(sw);
+      e.printStackTrace(pw);
+      String msg = Check.toString(sw);
+      return msg.substring(0,msg.indexOf("Tester.main")-5);
+   }
+
+    public static String getMsg(Throwable e) {
       StringWriter sw = new StringWriter();
       PrintWriter pw = new PrintWriter(sw);
       e.printStackTrace(pw);
@@ -502,11 +565,11 @@ class Check {
       String expect = "";
       String act = "";
       for (int i = 0; i < this.expected.length; i++) {
-        expect += this.expected[i] + "\\n";
-        act += this.actual[i] + "\\n";
+        expect += toString(this.expected[i]) + "\\n";
+        act += toString(this.actual[i]) + "\\n";
 
       }
-      String result = "{\"pass\": " + pass + ",\"actual\": \"" + act + "\",\"expected\": \"" + expect + "\",\"failStatus\": " + failStatus + ",\"checkId\": \"" + checkId + "\",\"help\": \"" + help + "\",\"printme\": \"" + printme + "\",\"rationale\": \"" + rationale + "\",\"visibility\": \"" + (true ? "visible" : "hidden" ) +  "\"}";
+      String result = "{\"pass\": " + pass + ",\"actual\": \"" + act + "\",\"expected\": \"" + expect + "\",\"failStatus\": " + failStatus + ",\"checkId\": \"" + checkId + "\",\"help\": \"" + getHelp() + "\",\"printme\": \"" + getPrintme() + "\",\"rationale\": \"" + getRationale() + "\",\"visibility\": \"" + (true ? "visible" : "hidden" ) +  "\"}";
       return result; // toString(result);
     }
 
@@ -548,19 +611,22 @@ class Check {
         checksSoFar++;
     }
 
-    public String getHelp() {return help;}
+    public String getHelp() {return toString(help);}
     public void setHelp(String h) { help = h;}
 
-    public String getPrintme() {return printme;}
+    public String getPrintme() {return toString(printme);}
     public void setPrintme(String h) { printme = h;}
 
-    public String getRationale() {return rationale;}
+    public String getRationale() {return toString(rationale);}
     public void setRationale(String h) { rationale = h;}
 
         public static String toString(Object word) {
       return toString(word.toString());
    }
     public static String toString(String word) {
+      if (word == null)
+        return "";
+
       return word.replace("\\","\\\\").replace("\n", "\\n").replace("\r", "").replace("\f", "").replace("\t", "\\t").replace("\"","\\\"");
    }
 }

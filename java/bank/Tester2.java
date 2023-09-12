@@ -366,7 +366,7 @@ public class Tester2 {
             closeJson();
             return;
         }
-         bankstring.setFailStatus(0);
+         //bankstring.setFailStatus(0);
 
 
        try {
@@ -379,6 +379,7 @@ public class Tester2 {
 
             int pin3 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name3", 59.99});
             String bankStr = (String)runMethod("Bank", local, "toString", null);
+            bankstring.setPrintme("Display toString with Bank Name. toString returns: " + bankStr);
 
             if (!(bankStr.contains("Reading Coop") && bankStr.contains("3") && bankStr.contains("1"))) {
                     bankstring.setRationale("Bank's toString doesn't contain all the expected info");

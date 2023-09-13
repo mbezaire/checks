@@ -316,6 +316,17 @@ public class Tester2 {
                     closeJson();
                     return;
             }
+            else if (a1 == null || a2 == null || a3 == null) {
+                    depdraw.setFailStatus(1);
+                    depdraw.setRationale("Unable to verify balance as showAccount method not working correctly");
+                    depdraw.setPrintme("showAccount(Name1," + pin1 + ") returns " + a1
+                                    + "\nshowAccount(Name2," + pin2 + ") returns " + a2
+                                    + "\nshowAccount(Name3," + pin3 + ") returns " + a3);
+                    depdraw.setHelp("Make sure the account validation and showAccount method works alright before continuing.");
+                    checks.add(depdraw);
+                    closeJson();
+                    return;
+            }
             else if (!(a1.contains(expected1) && !a1.contains(notExpected1)
               && a2.contains(expected2) && !a2.contains(notExpected2)
               && a3.contains(expected3) && !a3.contains(notExpected3))) {

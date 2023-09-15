@@ -128,10 +128,15 @@ public class Tester2 {
             parameterType[0] = String.class;
             Bank local = (Bank)localClass.getDeclaredConstructor(parameterType).newInstance("Reading Coop");
 
+            account3.setPrintme("Trying to make 1 account...\nBank is:\n\t" + local.toString());
             int pin1 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name1", 50});
+            account3.setPrintme("Trying to make 2nd account...\nBank is:\n\t" + local.toString());
             int pin2 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name2", 50});
+            account3.setPrintme("Trying to make 3rd account...\nBank is:\n\t" + local.toString());
             int pin3 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name3", 50});
+            account3.setPrintme("Trying to make 4th account...\nBank is:\n\t" + local.toString());
             int pin4 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name4", 50});
+            account3.setPrintme("Making 3 accounts and trying to make a 4th");
             if (pin4 <= 0 && (pin1 > 0 && pin2 > 0 && pin3 > 0))
                 account3.setPass(true);
             else {
@@ -180,9 +185,13 @@ public class Tester2 {
             parameterType[0] = String.class;
             Bank local = (Bank)localClass.getDeclaredConstructor(parameterType).newInstance("Reading Coop");
 
+            accountview.setPrintme("Trying to make 1st account...\nBank is:\n\t" + local.toString());
             int pin1 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name1", 50});
+            accountview.setPrintme("Trying to make 2nd account...\nBank is:\n\t" + local.toString());
             int pin2 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name2", 50});
+            accountview.setPrintme("Trying to make 3rd account and pass in a double balance\nBank is:\n\t" + local.toString());
             int pin3 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name3", 59.99});
+            accountview.setPrintme("View an account after adding, only with correct name and pin");
             String acctInfo = (String)runMethod("Bank", local, "showAccount", new Object[]{"Name3", pin3});
             String noAcctInfo = (String)runMethod("Bank", local, "showAccount", new Object[]{"Name4", pin3});
             String alsoNoAcctInfo = (String)runMethod("Bank", local, "showAccount", new Object[]{"Name3", pin3 - 1});

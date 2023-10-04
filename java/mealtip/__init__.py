@@ -35,11 +35,10 @@ def runs():
     tip = random.randint(15,45)
     mealcost = dollars + cents
     out = check50.run("java MealTip").stdin(str(mealcost)).stdin(str(tip)).stdout()
-    findtemp = re.search(r'([0-9]+.[0-9]+)', out)
-    if findtemp != None:
-        result = findtemp.groups()
+    findtemp = re.findall(r'([0-9]+.[0-9]+)', out)  # replace search with findall to find last
+    if findtemp == None or len(findtemp) == 0:
+        raise check50.Failure("Failed to find a decimal number in your printed output", help="Make sure to print out the total meal cost as a decimal number")
+    result = findtemp # findtemp.groups()
     ans = mealcost*(1 + tip/100)
-    if abs(float(result[0]) - ans) > 0.0001:
+    if abs(float(result[-1]) - ans) > 0.0001:
         raise check50.Mismatch(ans, out.strip())
-
-

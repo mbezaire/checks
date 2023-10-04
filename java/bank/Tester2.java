@@ -128,10 +128,15 @@ public class Tester2 {
             parameterType[0] = String.class;
             Bank local = (Bank)localClass.getDeclaredConstructor(parameterType).newInstance("Reading Coop");
 
+            account3.setPrintme("Trying to make 1 account...\nBank is:\n\t" + local.toString());
             int pin1 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name1", 50});
+            account3.setPrintme("Trying to make 2nd account...\nBank is:\n\t" + local.toString());
             int pin2 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name2", 50});
+            account3.setPrintme("Trying to make 3rd account...\nBank is:\n\t" + local.toString());
             int pin3 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name3", 50});
+            account3.setPrintme("Trying to make 4th account...\nBank is:\n\t" + local.toString());
             int pin4 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name4", 50});
+            account3.setPrintme("Making 3 accounts and trying to make a 4th");
             if (pin4 <= 0 && (pin1 > 0 && pin2 > 0 && pin3 > 0))
                 account3.setPass(true);
             else {
@@ -180,9 +185,13 @@ public class Tester2 {
             parameterType[0] = String.class;
             Bank local = (Bank)localClass.getDeclaredConstructor(parameterType).newInstance("Reading Coop");
 
+            accountview.setPrintme("Trying to make 1st account...\nBank is:\n\t" + local.toString());
             int pin1 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name1", 50});
+            accountview.setPrintme("Trying to make 2nd account...\nBank is:\n\t" + local.toString());
             int pin2 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name2", 50});
+            accountview.setPrintme("Trying to make 3rd account and pass in a double balance\nBank is:\n\t" + local.toString());
             int pin3 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name3", 59.99});
+            accountview.setPrintme("View an account after adding, only with correct name and pin");
             String acctInfo = (String)runMethod("Bank", local, "showAccount", new Object[]{"Name3", pin3});
             String noAcctInfo = (String)runMethod("Bank", local, "showAccount", new Object[]{"Name4", pin3});
             String alsoNoAcctInfo = (String)runMethod("Bank", local, "showAccount", new Object[]{"Name3", pin3 - 1});
@@ -315,6 +324,17 @@ public class Tester2 {
                     closeJson();
                     return;
             }
+            else if (a1 == null || a2 == null || a3 == null) {
+                    depdraw.setFailStatus(1);
+                    depdraw.setRationale("Unable to verify balance as showAccount method not working correctly");
+                    depdraw.setPrintme("showAccount(Name1," + pin1 + ") returns " + a1
+                                    + "\nshowAccount(Name2," + pin2 + ") returns " + a2
+                                    + "\nshowAccount(Name3," + pin3 + ") returns " + a3);
+                    depdraw.setHelp("Make sure the account validation and showAccount method works alright before continuing.");
+                    checks.add(depdraw);
+                    closeJson();
+                    return;
+            }
             else if (!(a1.contains(expected1) && !a1.contains(notExpected1)
               && a2.contains(expected2) && !a2.contains(notExpected2)
               && a3.contains(expected3) && !a3.contains(notExpected3))) {
@@ -365,7 +385,7 @@ public class Tester2 {
             closeJson();
             return;
         }
-         bankstring.setFailStatus(0);
+         //bankstring.setFailStatus(0);
 
 
        try {
@@ -378,6 +398,7 @@ public class Tester2 {
 
             int pin3 = (Integer)runMethod("Bank", local, "addAccount", new Object[]{"Name3", 59.99});
             String bankStr = (String)runMethod("Bank", local, "toString", null);
+            bankstring.setPrintme("Display toString with Bank Name. toString returns: " + bankStr);
 
             if (!(bankStr.contains("Reading Coop") && bankStr.contains("3") && bankStr.contains("1"))) {
                     bankstring.setRationale("Bank's toString doesn't contain all the expected info");

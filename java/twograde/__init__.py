@@ -31,7 +31,7 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """TwoGrade.java gives an A for two strong grades"""
-    check50.run("java TwoGrade").stdin("90 95").stdout("Student has an A", timeout = 60)
+    check50.run("java TwoGrade").stdin("91 95").stdout("Student has an A", timeout = 60)
     # if len(out2) < 60 or 'border' not in out2:
     #     raise check50.Failure("Your TestBalloon code seems to be missing some print statements.\nHere's what printed:\n", help=out2.strip())
     # else:

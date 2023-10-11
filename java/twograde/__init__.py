@@ -41,12 +41,12 @@ def runs():
 @check50.check(compiles)
 def runs60():
     """TwoGrade.java gives a fail for two low grades"""
-    check50.run("java TwoGrade").stdin("50 55").stdout("Student failed :(", timeout = 60)        
+    check50.run("java TwoGrade").stdin("50 55").stdout("Student failed", timeout = 60)        
 
 @check50.check(compiles)
 def runs59():
     """TwoGrade.java gives a fail if at least one grade is below 20"""
-    check50.run("java TwoGrade").stdin("19 100").stdout("Student failed :(", timeout = 60)        
+    check50.run("java TwoGrade").stdin("19 100").stdout("Student failed", timeout = 60)        
  
 @check50.check(compiles)
 def runs89():

@@ -18,4 +18,7 @@ def single_sentence_complex():
     out = check50.run("./essaymetrics essay.txt").stdout()
     check50.log(out)
     if len(out) < 20 or "Dvorak" not in out:
-        raise check50.Failure("It seems that your metrics report is lacking...", help="Make sure to print out the readability, all the metrics from readability, any repeated words, and the number of times the word Dvorak appears in the essay")
+        out2 = check50.run("./essaymetrics essay.txt Dvorak").stdout()
+        check50.log(out2)
+        if len(out2) < 20 or "Dvorak" not in out2:
+            raise check50.Failure("It seems that your metrics report is lacking...", help="Make sure to print out the readability, all the metrics from readability, any repeated words, and the number of times the word Dvorak and the word what appear in the essay")

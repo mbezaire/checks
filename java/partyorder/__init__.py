@@ -42,10 +42,10 @@ def runs():
         else:
             raise check50.Failure("Failed to run", help=finderror)
 
-    check50.run(f"java CupCakeRestaurant").stdin("6", prompt = False).stdin("6", prompt = False).stdin("8", prompt = False).stdout("14", timeout = 60)
+    check50.run(f"java CupCakeRestaurant").stdin("6", prompt = False).stdin("6", prompt = False).stdin("8", prompt = False).stdout("2 orders with 14 cupcakes", timeout = 60)
 
 @check50.check(runs)
 def runs60():
     """Program should provide 28 cupcakes for 2 other parties"""
     check50.include("CupCakeRestaurant.java")
-    check50.run(f"java CupCakeRestaurant").stdin("6", prompt = False).stdin("6", prompt = False).stdin("22", prompt = False).stdout("28", timeout = 60)
+    check50.run(f"java CupCakeRestaurant").stdin("6", prompt = False).stdin("6", prompt = False).stdin("22", prompt = False).stdout("2 orders with 28 cupcakes", timeout = 60)

@@ -74,7 +74,7 @@ def run3():
     """addUpTo() sums and prints correctly"""
     out = check50.run("java F1Client").stdin("6", prompt = True, timeout = 60).stdout() #"0").exit(0)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
-    out = out.strip()
+    out = out.strip().replace("  "," ")
     if "1 + 2 + 3 + 4 + 5 + 6 = 21" not in out:
         raise check50.Failure("expected 1 + 2 + 3 + 4 + 5 + 6 = 21, actual " + str(out))
     out = check50.run("java F1Client").stdin("1", prompt = True).stdout() #"0").exit(0)
@@ -256,8 +256,8 @@ def druns1():
     out = check50.run("java AverageScore.java").stdin("scores.dat", prompt = True, timeout = 60).stdout()
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out = out.strip()
-    if abs(float(out) - 92.42857143) > 0.0001:
-        raise check50.Failure("expected 92.42857143, actual " + str(out))
+    if len(out) < 1 or abs(float(out) - 92.42857143) > 0.0001:
+        raise check50.Failure("expected: 92.42857143, actual: " + str(out))
     out = check50.run("java AverageScore.java").stdin("scores2.dat", prompt = True, timeout = 60).stdout()
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out = out.strip()

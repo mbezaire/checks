@@ -35,14 +35,14 @@ def runs():
 @check50.check(compiles)
 def runs60():
     """ConvertDate.java converts a 2 digit month and 1 digit day correctly"""
-    check50.run("java TwoGrade").stdin("12/1/2023").stdout("1-12-2023", timeout = 60)    
+    check50.run("java ConvertDate").stdin("12/1/2023").stdout("1-12-2023", timeout = 60)    
 
 @check50.check(compiles)
 def runs40():
     """ConvertDate.java converts a 1 digit month and 2 digit day correctly"""
-    check50.run("java TwoGrade").stdin("9/18/2023").stdout("18-9-2023", timeout = 60)  
+    check50.run("java ConvertDate").stdin("9/18/2023").stdout("18-9-2023", timeout = 60)  
 
 @check50.check(compiles)
 def runs20():
     """ConvertDate.java preserves leading 0s"""
-    check50.run("java TwoGrade").stdin("01/02/2024").stdout("02-01-2024", timeout = 60)           
+    check50.run("java ConvertDate").stdin("01/02/2024").stdout("02-01-2024", timeout = 60)           

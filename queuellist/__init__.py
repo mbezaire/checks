@@ -10,13 +10,14 @@ import check50.c
 
 @check50.check()
 def exists():
-    """queuellist.c exists"""
-    check50.exists("queuellist.c")
+    """llqueue.c exists"""
+    check50.exists("llqueue.c")
 
 @check50.check(exists)
 def compiles():
-    """queuellist.c compiles - other checks will occur manually"""
-    check50.c.compile("queuellist.c", lcs50=True)
+    """llqueue.c compiles with secret sauce"""
+    check50.run("echo '#include \"queue.h\"' | cat - llqueue.c > queue.c")
+    check50.c.compile("queue.c", lcs50=True)
 
 #@check50.check(compiles)
 #def short_phrase():

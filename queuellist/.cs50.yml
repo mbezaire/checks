@@ -1,7 +1,7 @@
 check50: 
   files: &check50_files
     - !exclude "*"
-    - !require queuellist.c
+    - !require llqueue.c
 
 submit50:
   files: *check50_files

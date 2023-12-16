@@ -122,5 +122,5 @@ def custom():
         "114 102 255\n", "210 150 60\n", "177 171 156\n", "250 247 255\n",
         "161 89 255\n", "126 128 181\n", "114 170 192\n", "247 220 192\n",
         "148 71 156\n", "133 100 121\n", "181 148 212\n", "212 170 255\n"
-    ]))
+    ])]
                check50.Mismatch("Expected a unique image to be produced","Looks like one of the other algorithms",help="Make something custom!")

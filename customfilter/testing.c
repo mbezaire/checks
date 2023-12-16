@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "helpers.h"
+#include "helpers.c"
 
 #define GRAYSCALE 0
 #define SEPIA 1
 #define REFLECT 2
 #define BLUR 3
 #define EDGES 4
+#define CUSTOM 5
 
 RGBTRIPLE pixel(int r, int g, int b);
 void print_pixel(RGBTRIPLE p);
@@ -260,6 +261,17 @@ int main(int argc, char *argv[])
         }
     }
 
+    else if (function == CUSTOM) {
+        switch (test)
+        {
+            case 4:
+            {
+                custom(4, 4, img3);
+                print_image(4, 4, img3);
+                break;
+            }
+        }
+    }
 }
 
 RGBTRIPLE pixel(int r, int g, int b)

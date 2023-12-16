@@ -46,8 +46,7 @@ def log(lines):
 def exists():
     """helpers.c and helpers.h exist"""
     check50.exists("helpers.c")
-    check50.exists("helpers.h")
-    check50.include("Makefile", "bmp.h", "testing.c")
+    check50.include("Makefile", "bmp.h", "helpers.h", "testing.c")
 
 @check50.check(exists)
 def compiles():

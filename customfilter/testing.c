@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "helpers.c"
+#include "helpers.h"
 
 #define GRAYSCALE 0
 #define SEPIA 1
@@ -122,59 +122,6 @@ int main(int argc, char *argv[])
             case 5:
             {
                 grayscale(4, 4, img3);
-                print_image(4, 4, img3);
-                break;
-            }
-        }
-    }
-
-    else if (function == SEPIA) {
-        switch (test)
-        {
-            case 0:
-            {
-                RGBTRIPLE img[1][1];
-                img[0][0] = pixel(20, 40, 90);
-                sepia(1, 1, img);
-                print_image(1, 1, img);
-                break;
-            }
-
-            case 1:
-            {
-                RGBTRIPLE img[1][1];
-                img[0][0] = pixel(27, 28, 28);
-                sepia(1, 1, img);
-                print_image(1, 1, img);
-                break;
-            }
-
-            case 2:
-            {
-                RGBTRIPLE img[1][1];
-                img[0][0] = pixel(50, 50, 50);
-                sepia(1, 1, img);
-                print_image(1, 1, img);
-                break;
-            }
-
-            case 3:
-            {
-                sepia(3, 3, img1);
-                print_image(3, 3, img1);
-                break;
-            }
-
-            case 4:
-            {
-                sepia(3, 3, img2);
-                print_image(3, 3, img2);
-                break;
-            }
-
-            case 5:
-            {
-                sepia(4, 4, img3);
                 print_image(4, 4, img3);
                 break;
             }

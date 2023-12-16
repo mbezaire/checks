@@ -51,12 +51,12 @@ def exists():
 @check50.check(exists)
 def compiles():
     """filter compiles"""
-    check50.run("make").exit(0)
+    out = check50.run("make").stdout() #.exit(0)
+    check50.log(out)
 
 @check50.check(compiles)
-def grayscale4x4():
-    """grayscale correctly filters 4x4 image"""
-    log(SAMPLE_IMAGES[2])
+def previous():
+    """previous filters still work correctly"""
     check50.run("./testing 0 5").stdout("".join([
         "20 20 20\n", "50 50 50\n", "80 80 80\n", "110 110 110\n",
         "127 127 127\n", "137 137 137\n", "147 147 147\n", "157 157 157\n",
@@ -64,10 +64,6 @@ def grayscale4x4():
         "56 56 56\n", "0 0 0\n", "255 255 255\n", "85 85 85\n"
     ]))
 
-@check50.check(compiles)
-def reflect4():
-    """reflect correctly filters 4x4 image"""
-    log(SAMPLE_IMAGES[2])
     check50.run("./testing 2 4").stdout("".join([
         "100 110 120\n", "70 80 90\n", "40 50 60\n", "10 20 30\n",
         "140 160 170\n", "130 150 160\n", "120 140 150\n", "110 130 140\n",
@@ -75,11 +71,6 @@ def reflect4():
         "85 85 85\n", "255 255 255\n", "0 0 0\n", "50 28 90\n"
     ]))
 
-
-@check50.check(compiles)
-def blur4():
-    """blur correctly filters 4x4 image"""
-    log(SAMPLE_IMAGES[2])
     check50.run("./testing 3 4").stdout("".join([
         "70 85 95\n", "80 95 105\n", "100 115 125\n", "110 125 135\n",
         "113 126 136\n", "123 136 145\n", "142 155 163\n", "152 165 173\n",
@@ -124,3 +115,7 @@ def custom():
         "148 71 156\n", "133 100 121\n", "181 148 212\n", "212 170 255\n"
     ])]:
                check50.Mismatch("Expected a unique image to be produced","Looks like one of the other algorithms",help="Make something custom!")
+    patt = re.compile("([0-9]+ [0-9]+ [0-9]+\n)")
+    matches = re.findall(patt, out)
+    if len(matches) != 16:
+               check50.Mismatch("Expected a unique 4 x 4 image to be produced","Looks like the output image was a different size",help=out)

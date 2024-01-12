@@ -32,24 +32,24 @@ def compiles():
 def runs():
     """ClassDay.java gives no class for B on Day 1"""
     out = check50.run("java ClassDay").stdin("1").stdin("B").stdout(timeout = 60)
-if "n't" not in out and "not" not in out and "no " not in out:
-    raise check50.Mismatch("B doesn't meet today (or similar)", out)
+    if "n't" not in out and "not" not in out and "no " not in out:
+        raise check50.Mismatch("B doesn't meet today (or similar)", out)
 
 
 @check50.check(compiles)
 def runs2():
     """ClassDay.java gives period 3 for F on Day 5"""
     out = check50.run("java ClassDay").stdin("5").stdin("F").stdout(timeout = 60)
-if "3" not in out and "third" not in out:
-    raise check50.Mismatch("F meets 3rd period today (or similar)", out)
+    if "3" not in out and "third" not in out:
+        raise check50.Mismatch("F meets 3rd period today (or similar)", out)
 
 
 @check50.check(compiles)
 def runs3():
     """ClassDay.java gives period 5 for G on Day 7"""
     out = check50.run("java ClassDay").stdin("7").stdin("G").stdout(timeout = 60)
-if "5" not in out and "fifth" not in out:
-    raise check50.Mismatch("G meets 5th period today (or similar)", out)
+    if "5" not in out and "fifth" not in out:
+        raise check50.Mismatch("G meets 5th period today (or similar)", out)
 
 
 
@@ -57,5 +57,5 @@ if "5" not in out and "fifth" not in out:
 def runs4():
     """ClassDay.java gives no class for block A on Day 2"""
     out = check50.run("java ClassDay").stdin("2").stdin("A").stdout(timeout = 60)
-if "n't" not in out and "not" not in out and "no " not in out:
-    raise check50.Mismatch("A doesn't meet today (or similar)", out)
+    if "n't" not in out and "not" not in out and "no " not in out:
+        raise check50.Mismatch("A doesn't meet today (or similar)", out)

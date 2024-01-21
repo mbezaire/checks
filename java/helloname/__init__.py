@@ -34,6 +34,6 @@ def runs():
 
 
 @check50.check(compiles)
-def runs():
+def runs2():
     """Hello program greets another user"""
     check50.run("java Hello").stdin("Dr. Bezaire").stdout("[Hh]ello[,]{0,1} Dr. Bezaire", "Hello, Dr. Bezaire\n", timeout=30, regex=True).exit(0)

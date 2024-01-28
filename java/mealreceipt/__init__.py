@@ -34,7 +34,7 @@ def runs():
     cents = random.randint(0,99)/100
     mealcost = dollars + cents
     out = check50.run("java MealReceipt").stdin(str(mealcost)).stdout(timeout = 60)
-    checkers = ['tip','receipt','total','15%','20%', '25%', '$'+str(0.15*mealcost), '$'+str(0.2*mealcost), '$'+str(0.25*mealcost), '$'+str(mealcost)]
+    checkers = ['tip','tax','meal','15%','20%', '25%', '$'+str(0.15*mealcost), '$'+str(0.2*mealcost), '$'+str(0.25*mealcost), '$'+str(mealcost)]
     for num in checkers:
         if num not in out.lower():
-            raise check50.Mismatch("Expected tips calculated for 15%, 20%, and 25%", out.strip(), help="Make sure to include percentage labels for each tip, dollar signs in front of the prices, the words 'Tip', 'Total', and 'Receipt' in your print outs")
+            raise check50.Mismatch("Expected tips calculated for 15%, 20%, and 25%", out.strip(), help="Make sure to include percentage labels for each tip, dollar signs in front of the prices, the words 'Meal', 'Tax', and 'Tip' in your print outs")

@@ -90,13 +90,11 @@ def dog():
     files = os.listdir()
     imgs = []
     for file in files:
-        if file.endswith(".bmp") and file not in ['small.bmp',"correct2xsmall.bmp",'enlarged.bmp','puppy.bmp','dog.bmp']:
+        if file.endswith(".bmp") and file not in ['small.bmp',"correct2xsmall.bmp",'enlarged_small.bmp','puppy.bmp','dog.bmp']:
             imgs.append(file)
     if len(imgs) < 1:
         raise check50.Failure("Your program didn't produce a new image file to check")
     elif imgs[0] != "cute.bmp":
-        with open("wrongname.txt","w") as f:
-            f.write(imgs[0])
         out = check50.run(f'mv {imgs[0]} cute.bmp').stdout()
         check50.log(out)
     sz = os.stat("cute.bmp").st_size

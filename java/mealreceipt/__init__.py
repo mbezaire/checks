@@ -29,12 +29,33 @@ def compiles():
 
 @check50.check(compiles)
 def runs():
-    """MealReceipt.java calculates the correct tip amounts"""
+    """MealReceipt.java prints the meal cost"""
     dollars = random.randint(5,500)
     cents = random.randint(0,99)/100
     mealcost = dollars + cents
     out = check50.run("java MealReceipt").stdin(str(mealcost)).stdout(timeout = 60)
-    checkers = ['tip','tax','meal','15%','20%', '25%', '$'+str(0.15*mealcost), '$'+str(0.2*mealcost), '$'+str(0.25*mealcost), '$'+str(mealcost)]
-    for num in checkers:
-        if num not in out.lower():
-            raise check50.Mismatch("Expected tips calculated for 15%, 20%, and 25%", out.strip(), help="Make sure to include percentage labels for each tip, dollar signs in front of the prices, the words 'Meal', 'Tax', and 'Tip' in your print outs")
+    check50.log(out)
+    if 'meal' not in out.lower() or '$' + str(mealcost) not in out:
+        raise check50.Mismatch("Meal: $" + str(mealcost), out, help="Include the cost of the meal (without tax or tip) on the receipt, with a dollar sign in front, and a label that includes the word 'meal')
+    return mealcost, out
+
+@check50.check(runs)
+def tax(mealcost, out):
+    """MealReceipt.java calculates and prints the tax (tax rate should be 7%)"""
+    tax = mealcost * 0.07
+    if 'tax' not in out.lower() or '$' + str(tax) not in out:
+        raise check50.Mismatch("Tax: $" + str(tax), out, help="Include the cost of the tax (calculated as the cost of the meal * 0.07) on the receipt, with a dollar sign in front, and a label that includes the word 'tax')
+    return mealcost, out
+
+@check50.check(runs)
+def tip(mealcost, out):
+    """MealReceipt.java calculates and prints the tip values for tip rates of 15%, 20%, 25%"""
+    tiprates = [15, 20, 25]
+    if 'tip' not in out.lower():
+        raise check50.Mismatch("Tip:\n15% ...", out, help="Include the word 'Tip' on your receipt)
+    for tiprate in tiprates:
+        tip = tiprate/100 * mealcost
+        if str(tiprate) + '%' not in out or '$' + str(tip) not in out:
+            raise check50.Mismatch(f"{tiprate}% ${tip}", out, help=f"Include a labelled calculation for the tip with a tip rate of {tiprate}%")
+    return mealcost, out
+

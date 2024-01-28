@@ -33,7 +33,7 @@ def runs():
     dollars = random.randint(5,500)
     cents = random.randint(0,99)/100
     mealcost = dollars + cents
-    out = check50.run("java MealReceipt").stdin(str(mealcost)).stdout()
+    out = check50.run("java MealReceipt").stdin(str(mealcost)).stdout(timeout = 60)
     checkers = ['tip','receipt','total','15%','20%', '25%', '$'+str(0.15*mealcost), '$'+str(0.2*mealcost), '$'+str(0.25*mealcost), '$'+str(mealcost)]
     for num in checkers:
         if num not in out.lower():

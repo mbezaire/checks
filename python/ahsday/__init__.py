@@ -13,4 +13,5 @@ def run():
     check50.log(out)
     if len(out) < 10 or 'error' in out.lower():
         raise check50.Failure("Make sure your program has no erorrs and that it includes some client code that creates a Day, and AHSDay, and prints them out")
+    check50.run("python days.py").stdout(timeout=30).exit(0)
 

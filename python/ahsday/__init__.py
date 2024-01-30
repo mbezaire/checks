@@ -4,11 +4,11 @@ import check50
 def exists():
     """ Check that days.py exists """
     check50.exists("days.py")
-    check50.include("data.txt")
 
 @check50.check(exists)
 def run():
     """ File runs without syntax errors and prints some days"""
+    check50.include("data.csv")
     out = check50.run("python days.py").stdout(timeout=30)
     check50.log(out)
     if len(out) < 10:

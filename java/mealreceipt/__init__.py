@@ -57,5 +57,3 @@ def tip(mealcost, out):
         tip = tiprate/100 * mealcost
         if str(tiprate) + '%' not in out or '$' + str(tip) not in out:
             raise check50.Mismatch(f"{tiprate}% ${tip}", out, help=f"Include a labelled calculation for the tip with a tip rate of {tiprate}%")
-    return mealcost, out
-

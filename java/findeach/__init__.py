@@ -38,7 +38,7 @@ def runs():
     if "this hope is our door our portal" not in out:
         raise check50.Failure("Make sure to print out the String of the content from content.txt");
     elif "[this, hope, is, our, door, our, portal]" not in out:
-        raise check50.Failure("Make sure to print out the String array of words from content.txt");
+        raise check50.Failure("Make sure to print out the String array of words from content.txt using Arrays.toString()");
 
 
 @check50.check(compiles)

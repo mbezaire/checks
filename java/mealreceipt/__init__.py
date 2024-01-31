@@ -40,16 +40,20 @@ def runs():
     return mealcost, out
 
 @check50.check(runs)
-def tax(mealcost, out):
+def tax(args):
     """MealReceipt.java calculates and prints the tax (tax rate should be 7%)"""
+    mealcost = args[0]
+    out = args[1]
     tax = mealcost * 0.07
     if 'tax' not in out.lower() or '$' + str(tax) not in out:
         raise check50.Mismatch("Tax: $" + str(tax), out, help="Include the cost of the tax (calculated as the cost of the meal * 0.07) on the receipt, with a dollar sign in front, and a label that includes the word 'tax'")
     return mealcost, out
 
 @check50.check(runs)
-def tip(mealcost, out):
+def tip(args):
     """MealReceipt.java calculates and prints the tip values for tip rates of 15%, 20%, 25%"""
+    mealcost = args[0]
+    out = args[1]
     tiprates = [15, 20, 25]
     if 'tip' not in out.lower():
         raise check50.Mismatch("Tip:\n15% ...", out, help="Include the word 'Tip' on your receipt")

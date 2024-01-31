@@ -27,17 +27,17 @@ def compiles():
         else:
             raise check50.Failure("Failed to compile", help=finderror)
 
-# @check50.check(compiles)
-# def runs():
-#     """MealReceipt.java prints the meal cost"""
-#     dollars = random.randint(5,500)
-#     cents = random.randint(0,99)/100
-#     mealcost = dollars + cents
-#     out = check50.run("java MealReceipt").stdin(str(mealcost)).stdout(timeout = 60)
-#     check50.log(out)
-#     if 'meal' not in out.lower() or '$' + str(mealcost) not in out:
-#         raise check50.Mismatch("Meal: $" + str(mealcost), out, help="Include the cost of the meal (without tax or tip) on the receipt, with a dollar sign in front, and a label that includes the word 'meal')
-#     return mealcost, out
+@check50.check(compiles)
+def runs():
+    """MealReceipt.java prints the meal cost"""
+    dollars = random.randint(5,500)
+    cents = random.randint(0,99)/100
+    mealcost = dollars + cents
+    out = check50.run("java MealReceipt").stdin(str(mealcost)).stdout(timeout = 60)
+    check50.log(out)
+    if 'meal' not in out.lower() or '$' + str(mealcost) not in out:
+        raise check50.Mismatch("Meal: $" + str(mealcost), out, help="Include the cost of the meal (without tax or tip) on the receipt, with a dollar sign in front, and a label that includes the word 'meal')
+    return mealcost, out
 
 # @check50.check(runs)
 # def tax(mealcost, out):

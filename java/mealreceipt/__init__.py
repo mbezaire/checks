@@ -52,7 +52,7 @@ def tip(mealcost, out):
     """MealReceipt.java calculates and prints the tip values for tip rates of 15%, 20%, 25%"""
     tiprates = [15, 20, 25]
     if 'tip' not in out.lower():
-        raise check50.Mismatch("Tip:\n15% ...", out, help="Include the word 'Tip' on your receipt)
+        raise check50.Mismatch("Tip:\n15% ...", out, help="Include the word 'Tip' on your receipt")
     for tiprate in tiprates:
         tip = tiprate/100 * mealcost
         if str(tiprate) + '%' not in out or '$' + str(tip) not in out:

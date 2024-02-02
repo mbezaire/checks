@@ -37,10 +37,12 @@ def runs():
     out = check50.run("java MealTip 2>&1").stdin(str(mealcost)).stdin(str(tip)).stdout(timeout = 30)
     if len(out) == 0:
         out2 = check50.run("java MealTip 2>&1").stdin("20").stdin("15").stdout(timeout = 30)
+        check50.log(out)
+        check50.log(out2)
         if len(out2) > 0:
-            raise check50.Failure("There was an issue with your code. Check that you are scanning in the meal cost as a double and the tip as an int.", help=out2)
+            raise check50.Failure("There was an issue with your code.", help="Check that you are scanning in the meal cost as a double and the tip as an int.")
         else:
-            raise check50.Failure("There was an issue with your code. Check that you are printing out the total cost, including meal cost and tip.", help=out2)
+            raise check50.Failure("There was an issue with your code.", help="Check that you are printing out the total cost, including meal cost and tip.")
     findtemp = re.findall(r'([0-9]+.[0-9]+)', out)  # replace search with findall to find last
     if findtemp == None or len(findtemp) == 0:
         raise check50.Failure("Failed to find a decimal number in your printed output: " + out, help="Make sure to print out the total meal cost as a decimal number")

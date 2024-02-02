@@ -34,6 +34,7 @@ def runs():
     cents = random.randint(0,99)/100
     tip = random.randint(15,45)
     mealcost = dollars + cents
+    check50.run("java MealTip 2>&1").stdin(str(mealcost)).stdin(str(tip)).stdout(timeout = 30).exit(0)
     out = check50.run("java MealTip 2>&1").stdin(str(mealcost)).stdin(str(tip)).stdout(timeout = 30)
     check50.log(out)
     findtemp = re.findall(r'([0-9]+.[0-9]+)', out)  # replace search with findall to find last

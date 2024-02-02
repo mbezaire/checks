@@ -34,12 +34,14 @@ def runs():
     cents = random.randint(0,99)/100
     tip = random.randint(15,45)
     mealcost = dollars + cents
-    check50.run("java MealTip 2>&1").stdin(str(mealcost)).stdin(str(tip)).stdout("[a-zA-Z0-9$]+", regex = True, timeout = 30).exit(0)
     out = check50.run("java MealTip 2>&1").stdin(str(mealcost)).stdin(str(tip)).stdout(timeout = 30)
-    check50.log(out)
+    if len(out) == 0:
+        out2 = check50.run("java MealTip 2>&1").stdin("20").stdin("15").stdout(timeout = 30)
+        if len(out2) > 0:
+            raise check50.Failure("There was an issue with your code. Check that you are scanning in the meal cost as a double and the tip as an int.", help=out2)
+        else:
+            raise check50.Failure("There was an issue with your code. Check that you are printing out the total cost, including meal cost and tip.", help=out2)
     findtemp = re.findall(r'([0-9]+.[0-9]+)', out)  # replace search with findall to find last
-    if "Exception" in out:
-        raise check50.Failure("There was an error with your code. Check that you are scanning in the meal cost as a double and the tip as an int.", help=out)
     if findtemp == None or len(findtemp) == 0:
         raise check50.Failure("Failed to find a decimal number in your printed output: " + out, help="Make sure to print out the total meal cost as a decimal number")
     result = findtemp # findtemp.groups()

@@ -40,7 +40,7 @@ def runs():
     if "Exception" in out:
         raise check50.Failure("There was an error with your code. Check that you are scanning in the meal cost as a double and the tip as an int.", help=out)
     if findtemp == None or len(findtemp) == 0:
-        raise check50.Failure("Failed to find a decimal number in your printed output", help="Make sure to print out the total meal cost as a decimal number")
+        raise check50.Failure("Failed to find a decimal number in your printed output: " + out, help="Make sure to print out the total meal cost as a decimal number")
     result = findtemp # findtemp.groups()
     ans = mealcost*(1 + tip/100)
     if abs(float(result[-1]) - ans) > 0.0001:

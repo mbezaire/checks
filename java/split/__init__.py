@@ -38,10 +38,9 @@ def runs40():
     """Find.java uses a your custom split method"""
     with open("Split.java") as f:
         content = f.read()
-        content = content.replace(" (","(")
-    if "split(" not in content or ".split(" in content:
-        raise check50.Failure("Looks like you used the regular String split method instead of your own")
     content = content.replace(" ","").replace("\n","").replace("\t","")
+    if "=split(" not in content and "Arrays.toString(split(" not in content:
+        raise check50.Failure("Looks like you used the regular String split method instead of your own")
     if "publicstaticString[]split(Stringwhole,chardelimiter){}" in content:
         raise check50.Failure("Looks like you forgot to write your own split method")
 

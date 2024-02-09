@@ -9,6 +9,15 @@ def exists():
     check50.exists("days.py")
 
 @check50.check(exists)
+def nodt():
+    """ Not using datetime module """
+    with open("days.py") as f:
+        file = f.read()
+
+    if "datetime" in file:
+        raise check50.Failure("Oops, looks like you might be using the datetime module", help = "Someday this will be cool, but not today")
+
+@check50.check(nodt)
 def run():
     """ File runs without syntax errors"""
     check50.include("data.csv","test.csv")
@@ -76,3 +85,14 @@ def jorge():
     fblock_left = days.AHSDay.days_meet('F', startdt = {'month':10, 'day':9, 'year':2023})
     if len(fblock_left) != 11:
         raise check50.Mismatch(str(11), str(len(fblock_left)), help="Jorge Cham postulates there's an alternate universe where you would only have 11 AP CSPs left :'(")
+
+
+@check50.check(run)
+def periods():
+    """ Checking AHSDay static method get_periods"""
+    days = check50.py.import_("days.py")
+    fblocks = days.AHSDay.get_periods('F')
+    if fblocks != [0, 3, 5, 0, 3, 4, 0, 4]:
+        raise check50.Mismatch("[0, 3, 5, 0, 3, 4, 0, 4]",str(days.AHSDay.get_periods('F')))
+    if days.AHSDay.get_periods('B') != [0, 1, 0, 1, 2, 0, 1, 2]:
+        raise check50.Mismatch("[0, 1, 0, 1, 2, 0, 1, 2]",str(days.AHSDay.get_periods('B')))

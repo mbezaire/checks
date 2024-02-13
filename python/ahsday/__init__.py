@@ -2,6 +2,7 @@ import check50
 import random
 import check50.py
 import os
+import inspect
 
 @check50.check()
 def exists():
@@ -44,10 +45,10 @@ def strahsday():
     weekend = days.AHSDay(daynum = d - 2, month=2,day=d,year=2024).__str__()
 
     if f"February {d}, 2024" not in weekend:
-        raise check50.Mismatch(f"February {d}, 2024", weekend, help="Make sure your __str__ method for AHSDay includes the date")
+        raise check50.Mismatch(f"February {d}, 2024", weekend, help="Make sure your __str__ method for AHSDay includes the date and the day #")
 
     if f"{d - 2}" not in weekend.replace("2024",""):
-        raise check50.Mismatch(f"Day {d - 2}", weekend, help="Make sure your __str__ method for AHSDay includes the AHS Day #")
+        raise check50.Mismatch(f"Day {d - 2}", weekend, help="Make sure your __str__ method for AHSDay includes the AHS Day # as well as the date")
 
 @check50.check(run)
 def between():
@@ -77,6 +78,10 @@ def jorge():
     """ Checking days_meet"""
     days = check50.py.import_("days.py")
     days.AHSDay.load(file = "data.csv")
+    if not (hasattr(days.AHSDay, 'days_meet') and callable(getattr(days.AHSDay, 'days_meet'))):
+        raise check50.Failure("You need a static days_meet method in your AHSDay class")
+    if not isinstance(inspect.getattr_static(days.AHSDay, "days_meet"), staticmethod): # import inspect first
+        raise check50.Failure("Your days_meet method in your AHSDay class may not be static")
     fblock_left = days.AHSDay.days_meet('F', startdt = {'month':2, 'day':9, 'year':2024})
     if len(fblock_left) != 46:
         raise check50.Mismatch(str(46), str(len(fblock_left)), help="Starting Feb 9, Juniors should have 46 more F blocks")

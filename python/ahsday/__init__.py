@@ -34,7 +34,7 @@ def strday():
     days = check50.py.import_("days.py")
     d = random.randint(2,28)
     weekend = days.Day(month=1,day=d,year=2024).__str__()
-    if not (weekend == f"January {d}, 2024"):
+    if not (weekend.replace(" ","").replace(",","") == f"January{d}2024"):
         raise check50.Mismatch(f"January {d}, 2024", weekend, help="Make sure you define a good __str__ method for your Day")
 
 @check50.check(run)
@@ -44,7 +44,7 @@ def strahsday():
     d = random.randint(4,8)
     weekend = days.AHSDay(daynum = d - 2, month=2,day=d,year=2024).__str__()
 
-    if f"February {d}, 2024" not in weekend:
+    if f"February{d}2024" not in weekend.replace(" ","").replace(",",""):
         raise check50.Mismatch(f"February {d}, 2024", weekend, help="Make sure your __str__ method for AHSDay includes the date and the day #")
 
     if f"{d - 2}" not in weekend.replace("2024",""):
@@ -84,7 +84,7 @@ def jorge():
         raise check50.Failure("Your days_meet method in your AHSDay class may not be a class method")
     fblock_left = days.AHSDay.days_meet('F', startdt = {'month':2, 'day':9, 'year':2024})
     if len(fblock_left) != 46:
-        raise check50.Mismatch(str(46), str(len(fblock_left)), help="Starting Feb 9, Juniors should have 46 more F blocks. Make sure your code uses the class-level dayslist variable AND that that variable is set in the class-level load method based on data in the file specified by the file parameter of the load method.")
+        raise check50.Mismatch(str(46), str(len(fblock_left)), help="Starting Feb 9, Juniors should have 46 more F blocks.\nMake sure your code uses the class-level dayslist variable\nAND that that variable is set in the class-level load method\nbased on data in the file specified by the file parameter of the load method.")
 
     days.AHSDay.load(file = "test.csv")
     fblock_left = days.AHSDay.days_meet('F', startdt = {'month':10, 'day':9, 'year':2023})

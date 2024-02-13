@@ -84,12 +84,12 @@ def jorge():
         raise check50.Failure("Your days_meet method in your AHSDay class may not be a class method")
     fblock_left = days.AHSDay.days_meet('F', startdt = {'month':2, 'day':9, 'year':2024})
     if len(fblock_left) != 46:
-        raise check50.Mismatch(str(46), str(len(fblock_left)), help="Starting Feb 9, Juniors should have 46 more F blocks")
+        raise check50.Mismatch(str(46), str(len(fblock_left)), help="Starting Feb 9, Juniors should have 46 more F blocks. Make sure your code uses the class-level dayslist variable AND that that variable is set in the class-level load method based on data in the file specified by the file parameter of the load method.")
 
     days.AHSDay.load(file = "test.csv")
     fblock_left = days.AHSDay.days_meet('F', startdt = {'month':10, 'day':9, 'year':2023})
     if len(fblock_left) != 11:
-        raise check50.Mismatch(str(11), str(len(fblock_left)), help="Jorge Cham postulates there's an alternate universe where you would only have 11 AP CSPs left :'(")
+        raise check50.Mismatch(str(11), str(len(fblock_left)), help="Jorge Cham postulates there's an alternate universe where you would only have 11 AP CSPs left :'(\nMake sure your code is using the class-level dayslist variable and filtering it\nby any optional date arguments, then returning the filtered list")
 
 
 @check50.check(run)

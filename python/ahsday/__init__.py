@@ -79,9 +79,9 @@ def jorge():
     days = check50.py.import_("days.py")
     days.AHSDay.load(file = "data.csv")
     if not (hasattr(days.AHSDay, 'days_meet') and callable(getattr(days.AHSDay, 'days_meet'))):
-        raise check50.Failure("You need a static days_meet method in your AHSDay class")
-    if not isinstance(inspect.getattr_static(days.AHSDay, "days_meet"), staticmethod): # import inspect first
-        raise check50.Failure("Your days_meet method in your AHSDay class may not be static")
+        raise check50.Failure("You need a class-level method called days_meet  in your AHSDay class")
+    if not isinstance(inspect.getattr_static(days.AHSDay, "days_meet"), classmethod): # import inspect first
+        raise check50.Failure("Your days_meet method in your AHSDay class may not be a class method")
     fblock_left = days.AHSDay.days_meet('F', startdt = {'month':2, 'day':9, 'year':2024})
     if len(fblock_left) != 46:
         raise check50.Mismatch(str(46), str(len(fblock_left)), help="Starting Feb 9, Juniors should have 46 more F blocks")

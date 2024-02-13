@@ -54,14 +54,14 @@ def strahsday():
 def between():
     """ Checking days_between for Day class """
     days = check50.py.import_("days.py")
-
+    if not (hasattr(days.Day, 'load') and callable(getattr(days.Day, 'days_between'))):
+        raise check50.Failure("You need a method called days_between in your Day class")
     if int(days.Day.days_between({'month':2,'day':1,'year':2024},{'month':3,'day':1,'year':2024})) != 29:
         raise  check50.Mismatch(str(29), str(days.Day.days_between({'month':2,'day':1,'year':2024},{'month':3,'day':1,'year':2024})), help="Calculating days between Feb 1, 2024 - Mar 1, 2024")
     if int(days.Day.days_between({'month':6,'day':1,'year':2024},{'month':6,'day':1,'year':2024})) != 0:
         raise  check50.Mismatch(str(0), str(days.Day.days_between({'month':6,'day':1,'year':2024},{'month':6,'day':1,'year':2024})), help="Calculating days between Jun 1, 2024 - Jun 1, 2024")
     if int(days.Day.days_between({'month':5,'day':10,'year':2024},{'month':5,'day':12,'year':2024})) != 2:
         raise  check50.Mismatch(str(0), str(days.Day.days_between({'month':5,'day':10,'year':2024},{'month':5,'day':12,'year':2024})), help="Calculating days between May 10, 2024 - May 12, 2024")
-
 
 @check50.check(run)
 def week_day():
@@ -81,6 +81,8 @@ def day_week():
 def jorge():
     """ Checking days_meet"""
     days = check50.py.import_("days.py")
+    if not (hasattr(days.AHSDay, 'load') and callable(getattr(days.AHSDay, 'load'))):
+        raise check50.Failure("You need a class-level method called load in your AHSDay class")
     days.AHSDay.load(file = "data.csv")
     if not (hasattr(days.AHSDay, 'days_meet') and callable(getattr(days.AHSDay, 'days_meet'))):
         raise check50.Failure("You need a class-level method called days_meet  in your AHSDay class")
@@ -100,6 +102,8 @@ def jorge():
 def periods():
     """ Checking AHSDay static method get_periods"""
     days = check50.py.import_("days.py")
+    if not (hasattr(days.AHSDay, 'get_periods') and callable(getattr(days.AHSDay, 'get_periods'))):
+        raise check50.Failure("You need a class-level method called get_periods in your AHSDay class")
     fblocks = days.AHSDay.get_periods('F')
     if fblocks != [0, 3, 5, 0, 3, 4, 0, 4]:
         raise check50.Mismatch("[0, 3, 5, 0, 3, 4, 0, 4]",str(days.AHSDay.get_periods('F')))

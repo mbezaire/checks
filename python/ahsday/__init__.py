@@ -69,14 +69,14 @@ def week_day():
     """ Checking Day's static method get_week_day"""
     days = check50.py.import_("days.py")
     if days.Day.get_week_day(month=1,day=27,year=2024) != "Saturday":
-         raise  check50.Mismatch(days.Day.get_week_day(month=1,day=27,year=2024), "Saturday")
+         raise  check50.Mismatch("Saturday", str(days.Day.get_week_day(month=1,day=27,year=2024)))
 
 @check50.check(week_day)
 def day_week():
     """ Checking Day's instance method day_of_week """
     days = check50.py.import_("days.py")
     if days.Day(month=2,day=6,year=2024).day_of_week() != "Tuesday":
-         raise  check50.Mismatch(days.Day(month=2,day=6,year=2024).day_of_week(), "Tuesday")
+         raise  check50.Mismatch("Tuesday", str(days.Day(month=2,day=6,year=2024).day_of_week()))
 
 @check50.check(run)
 def jorge():

@@ -2,6 +2,7 @@ import check50
 import random
 import check50.py
 import os
+os.environ["CHECK50_WORKERS"] = "1"
 import inspect
 
 @check50.check()

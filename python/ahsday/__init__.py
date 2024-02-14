@@ -88,7 +88,7 @@ def jorge():
     if not (hasattr(days.AHSDay, 'days_meet') and callable(getattr(days.AHSDay, 'days_meet'))):
         raise check50.Failure("You need a class-level method called days_meet  in your AHSDay class")
     if not inspect.ismethod(days.AHSDay.days_meet): #isinstance(inspect.getattr(days.AHSDay, "days_meet"), classmethod): # import inspect first
-        raise check50.Failure("Your days_meet method in your AHSDay class may not be a class method")
+        raise check50.Failure("Your days_meet method in your AHSDay class should be a class method")
     fblock_left = days.AHSDay.days_meet('F', startdt = {'month':2, 'day':9, 'year':2024})
     check50.log("Checking days left of F block starting Feb 9")
     if len(fblock_left) != 46:

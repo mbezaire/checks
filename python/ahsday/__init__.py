@@ -54,7 +54,7 @@ def strahsday():
 def between():
     """ Checking days_between for Day class """
     days = check50.py.import_("days.py")
-    if not (hasattr(days.Day, 'load') and callable(getattr(days.Day, 'days_between'))):
+    if not (hasattr(days.Day, 'days_between') and callable(getattr(days.Day, 'days_between'))):
         raise check50.Failure("You need a method called days_between in your Day class")
     if int(days.Day.days_between({'month':2,'day':1,'year':2024},{'month':3,'day':1,'year':2024})) != 29:
         raise  check50.Mismatch(str(29), str(days.Day.days_between({'month':2,'day':1,'year':2024},{'month':3,'day':1,'year':2024})), help="Calculating days between Feb 1, 2024 - Mar 1, 2024")

@@ -98,6 +98,7 @@ def jorge():
     check50.log("Checking 11 days left after Oct 9, 23")
     fblock_left2 = days.AHSDay.days_meet('F', startdt = {'month':10, 'day':9, 'year':2023})
     if len(fblock_left2) != 11:
+        check50.log(fblock_left2)
         raise check50.Mismatch(str(11), str(len(fblock_left2)), help="Jorge Cham postulates there's an alternate universe where you would only have 11 AP CSPs left :'(\nIn an alternate check with a different data file, the number of items in the list returned by your days_meet() method was not 11.\nMake sure your code is using the class-level dayslist variable and filtering it\nby any optional date arguments, then returning the filtered list")
 
 

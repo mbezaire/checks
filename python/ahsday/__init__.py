@@ -62,7 +62,7 @@ def between():
     if int(days.Day.days_between({'month':6,'day':1,'year':2024},{'month':6,'day':1,'year':2024})) != 0:
         raise  check50.Mismatch(str(0), str(days.Day.days_between({'month':6,'day':1,'year':2024},{'month':6,'day':1,'year':2024})), help="Calculating days between Jun 1, 2024 - Jun 1, 2024")
     if int(days.Day.days_between({'month':5,'day':10,'year':2024},{'month':5,'day':12,'year':2024})) != 2:
-        raise  check50.Mismatch(str(0), str(days.Day.days_between({'month':5,'day':10,'year':2024},{'month':5,'day':12,'year':2024})), help="Calculating days between May 10, 2024 - May 12, 2024")
+        raise  check50.Mismatch(str(2), str(days.Day.days_between({'month':5,'day':10,'year':2024},{'month':5,'day':12,'year':2024})), help="Calculating days between May 10, 2024 - May 12, 2024")
 
 @check50.check(run)
 def week_day():

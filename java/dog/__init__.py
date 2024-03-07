@@ -34,7 +34,7 @@ def runs():
     check50.include("TestDogYears.java","TestPrintDog.java")
     out = check50.run("javac -d ./ TestDogYears.java").stdout(timeout = 60)
     age = 4
-    check50.run("java TestDogYears 2>&1").stdin(str(age)).stdout(str(age*7),timeout = 30)
+    check50.run("java TestDogYears 2>&1").stdin(str(age), prompt = False).stdout(str(age*7),timeout = 30)
 
 @check50.check(runs)
 def printdog():

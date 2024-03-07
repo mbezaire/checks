@@ -11,13 +11,14 @@ import random
 
 @check50.check()
 def exists():
-    """MealTip.java exists"""
-    check50.exists("MealTip.java")
+    """Dog.java and Custom.java exist"""
+    check50.exists("Dog.java")
+    check50.exists("Custom.java")
 
 @check50.check(exists)
 def compiles():
     """Dog.java compiles"""
-    out = check50.run("javac -d ./ Dog.java").stdout(timeout = 60)
+    out = check50.run("javac -d ./ Custom.java Dog.java").stdout(timeout = 60)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     if "error" in out:
         finderror = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output",""))

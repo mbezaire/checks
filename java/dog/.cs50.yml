@@ -1,0 +1,9 @@
+check50: 
+  files: &check50_files
+    - !exclude "*"
+    - !require Dog.java
+    - !require Custom.java
+    - !include Custom.java
+
+submit50:
+  files: *check50_files

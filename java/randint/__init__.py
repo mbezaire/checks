@@ -49,7 +49,7 @@ def runs():
     printer = "A call to randInt(25, 30) should produce numbers of 25, 26, 27, 28, or 29 only."
     if checker["lower"] > 0:
       raise check50.Failure(f"Out of 100 runs of your code, a number lower than 25 was generated {checker['lower']} times.", help=printer)
-    if checker["higher"] > 0:
+    if checker["bigger"] > 0:
       raise check50.Failure(f"Out of 100 runs of your code, a number higher than 29 was generated {checker['bigger'] + checker[30]} times.", help=printer)  
     if checker[30] > 0:
       raise check50.Failure(f"The upper bound of 30 must be excluded from your range.", help=printer)  

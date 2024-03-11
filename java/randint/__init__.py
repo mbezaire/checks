@@ -34,7 +34,10 @@ def runs():
     checker = {"lower":0, 24:0, 25:0, 26:0, 27:0, 28:0, 29:0, 30:0, "bigger":0}
     for trial in range(100):
         out = check50.run("javac -d ./ TestRandInt.java").stdin("25", prompt = False).stdin("30", prompt = False).stdout(timeout = 60)
-        out = int(out)
+        try:
+            out = int(out)
+        except:
+            raise check50.Failure(f"Call to Custom.randInt(25, 30) returned {out}")
         if out < 24:
           checker["lower"] += 1
         elif out > 30:

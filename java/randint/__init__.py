@@ -53,6 +53,6 @@ def runs():
       raise check50.Failure(f"Out of 100 runs of your code, a number higher than 29 was generated {checker['bigger'] + checker[30]} times.", help=printer)  
     if checker[30] > 0:
       raise check50.Failure(f"The upper bound of 30 must be excluded from your range.", help=printer)  
-    neednums = [num for num in checker if type(num) == int and checker[num] == 0]
+    neednums = [num for num in checker if type(num) == int and checker[num] == 0 and int(num)>= 25 and int(num)<30]
     if len(neednums) > 0:
       raise check50.Failure(f"After running your randInt(start,upperBound) 100 times, we expected to get the numbers 25 - 29 at least once each. But we never got: {neednums}")

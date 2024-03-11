@@ -8,6 +8,7 @@ public class TestRandInt
       
       int n = reader.nextInt();     
       int u = reader.nextInt();     
-      System.out.println(Custom.randInt(n, u));
+      int num = Custom.randInt(n, u);
+      System.out.println(num);
    }
 }

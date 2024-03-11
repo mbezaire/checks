@@ -32,8 +32,7 @@ def runs():
     """Custom.java has a randInt method that works alright"""
     check50.include("TestRandInt.java")
     checker = {"lower":0, 24:0, 25:0, 26:0, 27:0, 28:0, 29:0, 30:0, "bigger":0}
-    out = check50.run("javac -d ./ TestRandInt.java")
-    check50.log(out)
+    check50.run("javac -d ./ TestRandInt.java")
     for trial in range(100):
         out = check50.run("java TestRandInt 2>&1").stdin("25", prompt = False, timeout = 20).stdin("30", prompt = False, timeout = 20).stdout(timeout = 60)
         try:

@@ -33,7 +33,7 @@ def runs():
     check50.include("TestRandInt.java")
     checker = {"lower":0, 24:0, 25:0, 26:0, 27:0, 28:0, 29:0, 30:0, "bigger":0}
     for trial in range(100):
-        out = check50.run("javac -d ./ TestRandInt.java").stdin("25").stdin("30").stdout(timeout = 60)
+        out = check50.run("javac -d ./ TestRandInt.java").stdin("25", prompt = False).stdin("30", prompt = False).stdout(timeout = 60)
         out = int(out)
         if out < 24:
           checker["lower"] += 1

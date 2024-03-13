@@ -18,6 +18,10 @@ def exists():
 @check50.check(exists)
 def compiles():
     """LetterGrade.java compiles"""
+    try: #     - !include Custom.java
+        check50.run("javac -d ./ Custom.java")
+    except:
+        pass
     out = check50.run("javac -d ./ LetterGrade.java 2>&1").stdout(timeout = 60)
     if "error" in out:
         finderror = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output",""))

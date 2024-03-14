@@ -47,4 +47,4 @@ def runs59():
 @check50.check(compiles)
 def runs89():
     """TwoGrade.java gives a double average for other grades"""
-    check50.run("java TwoGrade").stdin("50").stdin("90").stdout("[Ss]tudent has [an ]*70[\.0]* average[\.]*", "Student has a 70 average (or 70.0, double or int is okay), timeout = 60, regex = True)        
+    check50.run("java TwoGrade").stdin("50").stdin("90").stdout("[Ss]tudent has [an ]*70[\.0]* average[\.]*", "Student has a 70 average (or 70.0, double or int is okay)", timeout = 60, regex = True)        

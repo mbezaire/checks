@@ -35,7 +35,7 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """Grade.java gives an A for a grade of 94"""
-    check50.run("java Grade").stdin("94").stdout("Student has an A", timeout = 60)
+    check50.run("java Grade").stdin("94").stdout("[sS]tudent has an A", timeout = 60, regex = True)
     # if len(out2) < 60 or 'border' not in out2:
     #     raise check50.Failure("Your TestBalloon code seems to be missing some print statements.\nHere's what printed:\n", help=out2.strip())
     # else:
@@ -45,17 +45,17 @@ def runs():
 @check50.check(compiles)
 def runs60():
     """Grade.java gives a pass for a grade of 60"""
-    check50.run("java Grade").stdin("60").stdout("Student passed", timeout = 60)        
+    check50.run("java Grade").stdin("60").stdout("[sS]tudent [pP]assed", timeout = 60, regex = True)        
 
 @check50.check(compiles)
 def runs59():
     """Grade.java gives a fail for a grade of 59"""
-    check50.run("java Grade").stdin("59").stdout("Student failed", timeout = 60)        
+    check50.run("java Grade").stdin("59").stdout("[sS]tudent [fF]ailed", timeout = 60, regex = True)        
  
 @check50.check(compiles)
 def runs89():
     """Grade.java gives a pass for a grade of 89"""
-    check50.run("java Grade").stdin("89").stdout("Student passed", timeout = 60)        
+    check50.run("java Grade").stdin("89").stdout("[sS]tudent [pP]assed", timeout = 60, regex = True)        
  
 @check50.check(compiles)
 def runs90():

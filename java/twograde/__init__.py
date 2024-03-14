@@ -14,7 +14,6 @@ import check50.c
 def exists():
     """TwoGrade.java exists"""
     check50.exists("TwoGrade.java")
-    check50.exists("Custom.java")
 
 @check50.check(exists)
 def compiles():

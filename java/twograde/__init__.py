@@ -14,11 +14,11 @@ import check50.c
 def exists():
     """TwoGrade.java exists"""
     check50.exists("TwoGrade.java")
+    check50.exists("Custom.java")
 
 @check50.check(exists)
 def compiles():
     """TwoGrade.java compiles"""
-    check50.include("Custom.java")
     out = check50.run("javac -d ./ Custom.java 2>&1").stdout(timeout = 60)
     out = check50.run("javac -d ./ TwoGrade.java 2>&1").stdout(timeout = 60)
     if "error" in out:

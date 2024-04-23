@@ -48,10 +48,11 @@ def varwords():
     for key in allkeys:
         wordct[key] = 0
     numtimes = 200
+    outer = ""
     for x in range(numtimes):
         out = check50.run("java TestRandomWords 2>&1").stdin(wordstr, prompt = False).stdout(timeout = 30)
-        if x < 10:
-            check50.log(out)
+        if x < 20:
+            outer += out + "\n"
         if out.strip() not in wordstr or ',' in out:
             check50.Failure(f"Your getOneRandomWord returned {out} but should have returned a word from {wordstr} (and no comma)")
         else:
@@ -59,3 +60,4 @@ def varwords():
     for key in wordct:
         if wordct[key] == 0:
             check50.Failure(f"We ran your getOneRandomWord {numtimes} times using {wordstr} and never once got {key}, this seems sus")
+    check50.log(outer)

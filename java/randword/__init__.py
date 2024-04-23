@@ -45,6 +45,8 @@ def varwords():
     wordstr = "HAPPY,ETHER,BREAK,GOALS,AZURE,PILOT,RAINY,"
     allkeys = wordstr.split(",")
     wordct = {}
+    for key in allkeys:
+        wordct[key] = 0
     numtimes = 200
     for x in range(numtimes):
         out = check50.run("java TestRandomWords 2>&1").stdin(wordstr, prompt = False).stdout(timeout = 30)

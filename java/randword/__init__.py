@@ -33,7 +33,7 @@ def runs():
     check50.include("TestRandomWords.java")
     out = check50.run("javac -d ./ TestRandomWords.java").stdout(timeout = 60)
     wordstr = "HOUSE,TALLY,BUNCH,"
-    out = check50.run("java TestMethod 2>&1").stdin(wordstr, prompt = False).stdout(timeout = 30)
+    out = check50.run("java TestRandomWords 2>&1").stdin(wordstr, prompt = False).stdout(timeout = 30)
     if out.strip() not in wordstr or ',' in out:
         raise check50.Failure(f"Your getOneRandomWord returned {out} but should have returned a word from {wordstr} (and no comma)")
 

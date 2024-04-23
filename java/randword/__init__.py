@@ -57,7 +57,7 @@ def varwords():
             outer += out + " "
         if ',' in out:
             raise check50.Failure(f"Your getOneRandomWord returned {out} but should not include a comma")
-        elif out.strip() not in wordstr:
+        elif (out.strip()+",") not in wordstr and not (("," + out.strip()+",") in wordstr or wordstr.startswith(out.strip()+",")):
             raise check50.Failure(f"Your getOneRandomWord returned {out} but should have returned a word from {wordstr}")
         else:
             wordct[out.strip()] += 1

@@ -47,7 +47,7 @@ def varwords():
     wordct = {}
     numtimes = 200
     for x in range(numtimes):
-        out = check50.run("java TestRandomWords 2>&1").stdin(wordstr).stdout(timeout = 30)
+        out = check50.run("java TestRandomWords 2>&1").stdin(wordstr, prompt = False).stdout(timeout = 30)
         if x < 10:
             check50.log(out)
         if out.trim() not in wordstr or ',' in out:

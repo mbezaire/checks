@@ -54,9 +54,9 @@ def runs():
         if len(result) < 1:
             raise check50.Failure("Failed to run")
         elif int(result[0]) != 4:
-            raise check50.Mismatch(4, out.strip())
+            raise check50.Mismatch("4", out.strip())
     else:
-        raise check50.Mismatch(4, out.strip(), help = "Couldn't find number of vowels in your output\nDid you forget to add a main method with a prompt and a Scanner call?")
+        raise check50.Mismatch("4", out.strip(), help = "Couldn't find number of vowels in your output\nDid you forget to add a main method with a prompt and a Scanner call?")
         
 
 
@@ -69,9 +69,9 @@ def runs2():
     if findtemp != None:
         result = findtemp.groups()
         if int(result[0]) != 0:
-            raise check50.Mismatch(0, out.strip())
+            raise check50.Mismatch("0", out.strip())
     else:
-        raise check50.Mismatch(0, out.strip(), help = "Couldn't find number of vowels in your output\nDid you forget to add a main method with a prompt and a Scanner call?")
+        raise check50.Mismatch("0", out.strip(), help = "Couldn't find number of vowels in your output\nDid you forget to add a main method with a prompt and a Scanner call?")
 
 
 @check50.check(recurses)
@@ -83,7 +83,7 @@ def runs3():
     if findtemp != None:
         result = findtemp.groups()
         if int(result[0]) != 5:
-            raise check50.Mismatch(5, out.strip())
+            raise check50.Mismatch("5", out.strip())
     else:
-        raise check50.Mismatch(5, out.strip(), help = "Couldn't find number of vowels in your output\nDid you forget to add a main method with a prompt and a Scanner call?")
+        raise check50.Mismatch("5", out.strip(), help = "Couldn't find number of vowels in your output\nDid you forget to add a main method with a prompt and a Scanner call?")
 

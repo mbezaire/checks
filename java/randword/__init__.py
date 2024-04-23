@@ -34,8 +34,10 @@ def runs():
     out = check50.run("javac -d ./ TestRandomWords.java").stdout(timeout = 60)
     wordstr = "HOUSE,TALLY,BUNCH,"
     out = check50.run("java TestRandomWords 2>&1").stdin(wordstr, prompt = False).stdout(timeout = 30)
-    if out.strip() not in wordstr or ',' in out:
-        raise check50.Failure(f"Your getOneRandomWord returned {out} but should have returned a word from {wordstr} (and no comma)")
+    if ',' in out:
+        raise check50.Failure(f"Your getOneRandomWord returned {out} but should not include a comma")
+    elif out.strip() not in wordstr:
+        raise check50.Failure(f"Your getOneRandomWord returned {out} but should have returned a word from {wordstr}")
 
 @check50.check(runs)
 def varwords():

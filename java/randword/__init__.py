@@ -63,5 +63,5 @@ def varwords():
     check50.log(outer)
     mystr = ""
     for key in wordct:
-        mystr += key + ": " + str(wordct[key]) + " " + (wordct[key] == 0) + ", "
+        mystr += key + ": " + str(wordct[key]) + " " + str(wordct[key] == 0) + ", "
     check50.log(mystr)

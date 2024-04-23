@@ -1,7 +1,7 @@
 check50: 
   files: &check50_files
     - !exclude "*"
-    - !require Grade.java
+    - !require Custom.java
     - !include Custom.java
 
 submit50:

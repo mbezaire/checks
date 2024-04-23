@@ -77,10 +77,10 @@ def noIfs():
     with open("RandomWord.java") as f:
         filestr = f.read()
     terncheck = False
-    idx = out.find("?")
+    idx = filestr.find("?")
     if idx > 0:
-        idxn = out.find("\n",terncheck)
-        terncheck = ":" in out[idx:idxn]
+        idxn = filestr.find("\n",terncheck)
+        terncheck = ":" in filestr[idx:idxn]
     if terncheck or "if" in filestr or "switch" in filestr in filestr or "for" in filestr or "while" in filestr or ".split" in filestr:
         raise check50.Failure(f"Try to rewrite your logic so that you don't need any loops, if statements, conditionals, or Java logic we haven't yet learned")
 

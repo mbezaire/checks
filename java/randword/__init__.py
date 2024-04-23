@@ -63,7 +63,7 @@ def varwords():
             wordct[out.strip()] += 1
     for key in allkeys:
         if key not in wordct or wordct[key] == 0:
-            raise check50.Failure(f"We ran your getOneRandomWord {numtimes} times using {wordstr} and never once got {key}, this seems sus")
+            raise check50.Failure(f"We ran your getOneRandomWord {numtimes} times using {wordstr} and never once got {key}, something's wrong")
     check50.log(outer)
     mystr = ""
     for key in wordct:

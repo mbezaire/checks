@@ -61,4 +61,7 @@ def varwords():
         if wordct[key] == 0:
             check50.Failure(f"We ran your getOneRandomWord {numtimes} times using {wordstr} and never once got {key}, this seems sus")
     check50.log(outer)
-    check50.log(wordct)
+    mystr = ""
+    for key in wordct:
+        mystr += key + ": " + str(wordct[key]) + ", "
+    check50.log(mystr)

@@ -43,7 +43,7 @@ def varwords():
     out = check50.run("javac -d ./ TestRandomWords.java").stdout(timeout = 60)
     check50.log(out)
     wordstr = "HAPPY,ETHER,BREAK,GOALS,AZURE,PILOT,RAINY,"
-    allkeys = wordstr.split(",")
+    allkeys = wordstr[:-1].split(",")
     wordct = {}
     for key in allkeys:
         wordct[key] = 0
@@ -58,7 +58,7 @@ def varwords():
         else:
             wordct[out.strip()] += 1
     for key in wordct:
-        if wordct[key] == 0:
+        if int(wordct[key]) == 0:
             check50.Failure(f"We ran your getOneRandomWord {numtimes} times using {wordstr} and never once got {key}, this seems sus")
     check50.log(outer)
     mystr = ""

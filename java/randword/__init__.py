@@ -35,7 +35,7 @@ def runs():
     wordstr = "HOUSE,TALLY,BUNCH,"
     out = check50.run("java TestMethod 2>&1").stdin(wordstr, prompt = False).stdout(timeout = 30)
     if out.strip() not in wordstr or ',' in out:
-        check50.Mismatch(f"Your getOneRandomWord returned {out} but should have returned a word from {wordstr} (and no comma)")
+        check50.Failure(f"Your getOneRandomWord returned {out} but should have returned a word from {wordstr} (and no comma)")
 
 @check50.check(runs)
 def varwords():
@@ -51,9 +51,9 @@ def varwords():
         if x < 10:
             check50.log(out)
         if out.trim() not in wordstr or ',' in out:
-            check50.Mismatch(f"Your getOneRandomWord returned {out} but should have returned a word from {wordstr} (and no comma)")
+            check50.Failure(f"Your getOneRandomWord returned {out} but should have returned a word from {wordstr} (and no comma)")
         else:
             wordct[out.trim()] += 1
     for key in wordct:
         if wordct[key] == 0:
-            check50.Mismatch(f"We ran your getOneRandomWord {numtimes} times using {wordstr} and never once got {key}, this seems sus")
+            check50.Failure(f"We ran your getOneRandomWord {numtimes} times using {wordstr} and never once got {key}, this seems sus")

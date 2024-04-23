@@ -69,3 +69,13 @@ def varwords():
     for key in wordct:
         mystr += key + ": " + str(wordct[key]) + ", "
     check50.log(mystr)
+
+
+@check50.check(varwords)
+def noIfs():
+    """RandomWord.java contains no if or boolean logic"""
+    with open("RandomWord.java") as f:
+        filestr = f.read()
+    if "if" in filestr or "switch" in filestr or "?" in filestr:
+        raise check50.Failure(f"Try to rewrite your logic so that you don't need any if statements or conditionals")
+

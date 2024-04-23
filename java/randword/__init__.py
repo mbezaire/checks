@@ -57,11 +57,11 @@ def varwords():
             check50.Failure(f"Your getOneRandomWord returned {out} but should have returned a word from {wordstr} (and no comma)")
         else:
             wordct[out.strip()] += 1
-    for key in wordct:
-        if int(wordct[key]) == 0:
+    for key in allkeys:
+        if key not in wordct or wordct[key] == 0:
             check50.Failure(f"We ran your getOneRandomWord {numtimes} times using {wordstr} and never once got {key}, this seems sus")
     check50.log(outer)
     mystr = ""
     for key in wordct:
-        mystr += key + ": " + str(wordct[key]) + ", "
+        mystr += key + ": " + str(wordct[key]) + " " + (wordct[key] == 0) + ", "
     check50.log(mystr)

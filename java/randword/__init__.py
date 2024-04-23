@@ -76,6 +76,6 @@ def noIfs():
     """RandomWord.java contains no if or boolean logic"""
     with open("RandomWord.java") as f:
         filestr = f.read()
-    if "if" in filestr or "switch" in filestr or "?" in filestr:
-        raise check50.Failure(f"Try to rewrite your logic so that you don't need any if statements or conditionals")
+    if "if" in filestr or "switch" in filestr or "?" in filestr or "for" in filestr or "while" in filestrt:
+        raise check50.Failure(f"Try to rewrite your logic so that you don't need any loops, if statements, or conditionals")
 

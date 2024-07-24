@@ -32,7 +32,7 @@ def run4():
     with open("trivia.py") as f:
         contents = f.read().replace(" ","").replace("\"","").replace("\'","").replace(".","#")
 
-    if "In which country is it illegal to own just one guinea pig?" not in contents:
+    if "Inwhichcountryisitillegaltoownjustoneguineapig?" not in contents:
         raise check50.Failure('Expected the question to be exactly: "In which country is it illegal to own just one guinea pig?"')
 
 

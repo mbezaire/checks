@@ -16,9 +16,11 @@ def run2():
     for r in range(1,4):
         check50.run("python trivia.py").stdin(str(r), prompt = True).stdout("Sorry, wrong answer!", timeout=30).exit(0)
 
-# @check50.check(run2)
-# def run3():
-#     """ No spaces between the number and the dot in the menu of choices. """
-#     for r in range(1,4):
-#         check50.run("python trivia.py").stdin(str(r), prompt = True).stdout("Sorry, wrong answer!", timeout=30).exit(0)
+@check50.check(run2)
+def run3():
+    """ No spaces between the number and the dot in the menu of choices. """
+    with open("trivia.py") as f:
+        contents = f.read().replace(" ","").replace("\"","").replace("\'","").replace(".","#")
 
+    if ",#+country" in contents:
+        raise check50.Mismatch("1. Country","1 . Country",help="expected a period right after the number for each country")

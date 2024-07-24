@@ -35,5 +35,5 @@ def run4():
     if "Inwhichcountryisitillegaltoownjustoneguineapig?" not in contents:
         raise check50.Failure('Expected the question to be exactly: "In which country is it illegal to own just one guinea pig?"')
 
-    if "i+1" not in contents and "1+i" not in contents:
+    if "i+1" not in contents and "1+i" not in contents and "+=1" not in contents:
         raise check50.Failure('Expected the menu choices to run from 1 to 4')

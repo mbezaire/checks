@@ -20,7 +20,7 @@ def run2():
 def run3():
     """ No spaces between the number and the dot in the menu of choices. """
     with open("trivia.py") as f:
-        contents = f.read().replace(" ","").replace("\"","").replace("\'","").replace(".","#")
+        contents = f.read().replace(" ","").replace("\"","").replace("\'","").replace(".","#").replace("(","").replace(")","")
 
     if ",#+country" in contents:
         raise check50.Mismatch("1. Country","1 . Country",help="expected a period right after the number for each country")
@@ -34,7 +34,6 @@ def run4():
 
     if "Inwhichcountryisitillegaltoownjustoneguineapig?" not in contents:
         raise check50.Failure('Expected the question to be exactly: "In which country is it illegal to own just one guinea pig?"')
-
 
     if "i+1" not in contents and "1+i" not in contents:
         raise check50.Failure('Expected the menu choices to run from 1 to 4')

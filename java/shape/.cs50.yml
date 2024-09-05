@@ -1,0 +1,10 @@
+check50: 
+  files: &check50_files
+    - !exclude "*"
+    - !require Shape.java
+    - !require Rectangle.java
+    - !require ShapeClient.java
+    - !require README.md
+
+submit50:
+  files: *check50_files

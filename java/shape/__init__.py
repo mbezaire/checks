@@ -70,9 +70,9 @@ def readme():
 
     if len(text) < 100:
         raise check50.Failure("Add more content to your README.", help="Include notes about class content and inheritance syntax")
-    else if '#' not in text:
+    elif '#' not in text:
         raise check50.Failure("Include a header in your README.", help="Use a # symbol, then a space, then your heading")
-    else if text.count('```') < 2:
+    elif text.count('```') < 2:
         raise check50.Failure("Include a code snippet in your README.", help="Use ``` in a line above and a line below your code snippet")
-    else if text.count('`') < 8:
+    elif text.count('`') < 8:
         raise check50.Failure("Include in-lin code in your README.", help="Use ` before and after your in-line code.")

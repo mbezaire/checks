@@ -73,6 +73,6 @@ def readme():
     elif '#' not in text:
         raise check50.Failure("Include a header in your README.", help="Use a # symbol, then a space, then your heading")
     elif text.count('```') < 2:
-        raise check50.Failure("Include a code snippet in your README.", help="Use ``` in a line above and a line below your code snippet")
+        raise check50.Failure("Include a code snippet in your README.", help="Use ``` (3 backtick symbols) in a line above and a line below your code snippet")
     elif text.count('`') < 8:
-        raise check50.Failure("Include in-lin code in your README.", help="Use ` before and after your in-line code.")
+        raise check50.Failure("Include in-line code in your README.", help="Use ` (the backtick symbol) before and after your in-line code.")

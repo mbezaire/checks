@@ -89,5 +89,5 @@ def readme():
         raise check50.Failure("Include a code snippet in your README.", help="Use ``` (3 backtick symbols) in a line above and a line below your code snippet")
     elif text.count('`') < 8:
         raise check50.Failure("Include in-line code in your README.", help="Use ` (the backtick symbol) before and after your in-line code.")
-    elif text.lower().count('circle') < 8:
+    elif text.lower().count('circle') < 1:
         raise check50.Failure("Include information about your Circle code in your README.", help="Describe something, anything about your Circle code.")

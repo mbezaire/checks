@@ -33,7 +33,7 @@ def compiles():
 
 @check50.check(compiles)
 def runs():
-    """Program should run"""
+    """ClassCopies should run and have reasonable math"""
     check50.include("OrderClient.java")
     out = check50.run("javac -d ./ OrderClient.java 2>&1").stdout(timeout = 60)
     if "error" in out:
@@ -49,7 +49,7 @@ def runs():
 
 @check50.check(runs)
 def runstatic():
-    """Program should run and use the static stuffs"""
+    """PrintOrder should run and have reasonable static math"""
     check50.include("SuperClient.java")
     out = check50.run("javac -d ./ SuperClient.java 2>&1").stdout(timeout = 60)
     if "error" in out:

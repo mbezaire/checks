@@ -41,6 +41,9 @@ def runs():
             raise check50.Failure("Failed to run due to " + result[1], help=result[0].strip())
         else:
             raise check50.Failure("Failed to run", help=finderror)
+    check50.log("Fabulous Person 1 called in an order for 6 people for their party...")
+    check50.log("Fun Family called in an order for 6 people for their birthday party...")
+    check50.log("Fabulous Person 1 called back ... now 8 people are attending their party...")
 
     check50.run(f"java CupCakeRestaurant").stdin("6", prompt = False).stdin("6", prompt = False).stdin("8", prompt = False).stdout("2 orders with 14 cupcakes", timeout = 60)
 

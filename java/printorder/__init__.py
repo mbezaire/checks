@@ -44,8 +44,8 @@ def runs():
         else:
             raise check50.Failure("Failed to run", help=finderror)
 
+    check50.log("Let's make a set of 5-page handouts for 24 students (ClassCopies)...")
     check50.run(f"java OrderClient").stdin("24", prompt = False).stdin("5", prompt = False).stdout("PrintOrder: 120 pages for 24 students", timeout = 60)
-
 
 @check50.check(runs)
 def runstatic():
@@ -59,5 +59,8 @@ def runstatic():
             raise check50.Failure("Failed to run due to " + result[1], help=result[0].strip())
         else:
             raise check50.Failure("Failed to run", help=finderror)
+    check50.log("Let's make a set of 5-page handouts for 24 students (ClassCopies)...")
+    check50.log("Now let's print out 18 pages (PrintOrder)...")
+    check50.log("Let's see, that should total 5 x 24 + 18 = 138 pages across both orders")
 
     check50.run(f"java SuperClient").stdin("24", prompt = False).stdin("5", prompt = False).stdin("18", prompt = False).stdout("Total pages: 138", timeout = 60)

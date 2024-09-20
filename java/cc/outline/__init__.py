@@ -17,7 +17,7 @@ def exists():
     with open("README.md") as f:
         text = f.read()
 
-    if len(text) < 10:
+    if len(text) < 80:
         raise check50.Failure("Add more content to your README.", help="Include notes about class content and inheritance syntax")
     elif '#' not in text:
         raise check50.Failure("Include a header in your README.", help="Use a # symbol, then a space, then your heading")

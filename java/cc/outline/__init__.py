@@ -18,7 +18,7 @@ def exists():
         text = f.read()
 
     if len(text) < 80:
-        raise check50.Failure("Add more content to your README.", help="Include notes about class content and inheritance syntax")
+        raise check50.Failure("Add more content to your README.", help="Include a top-level header, a few sentences about your project, and an image of your UML diagram.")
     elif '#' not in text:
         raise check50.Failure("Include a header in your README.", help="Use a # symbol, then a space, then your heading")
     elif text.replace(" ","").count('![') < 1:

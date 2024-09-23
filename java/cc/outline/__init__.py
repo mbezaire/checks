@@ -64,8 +64,11 @@ def relations(java_files):
     for file in java_files:
         with open(file) as f:
             text = f.read()
+            st = text.find("public class")
+            if st == -1: st = text.find("public  class")
+            text = text[st:]
 
-        if "extends" in text:
+        if "extends" in text and ("//" not in text or text.find("extends") < text.find("//")):
             extends = True
             st = text.find("extends") + 7
             en = min(min(text.find("{", st),text.find("//", st)),text.find("/*", st))

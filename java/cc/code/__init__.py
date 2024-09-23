@@ -12,7 +12,8 @@ import os
 
 @check50.check()
 def exists():
-    """Your 3 class files, image file, and README exist"""
+    """Your Client.java and 3 class files, image file, and README exist"""
+    check50.exists("Client.java")
     check50.exists("README.md")
     with open("README.md") as f:
         text = f.read()
@@ -87,3 +88,12 @@ def relations(java_files):
 
     if not isa or not hasa:
         raise check50.Failure("You need both a HAS A and an IS A relationship among your 3 classes", help=helptext)
+
+
+@check50.check(relations)
+def runs(java_files):
+    """Checking that your Client runs alright and prints out some content"""
+    out = check50.run("javac Client.java").stdout(timeout = 60)
+    if len(out) < 10:
+        raise check50.Failure("Your code only printd: " + out, help="Expected more output from your Client class")
+

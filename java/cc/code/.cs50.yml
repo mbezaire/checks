@@ -1,0 +1,11 @@
+check50: 
+  files: &check50_files
+    - !require README.md
+    - !require Client.java
+    - !include "*.png"
+    - !include "*.jpg"
+    - !include "*.jpeg"
+    - !include "*.java"
+
+submit50:
+  files: *check50_files

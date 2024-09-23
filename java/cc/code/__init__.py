@@ -72,8 +72,11 @@ def relations(java_files):
         if "extends" in text and ("//" not in text or text.find("extends") < text.find("//")):
             extends = True
             st = text.find("extends") + 7
-            en = min(min(min(text.find("{", st+1),text.find("//", st+1)),text.find("/*", st+1)),text.find(" ", st+1))
-            check50.log(f'{st} to {en}')
+            checker = ['//','{', '/*',' ','\n']
+            en = st + 20
+            for symbol in checker:
+                if text.find(symbol, st) > st and text.find(symbol, st) < en:
+                    en = text.find(symbol, st)
             myclass = text[st : en].strip()
             if myclass + ".java" in java_files and (not isa or len(helptext) > 0):
                 isa = True

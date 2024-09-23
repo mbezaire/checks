@@ -27,11 +27,11 @@ def short_phrase():
     randint2 = random.randint(45,68)
     if randint2 % 2 == 0:
         randint3 = random.randint(80,99)
-        out = check50.run(f"./mysort 79 {randint3} 2 {randint1} 34 3 {randint2} 7")stdout()
+        out = check50.run(f"./mysort 79 {randint3} 2 {randint1} 34 3 {randint2} 7").stdout()
         out = out.strip()
         ans = f"2 3 7 {randint1} 34 {randint2} 79 {randint3}"
     else:
-        out = check50.run(f"./mysort 79 2 {randint1} 34 3 {randint2} 7")stdout()
+        out = check50.run(f"./mysort 79 2 {randint1} 34 3 {randint2} 7").stdout()
         out = out.strip()
         ans = f"2 3 7 {randint1} 34 {randint2} 79"
     if len(out) == 0:

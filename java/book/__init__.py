@@ -7,58 +7,46 @@ Created on Wed Sep 29 18:28:44 2021
 
 import check50
 import check50.c
+from re import match
 
-check50.include("BClient.java")
 
-# not working in sandbox
-# less = check50.import_checks("https://github.com/mbezaire/checks/main/java/fraction")
-# from less import *
-
+check50.include("BClient.java","B1Client.java","B2Client.java")
 
 @check50.check()
 def exists():
-    """Book.java exists"""
+    """Book.java, Author.java, and Client.java exist"""
     check50.exists("Book.java")
-
-
-@check50.check()
-def authexists():
-    """Author.java exists"""
     check50.exists("Author.java")
+    check50.exists("Client.java")
+
     
 @check50.check(exists)
 def compiles():
-    """Book.java compiles"""
-    check50.run("javac Book.java")
-    
-@check50.check(authexists)
-def authcompiles():
-    """Author.java compiles"""
-    check50.run("javac Author.java")
+    """Files compile"""
+    check50.run("javac Book.java Author.java Client.java")
 
+@check50.check(compiles)
+def runs():
+    """Book.java runs"""
+    out = check50.run("javac -d ./ BClient.java").stdout(timeout = 60)
+    check50.log(out)
+    check50.log(check50.run("pwd").stdout())
+    check50.log(check50.run("ls ./").stdout())
+    out2 = check50.run("java BClient").stdout()
+    check50.log(out2)
 
-# @check50.check(compiles)
-# def runs():
-#     """Book.java runs"""
-#     out = check50.run("javac -d ./ BClient.java").stdout(timeout = 60)
-#     check50.log(out)
-#     check50.log(check50.run("pwd").stdout())
-#     check50.log(check50.run("ls ./").stdout())
-#     out2 = check50.run("java BClient").stdout()
-#     check50.log(out2)
+@check50.check(runs)
+def book1():
+    """A book has a price and a toString"""
+    out = check50.run("javac -d ./ B1Client.java").stdout(timeout = 60)
+    expected = "[Aa]n {Ii]mmense [Ww]orld[\n\t\s]*[bByY :]+Ed Yong[\n\t\s]*[$0-9\.]+"
+    check50.run("java B1Client").stdout(expected, regex=True)
 
+@check50.check(runs)
+def book2():
+    """Another book has a price and a toString"""
+    out = check50.run("javac -d ./ B2Client.java").stdout(timeout = 60)
+    expected = "[Aa]n {Ii]mmense [Ww]orld[\n\t\s]*[bByY :]+Ed Yong[\n\t\s]*[$0-9\.]+"
+    check50.run("java B2Client").stdout(expected, regex=True)
 
-# @check50.check(compiles)
-# def reduce():
-#     """A book has a price and a toString"""
-#     out = check50.run("javac -d ./ B1Client.java").stdout(timeout = 60)
-
-    
-#     from re import match
-
-#     expected = "[Aa]n {Ii]mmense [Ww]orld[\n\t\s]*[bByY :]+Ed Yong[\n\t\s]*[$0-9\.]+"
-#     actual = check50.run("java B1Client").stdout()
-#     if not match(expected, actual):
-#         help = None
-#         raise check50.Mismatch("An Immense World\nBy Ed Yong\n$85.43", actual, help=help)
 

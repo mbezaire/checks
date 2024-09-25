@@ -9,9 +9,6 @@ import check50
 import check50.c
 from re import match
 
-
-check50.include("BClient.java","B1Client.java","B2Client.java")
-
 @check50.check()
 def exists():
     """Book.java, Author.java, and Client.java exist"""
@@ -23,31 +20,61 @@ def exists():
 @check50.check(exists)
 def compiles():
     """Files compile"""
-    check50.run("javac Book.java Author.java Client.java")
+    out = check50.run("javac -d ./ Book.java Author.java Client.java 2>&1").stdout(timeout = 60)
+    if "error" in out:
+        finderror = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output",""))
+        if finderror != None:
+            result = finderror.groups()
+            raise check50.Failure("Failed to run due to " + result[1], help=result[0].strip())
+        else:
+            raise check50.Failure("Failed to run", help=finderror)
+
 
 @check50.check(compiles)
 def runs():
     """Book.java runs"""
-    check50.include("BClient.java","B1Client.java","B2Client.java")
-    out = check50.run("javac -d ./ BClient.java").stdout(timeout = 60)
+    check50.include("BClient.java")
+    out = check50.run("javac -d ./ BClient.java 2>&1").stdout(timeout = 60)
+    if "error" in out:
+        finderror = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output",""))
+        if finderror != None:
+            result = finderror.groups()
+            raise check50.Failure("Failed to run due to " + result[1], help=result[0].strip())
+        else:
+            raise check50.Failure("Failed to run", help=finderror)
     check50.log(out)
-    check50.log(check50.run("pwd").stdout())
-    check50.log(check50.run("ls ./").stdout())
     out2 = check50.run("java BClient").stdout()
     check50.log(out2)
 
 @check50.check(runs)
 def book1():
     """A book has a price and a toString"""
-    out = check50.run("javac -d ./ B1Client.java").stdout(timeout = 60)
+    check50.include("B1Client.java")
+    out = check50.run("javac -d ./ B1Client.java 2>&1").stdout(timeout = 60)
+    if "error" in out:
+        finderror = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output",""))
+        if finderror != None:
+            result = finderror.groups()
+            raise check50.Failure("Failed to run due to " + result[1], help=result[0].strip())
+        else:
+            raise check50.Failure("Failed to run", help=finderror)
+    check50.log(out)
     expected = r"[Aa]n [Ii]mmense [Ww]orld[\n\t\s]*[bByY :]+Ed Yong[\n\t\s]*[$0-9\.]+"
     check50.run("java B1Client").stdout(expected, "An Immense World\nby Ed Yong\n$85.43", regex=True)
 
 @check50.check(runs)
 def book2():
-    check50.include("B2Client.java")
     """Another book has a price and a toString"""
-    out = check50.run("javac -d ./ B2Client.java").stdout(timeout = 60)
+    check50.include("B2Client.java")
+    out = check50.run("javac -d ./ B2Client.java 2>&1").stdout(timeout = 60)
+    if "error" in out:
+        finderror = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output",""))
+        if finderror != None:
+            result = finderror.groups()
+            raise check50.Failure("Failed to run due to " + result[1], help=result[0].strip())
+        else:
+            raise check50.Failure("Failed to run", help=finderror)
+    check50.log(out)
     expected = r"[Aa]n [Ii]mmense [Ww]orld[\n\t\s]*[bByY :]+Ed Yong[\n\t\s]*[$0-9\.]+"
     check50.run("java B2Client").stdout(expected, "An Immense World\nby Ed Yong\n$85.43", regex=True)
 

@@ -41,13 +41,14 @@ def book1():
     """A book has a price and a toString"""
     out = check50.run("javac -d ./ B1Client.java").stdout(timeout = 60)
     expected = r"[Aa]n [Ii]mmense [Ww]orld[\n\t\s]*[bByY :]+Ed Yong[\n\t\s]*[$0-9\.]+"
-    check50.run("java B1Client").stdout(expected, regex=True)
+    check50.run("java B1Client").stdout(expected, "An Immense World\nby Ed Yong\n$85.43", regex=True)
 
 @check50.check(runs)
 def book2():
+    check50.include("B2Client.java")
     """Another book has a price and a toString"""
     out = check50.run("javac -d ./ B2Client.java").stdout(timeout = 60)
     expected = r"[Aa]n [Ii]mmense [Ww]orld[\n\t\s]*[bByY :]+Ed Yong[\n\t\s]*[$0-9\.]+"
-    check50.run("java B2Client").stdout(expected, regex=True)
+    check50.run("java B2Client").stdout(expected, "An Immense World\nby Ed Yong\n$85.43", regex=True)
 
 

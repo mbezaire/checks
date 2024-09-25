@@ -31,6 +31,20 @@ def compiles():
 
 
 @check50.check(compiles)
+def logicit():
+    """Book.java runs"""
+    with open("Book.java") as f:
+        text = f.read().replace("  "," ")
+    if "private Author author;" not in text:
+        raise check50.Failure("We don't see a private author field of type Author")
+    if text.count("public void setAuthor(") < 2:
+        raise check50.Failure("We were hoping to see an overloaded setter or two for the Author field... Think about it")
+    elif text.count("public void setAuthor(Author ") < 1:
+        raise check50.Failure("We were hoping that one of the setters for the author field follows the conventional setter signature.")
+    if "public Author getAuthor()" not in text:
+        raise check50.Failure("We don't see a classic getter method for the author field")
+
+@check50.check(logicit)
 def runs():
     """Book.java runs"""
     check50.include("BClient.java")

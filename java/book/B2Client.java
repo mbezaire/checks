@@ -7,7 +7,7 @@ public class B2Client
       Book myBook = new Book("An Other World","Edward is Young",5.43);
       myBook.setTitle("An Immense World");
       myBook.getAuthor().setName("Ed Yong");
-      myBook.setPrice(85.43);
+      myBook.setWholesale(85.43);
       System.out.println(myBook);
    }
 }

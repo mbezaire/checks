@@ -28,6 +28,7 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """Book.java runs"""
+    check50.include("BClient.java","B1Client.java","B2Client.java")
     out = check50.run("javac -d ./ BClient.java").stdout(timeout = 60)
     check50.log(out)
     check50.log(check50.run("pwd").stdout())
@@ -39,14 +40,14 @@ def runs():
 def book1():
     """A book has a price and a toString"""
     out = check50.run("javac -d ./ B1Client.java").stdout(timeout = 60)
-    expected = "[Aa]n {Ii]mmense [Ww]orld[\n\t\s]*[bByY :]+Ed Yong[\n\t\s]*[$0-9\.]+"
+    expected = r"[Aa]n [Ii]mmense [Ww]orld[\n\t\s]*[bByY :]+Ed Yong[\n\t\s]*[$0-9\.]+"
     check50.run("java B1Client").stdout(expected, regex=True)
 
 @check50.check(runs)
 def book2():
     """Another book has a price and a toString"""
     out = check50.run("javac -d ./ B2Client.java").stdout(timeout = 60)
-    expected = "[Aa]n {Ii]mmense [Ww]orld[\n\t\s]*[bByY :]+Ed Yong[\n\t\s]*[$0-9\.]+"
+    expected = r"[Aa]n [Ii]mmense [Ww]orld[\n\t\s]*[bByY :]+Ed Yong[\n\t\s]*[$0-9\.]+"
     check50.run("java B2Client").stdout(expected, regex=True)
 
 

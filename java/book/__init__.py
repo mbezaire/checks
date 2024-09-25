@@ -32,7 +32,7 @@ def compiles():
 
 @check50.check(compiles)
 def logicit():
-    """Book.java runs"""
+    """Book.java contains some great coding"""
     with open("Book.java") as f:
         text = f.read().replace("  "," ")
     if "private Author author;" not in text:

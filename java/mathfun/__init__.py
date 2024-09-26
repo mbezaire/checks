@@ -57,7 +57,7 @@ def runs3():
     output = "Your number is: 10\nHere are some facts about your number:\n\t- The cube of your number is: 1000.0\n\t- The square root of your number is: 3.1622776601683795\n\t- The square root of your number rounded to nearest 10th is: 3.2"
     outputre = r"Your number is: ([0-9]+)\nHere are some facts about your number:\n\t- The cube of your number is: ([0-9\.]+)\n\t- The square root of your number is: ([0-9\.]+)\n\t- The square root of your number rounded to nearest 10th is: ([0-9\.]+)"
 
-    check50.run(f"java {classname}").stdin("13").stdout(outputre, output, timeout = 60, help="Expected something LIKE the example, doesn't have to use 10 necessarily")
+    check50.run(f"java {classname}").stdin("13").stdout(outputre, output + "\nExpected something LIKE the example, doesn't have to use 10 necessarily", timeout = 60)
 
 
 @check50.check(runs3)

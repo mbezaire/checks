@@ -19,6 +19,7 @@ def exists():
 @check50.check(exists)
 def compiles():
     """Everything compiles"""
+    check50.include("Bookstore.class")
     out = check50.run(f"javac -d ./ *.java 2>&1").stdout(timeout = 60)
     if "error" in out:
         finderror = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output",""))

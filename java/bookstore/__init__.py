@@ -35,3 +35,4 @@ def runs():
     out = check50.run("java BClient.java").stdout(timeout = 60)
     if len(out) < 50 or out.count("$") < 3 or (out.lower().count("by") + out.lower().count("thor")) < 3:
         raise check50.Failure("Your BClient needs to print detailed info for 3 separate books.", help="Your BClient only prints:\n" + out)
+    check50.log(out)

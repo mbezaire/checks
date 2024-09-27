@@ -7,6 +7,7 @@ Created on Wed Sep 29 18:28:44 2021
 
 import check50
 import check50.c
+import re
 
 @check50.check()
 def exists():

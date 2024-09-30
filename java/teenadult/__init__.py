@@ -10,7 +10,7 @@ import re
 import random
 import math
 
-classname = ['Teenager', 'Adult']
+classname = ['Teenager', 'Adult','Person']
 
 @check50.check()
 def exists():

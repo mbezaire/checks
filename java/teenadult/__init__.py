@@ -34,7 +34,7 @@ def compiles():
 def runs():
     """Program runs and prints expected output"""
     teenstring = "What's up?\nPete, What's up?\nPete\nAge: 18\nAndover High School\nGrade: 12"
-    adultstring = "Hello, how are you?\nHello Pete how are you?\nPete\nAge: 39\doorman\nMarried: true"
+    adultstring = "Hello, how are you?\nHello Pete how are you?\nPete\nAge: 39\ndoorman\nMarried: true"
 
     teenout = check50.run("java Teenager 2>&1").stdout(timeout = 30)
     adultout = check50.run("java Adult 2>&1").stdout(timeout = 30)

@@ -70,4 +70,4 @@ def runs():
                 result.remove(res)
                 break
         if not found:
-            raise check50.Mismatch("Circle Area: {circArea}\nSphere Area: {sphereArea}\nRectangle Area: {rectArea}\nTriangle Area: {triArea}", out, help="Check your calculations and make sure to print out all four area results")
+            raise check50.Mismatch(f"Circle Area: {circArea}\nSphere Area: {sphereArea}\nRectangle Area: {rectArea}\nTriangle Area: {triArea}", out, help="Check your calculations and make sure to print out all four area results")

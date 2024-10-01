@@ -53,7 +53,7 @@ def runs():
     if findtemp == None or len(findtemp) == 0:
         raise check50.Failure("Failed to find a decimal number in your printed output: " + out, help="Make sure to print out circle and sphere areas as doubles")
     result = re.findall(r'([0-9\.]+)', out)  # replace search with findall to find last
-    if len(findtemp) < 4:
+    if len(result) < 4:
         raise check50.Failure("Failed to find 4 separate numbers " + out, help="Make sure to print out all four area results")
 
     circArea = math.pi*radius*radius

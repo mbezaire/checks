@@ -71,3 +71,18 @@ def runs():
                 break
         if not found:
             raise check50.Mismatch(f"Circle Area: {circArea}\nSphere Area: {sphereArea}\nRectangle Area: {rectArea}\nTriangle Area: {triArea}", out, help="Check your calculations and make sure to print out all four area results")
+
+@check50.check(runs)
+def runs2():
+    """Methods are good"""
+    check50.include("Client.java")
+    out = check50.run(f"javac -d ./ Client.java 2>&1").stdout(timeout = 60)
+    if "error" in out:
+        finderror = re.search(r'([\s\S]+)?(?=([0-9]+ error[s]{0,1}))', out.replace("Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output",""))
+        if finderror != None:
+            result = finderror.groups()
+            raise check50.Failure("Failed to compile due to " + result[1], help=result[0].strip())
+        else:
+            raise check50.Failure("Failed to compile", help=finderror)
+    check50.run('java Client').stdout('7.716198009071806', timeout = 20)
+

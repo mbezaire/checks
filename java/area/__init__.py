@@ -84,5 +84,5 @@ def runs2():
             raise check50.Failure("Failed to compile due to " + result[1], help=result[0].strip())
         else:
             raise check50.Failure("Failed to compile", help=finderror)
-    check50.run('java Client').stdout('7.716198009071806', timeout = 20)
+    check50.run('java Client').stdout('17.140975969841186', timeout = 20)
 

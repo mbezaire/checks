@@ -55,7 +55,7 @@ def dry():
     
     allcode = teencode + '\n' + adultcode
 
-    checks = ['public void setAge', 'public void setName', 'String name', 'int age']
+    checks = ['public void setAge', 'public void setName', 'private String name', 'private int age']
 
     for chk in checks:
         if chk in allcode:

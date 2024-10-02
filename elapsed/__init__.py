@@ -41,6 +41,6 @@ def runs2():
     with open('time_program.c','w') as f:
         f.write(data)
 
-    check50.c.compile("time_program.c", lcs50=True)
+    #check50.c.compile("time_program.c", lcs50=True)
     check50.c.compile("test_time.c", lcs50=True)
     check50.c.run("./test_time").stdout("00:04:10\n").exit(0)

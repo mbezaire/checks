@@ -21,21 +21,26 @@ def compiles():
 @check50.check(compiles)
 def runs2():
     """time_program.c computes elapsed time"""
-    check50.c.run("./time_program").stdin("10:22:59").stdin("10:23:01").stdout("00:00:02").exit(0)
+    check50.c.run("./time_program").stdin("10:22:59").stdin("10:23:01").stdout("00:00:02\n").exit(0)
 
 
 @check50.check(compiles)
 def runs():
     """time_program.c computes different elapsed time"""
-    check50.c.run("./time_program").stdin("02:31:15").stdin("12:05:00").stdout("09:33:45").exit(0)
+    check50.c.run("./time_program").stdin("02:31:15").stdin("12:05:00").stdout("09:33:45\n").exit(0)
 
 
-@check50.check()
-def dexists():
-    """struct_address.c was submitted"""
-    check50.exists("struct_address.c")
+@check50.check(runs)
+def runs2():
+    """time_program.c has a good elapsed time"""
+    check50.include('test_time.c')
+    with open('time_program.c') as f:
+        data = f.read()
 
-@check50.check(dexists)
-def dcompiles():
-    """struct_address.c compiles"""
-    check50.c.compile("struct_address.c", lcs50=True)
+    data = data.replace("int main(void)","void other()")
+    with open('time_program.c','w') as f:
+        f.write(data)
+
+    check50.c.compile("time_program.c", lcs50=True)
+    check50.c.compile("test_time.c", lcs50=True)
+    check50.c.run("./test_time").stdout("00:04:10\n").exit(0)

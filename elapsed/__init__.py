@@ -32,7 +32,7 @@ def runs():
 
 @check50.check(runs)
 def runs2():
-    """time_program.c has a good elapsed time"""
+    """time_program.c has a 'time' data type with fields: hours, minutes, seconds"""
     check50.include('test_time.c')
     with open('time_program.c') as f:
         data = f.read()
@@ -43,4 +43,5 @@ def runs2():
 
     #check50.c.compile("time_program.c", lcs50=True)
     check50.c.compile("test_time.c", lcs50=True)
+    check50.log('Checking for a data structure of type time with fields: hours, minutes, seconds')
     check50.c.run("./test_time").stdout("00:04:10\n").exit(0)

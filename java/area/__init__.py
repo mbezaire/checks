@@ -84,5 +84,9 @@ def runs2():
             raise check50.Failure("Failed to compile due to " + result[1], help=result[0].strip())
         else:
             raise check50.Failure("Failed to compile", help=finderror)
-    check50.run('java Client').stdout('17.140975969841186', timeout = 20)
+    out = check50.run('java Client').stdout(timeout = 20)
+    if out.strip() == '16.707963267948966':
+        raise check50.Mismatch('17.140975969841186', out.strip(), help='Did you use integer division accidentally somewhere?')
+    elif out.strip() != '17.140975969841186':
+        raise check50.Mismatch('17.140975969841186', out.strip(), help='Check your math for your formulae')
 

@@ -57,16 +57,11 @@ def runs89():
 def runs90():
     """TenSwap.java swaps 890 to 809"""
     check50.run("java TenSwap").stdin("890   ").stdout("809", timeout = 60)
-    # if len(out2) < 60 or 'border' not in out2:
-    #     raise check50.Failure("Your TestBalloon code seems to be missing some print statements.\nHere's what printed:\n", help=out2.strip())
-    # else:
-    #     check50.log(out2)
-       
-# @check50.check(compiles)
-# def getvalue():
-#     """Fraction value can be computed"""
-#     out = check50.run("javac -d ./ F0Client.java").stdout(timeout = 60)
-    # check50.log(out)
-    # check50.log(check50.run("pwd").stdout())
-    # check50.log(check50.run("ls ./").stdout())
-#     check50.run("java F0Client").stdin("1", prompt=False).stdin("4", prompt=False).stdout("0.25\n").exit(0)
+
+@check50.check(runs90)
+def runs91():
+    """TenSwap.java uses math"""
+    with open("TenSwap.java") as f:
+        contents = f.read()
+    if contents.count("import") > 1 or contents.count("String") > 1 or "char " in contents:
+        check50.Failure("Make sure your TenSwap only uses basic math operations to achieve its aims: () * / % + -")

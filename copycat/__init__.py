@@ -28,6 +28,7 @@ def catout():
 @check50.check(compiles)
 def cprun():
     """cp.c prints file contents to another file"""
+    check50.include("meh.txt")
     check50.include("yummy.txt")
     newtext = check50.run("./cp meh.txt yummy.txt; cat yummy.txt").stdout()
     with open("meh.txt") as f:

@@ -22,8 +22,8 @@ def catout():
         outmeh = f.read()
     with open("meh.txt") as f:
         outpsa = f.read()
-    check50.run("./cat meh.txt").stdout(outmeh + "\n").exit(0)
-    check50.run("./cat psa.txt").stdout(outpsa + "\n").exit(0)
+    check50.run("./cat meh.txt").stdout(outmeh).exit(0)
+    check50.run("./cat psa.txt").stdout(outpsa).exit(0)
 
 @check50.check(compiles)
 def cprun():

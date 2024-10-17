@@ -28,11 +28,9 @@ def catout():
 @check50.check(compiles)
 def cprun():
     """cp.c prints file contents to another file"""
-    check50.run("./cp meh.txt yummy.txt").stdout()
     check50.include("yummy.txt")
+    newtext = check50.run("./cp meh.txt yummy.txt; cat yummy.txt").stdout()
     with open("meh.txt") as f:
         oldtext = f.read()
-    with open("yummy.txt") as f:
-        newtext = f.read()
     if oldtext.strip() != newtext.strip():
         raise check50.Mismatch(oldtext, newtext, help="Expected the new file to contain the same contents as the old file")

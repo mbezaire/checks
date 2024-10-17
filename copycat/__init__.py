@@ -20,7 +20,7 @@ def catout():
     check50.include("psa.txt")
     with open("meh.txt") as f:
         outmeh = f.read()
-    with open("meh.txt") as f:
+    with open("psa.txt") as f:
         outpsa = f.read()
     check50.run("./cat meh.txt").stdout(outmeh).exit(0)
     check50.run("./cat psa.txt").stdout(outpsa).exit(0)

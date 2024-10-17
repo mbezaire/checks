@@ -4,7 +4,8 @@ import check50.c
 @check50.check()
 def exists():
     """cp.c and cat.c exist"""
-    check50.exists("cp.c").exists("cat.c")
+    check50.exists("cp.c")
+    check50.exists("cat.c")
 
 @check50.check(exists)
 def compiles():

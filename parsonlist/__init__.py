@@ -17,18 +17,20 @@ def exists():
 def contents():
     """Program is an ordered version of its original"""
     check50.include("orig.c")
+
     with open("parson.c") as f:
-        contents = f.read().replace('\n','')
+        contents = f.read().replace('\n','').replace('{','').replace('}','')
 
     with open("orig.c") as f:
         lines = f.readlines()
 
     for line in lines:
-        contents = contents.replace(line.strip(),"")
-    
+        print(len(contents))
+        contents = contents.replace(line.replace("{","").replace("}","").strip(),"")
+
     contents = contents.strip()
     check50.log(contents)
-    if len(contents) > 120:
+    if len(contents) > 50:
         raise check50.Failure("There may be an issue with your program code")
 
 

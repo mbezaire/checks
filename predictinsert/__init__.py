@@ -29,7 +29,7 @@ def compiles(filename):
 def valgrinds(filename):
     """Valgrind likes the program"""
     noext = filename[:-2]
-    check50.c.valgrind(f"./{noext}").stdout().exit(0)
+    check50.c.valgrind(f"./{noext}").stdout("Janelle\nJennifer\nGerald\nJune\n2018").exit(0)
     return noext
 
 @check50.check(valgrinds)

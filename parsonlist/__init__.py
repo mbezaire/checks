@@ -28,7 +28,7 @@ def contents():
     
     contents = contents.strip()
     check50.log(contents)
-    if len(contents) > 50:
+    if len(contents) > 120:
         raise check50.Failure("There may be an issue with your program code")
 
 

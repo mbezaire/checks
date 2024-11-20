@@ -25,17 +25,19 @@ def compiles(filename):
     check50.c.compile(filename) #, lcs50=True)
     return filename
 
+
 @check50.check(compiles)
-def valgrinds(filename):
-    """Valgrind likes the program"""
+def runs(filename):
+    """Program runs alright"""
     noext = filename[:-2]
-    check50.c.valgrind(f"./{noext}").stdout("Janelle\nJennifer\nGerald\nJune\n2018").exit(0)
+    check50.run(f"./{noext}").stdout("Janelle\nJennifer\nGerald\nJune\n2018").exit(0)
     return noext
 
-@check50.check(valgrinds)
-def runs(noext):
-    """Program runs alright"""
-    check50.run(f"./{noext}").stdout("Janelle\nJennifer\nGerald\nJune\n2018").exit(0)
+
+@check50.check(runs)
+def valgrinds(noext):
+    """Valgrind likes the program"""
+    check50.c.valgrind(f"./{noext}").stdout("Janelle\nJennifer\nGerald\nJune\n2018").exit(0)
 
     #TODO could add another check that includes the program as a library and uses insertnode function
 

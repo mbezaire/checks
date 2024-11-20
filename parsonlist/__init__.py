@@ -18,7 +18,7 @@ def contents():
     """Program is an ordered version of its original"""
     check50.include("orig.c")
     with open("parson.c") as f:
-        contents = f.read()
+        contents = f.read().replace('\n','')
 
     with open("orig.c") as f:
         lines = f.readlines()

@@ -10,18 +10,18 @@ import check50.c
 
 @check50.check()
 def exists():
-    """parson program exists"""
-    check50.exists("parson.c")        
+    """Program exists"""
+    check50.exists("ParsonLoop.java")        
 
 @check50.check(exists)
 def contents():
     """Program is an ordered version of its original"""
-    check50.include("orig.c")
+    check50.include("Orig.java")
 
-    with open("parson.c") as f:
+    with open("ParsonLoop.java") as f:
         contents = f.read().replace('\n','').replace('{','').replace('}','')
 
-    with open("orig.c") as f:
+    with open("Orig.java") as f:
         lines = f.readlines()
 
     for line in lines:
@@ -44,9 +44,6 @@ def compiles():
 def runs():
     """Program runs alright"""
     check50.include("data.txt")
-    out = check50.run(f"./parson").stdout()
-    check50.log("Your code outputs:")
-    check50.log(out)
     check50.run(f"./parson").stdout("Anya: 94\nArnold: 93\nAnwar: 91\nAvery: 95\nAnnalise: 98\nAmy: 90\nAndrew: 92").exit(0)
 
 

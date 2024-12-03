@@ -33,16 +33,9 @@ theirfile = ["ReadAFile", "WriteAFile", "CountAndPrint", "LoopCount"]
 ### DON'T CHANGE THIS SECTION USUALLY #############
 f_results = {'tests':[]}
 
-for hf in helperfile:
-    check50.include(hf)
 
 def runcheck(helperfile=helperfile, theirfile=theirfile, actualin = "Hello", expected = "Hello"):
-    if len(helperfile) > 0:
-        for hf in helperfile:
-            check50.include(hf)
-        out5 = check50.run(f"java {helperfile}").stdin(actualin, prompt = False).stdout()
-    else:
-        out5 = check50.run(f"java {theirfile}").stdin(actualin, prompt = False).stdout()
+    out5 = check50.run(f"java {theirfile}").stdin(actualin, prompt = False).stdout()
     out5 = out5.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out5 = out5.strip()
     if out5 != expected:
@@ -58,8 +51,6 @@ def exists():
 def compiles():
     """Your programs compile"""
     global f_results
-    for hf in helperfile:
-        check50.include(hf)
 
     out = check50.run(f"javac -d ./ {'.java '.join(theirfile)}.java").stdout(timeout = 60)
     out = out.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")

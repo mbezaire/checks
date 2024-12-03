@@ -109,14 +109,14 @@ def writes():
 @check50.check(compiles)
 def counts():
     """Check that CountAndPrint works"""
-    x = random.randint(10,14)
+    x = 6
     y = random.randint(5,9)
-    # with open("count.txt","w") as f:
-    #     f.write(str(x))
+    check50.include("count.txt")
+
 
     # for z in range(y):
     y = 1
-    # check50.run('java CountAndPrint').exit(0)
+    check50.run('java CountAndPrint').exit(0)
     num = x + y
     # with open("count.txt","r") as f:
     #     num = int(f.read().strip())

@@ -113,7 +113,6 @@ def counts():
     y = random.randint(5,9)
     check50.include("count.txt")
 
-
     for z in range(y):
         check50.run('java CountAndPrint').exit(0)
 
@@ -125,20 +124,22 @@ def counts():
     if num != x + y:
         raise check50.Mismatch(str(num), str(x + y), help=f"The number in the count.txt file was different than expected, starting from count.txt contains {x} and running CountAndPrint {y} more times")
     
-# @check50.check(compiles)
-# def loops():
-#     """Check that LoopCount works"""
-#     x = random.randint(1,3)
-#     with open("countloop.txt","w") as f:
-#         f.write(str(x) + "\n")
+@check50.check(compiles)
+def loops():
+    """Check that LoopCount works"""
+    x = random.randint(1,3)
+    with open("countloop.txt","w") as f:
+        f.write(str(x))
 
-#     check50.run('java LoopCount').stdin('5').exit(0)
-#     check50.run('java LoopCount').stdin('6').exit(0)
+    check50.run('java LoopCount').stdin('5').exit(0)
+    check50.run('java LoopCount').stdin('6').exit(0)
 
-#     with open("countloop.txt","r") as f:
-#         num = int(f.read())
+    with open("countloop.txt","r") as f:
+        num = f.read()
+
+    num = int(num.strip())
     
-#     if num != x + 11:
-#         raise check50.Mismatch(num, x + 11, help=f"The number in the countloop.txt file was different than expected, starting from count.txt contains {x} and running CountAndPrint 2 more times with 5 and 6 loop iterations")
+    if num != x + 11:
+        raise check50.Mismatch(str(num), str(x + 11), help=f"The number in the countloop.txt file was different than expected, starting from count.txt contains {x} and running CountAndPrint 2 more times with 5 and 6 loop iterations")
 
-#     return f_results
+    return f_results

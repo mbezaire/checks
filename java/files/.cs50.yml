@@ -5,6 +5,7 @@ check50:
     - !require WriteAFile.java
     - !require CountAndPrint.java
     - !require LoopCount.java
+    - !include Custom.java
 
 submit50:
   files: *check50_files

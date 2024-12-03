@@ -115,8 +115,9 @@ def counts():
     with open("count.txt","w") as f:
         f.write(str(x) + "\n")
 
-    for x in range(y):
-        check50.run('java CountAndPrint')
+    # for z in range(y):
+    y = 1
+    check50.run('java CountAndPrint').exit(0)
     
     with open("count.txt","r") as f:
         num = int(f.read())

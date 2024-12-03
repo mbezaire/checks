@@ -122,7 +122,7 @@ def counts():
     num = int(num)
 
     if num != x + y:
-        raise check50.Mismatch(str(num), str(x + y), help=f"The number in the count.txt file was different than expected, starting from count.txt contains {x} and running CountAndPrint {y} more times")
+        raise check50.Mismatch(str(x + y), str(num), help=f"The number in the count.txt file was different than expected, starting from count.txt contains {x} and running CountAndPrint {y} more times")
     
 @check50.check(compiles)
 def loops():
@@ -140,6 +140,6 @@ def loops():
     num = int(num.strip())
     
     if num != x + 11:
-        raise check50.Mismatch(str(num), str(x + 11), help=f"The number in the countloop.txt file was different than expected, starting from count.txt contains {x} and running CountAndPrint 2 more times with 5 and 6 loop iterations")
+        raise check50.Mismatch(str(x + 11), str(num), help=f"The number in the countloop.txt file was different than expected, starting from count.txt contains {x} and running CountAndPrint 2 more times with 5 and 6 loop iterations")
 
     return f_results

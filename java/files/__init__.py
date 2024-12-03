@@ -33,7 +33,7 @@ theirfile = ["ReadAFile", "WriteAFile", "CountAndPrint", "LoopCount"]
 f_results = {'tests':[]}
 
 
-def runcheck(helperfile=helperfile, theirfile=theirfile, actualin = "Hello", expected = "Hello"):
+def runcheck(theirfile=theirfile, actualin = "Hello", expected = "Hello"):
     out5 = check50.run(f"java {theirfile}").stdin(actualin, prompt = False).stdout()
     out5 = out5.replace("Picked up JAVA_TOOL_OPTIONS: -Dsun.java2d.opengl=true","")
     out5 = out5.strip()

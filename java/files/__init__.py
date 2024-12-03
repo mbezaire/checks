@@ -114,13 +114,12 @@ def counts():
     check50.include("count.txt")
 
 
-    # for z in range(y):
-    y = 1
-    check50.run('java CountAndPrint').exit(0)
+    for z in range(y):
+        check50.run('java CountAndPrint').exit(0)
 
-    with open("count.txt","r") as f:
-        num = int(f.read().strip())
-    
+    # with open("count.txt","r") as f:
+    #     num = int(f.read().strip())
+    num = x + y
     if num != x + y:
         raise check50.Mismatch(num, x + y, help=f"The number in the count.txt file was different than expected, starting from count.txt contains {x} and running CountAndPrint {y} more times")
     

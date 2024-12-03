@@ -132,8 +132,8 @@ def loops():
         f.write(str(x))
 
     check50.run('java LoopCount').stdin('5', timeout=60)
-    check50.run('java LoopCount').stdin('6', timeout=60)
-
+    out = check50.run('java LoopCount').stdin('6', timeout=60).stdout()
+    check50.log(out)
     with open("countloop.txt","r") as f:
         num = f.read()
 

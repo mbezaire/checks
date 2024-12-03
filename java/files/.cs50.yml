@@ -1,10 +1,10 @@
 check50:
   files: &check50_files
     - !exclude "*"
-    - !require BankAccount.java
-    - !require Bank.java
-    - !require BankClient.java
-    - !include Custom.java
+    - !require ReadAFile.java
+    - !require WriteAFile.java
+    - !require CountAndPrint.java
+    - !include LoopCount.java
 
 submit50:
   files: *check50_files

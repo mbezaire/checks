@@ -94,18 +94,18 @@ def reads():
 
     check50.run('java ReadAFile').stdout(f"{funname}\n{funyear}\n{fungpa}").exit(0)
 
-# @check50.check(compiles)
-# def writes():
-#     """Checking that WriteAFile works"""
-#     funname = random.choice(["Henrietta","Fiona","Arnold","Reginald","Alvin"])
-#     funyear = random.randint(9,12)
-#     fungpa = 3 + random.randint(1,100)/100
-#     check50.run('java WriteAFile').stdin(funname).stdin(funyear).stdin(fungpa).exit(0)
-#     with open("info.txt","r") as f:
-#         content = f.read()
+@check50.check(compiles)
+def writes():
+    """Checking that WriteAFile works"""
+    funname = random.choice(["Henrietta","Fiona","Arnold","Reginald","Alvin"])
+    funyear = random.randint(9,12)
+    fungpa = 3 + random.randint(1,100)/100
+    check50.run('java WriteAFile').stdin(funname).stdin(funyear).stdin(fungpa).exit(0)
+    with open("info.txt","r") as f:
+        content = f.read()
     
-#     if content.strip() != f"{funname}\n{funyear}\n{fungpa}":
-#         raise check50.Mismatch(content.strip(), f"{funname}\n{funyear}\n{fungpa}")
+    if content.strip() != f"{funname}\n{funyear}\n{fungpa}":
+        raise check50.Mismatch(content.strip(), f"{funname}\n{funyear}\n{fungpa}")
 
 # @check50.check(compiles)
 # def counts():

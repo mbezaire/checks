@@ -99,7 +99,7 @@ def writes():
     funname = random.choice(["Henrietta","Fiona","Arnold","Reginald","Alvin"])
     funyear = random.randint(9,12)
     fungpa = 3 + random.randint(1,100)/100
-    check50.run('java WriteAFile').stdin(funname, timeout=60).stdin(funyear, timeout=60).stdin(fungpa, timeout=60).exit(0)
+    check50.run('java WriteAFile').stdin(funname, timeout=60).stdin(str(funyear) + " ", timeout=60).stdin(str(fungpa) + " ", timeout=60).exit(0)
     with open("info.txt","r") as f:
         content = f.read()
     

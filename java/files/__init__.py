@@ -107,22 +107,22 @@ def writes():
     if content.strip() != f"{funname}\n{funyear}\n{fungpa}":
         raise check50.Mismatch(content.strip(), f"{funname}\n{funyear}\n{fungpa}")
 
-# @check50.check(compiles)
-# def counts():
-#     """Check that CountAndPrint works"""
-#     x = random.randint(10,14)
-#     y = random.randint(5,9)
-#     with open("count.txt","w") as f:
-#         f.write(str(x) + "\n")
+@check50.check(compiles)
+def counts():
+    """Check that CountAndPrint works"""
+    x = random.randint(10,14)
+    y = random.randint(5,9)
+    with open("count.txt","w") as f:
+        f.write(str(x) + "\n")
 
-#     for x in range(y):
-#         check50.run('java CountAndPrint').exit(0)
+    for x in range(y):
+        check50.run('java CountAndPrint').exit(0)
     
-#     with open("count.txt","r") as f:
-#         num = int(f.read())
+    with open("count.txt","r") as f:
+        num = int(f.read())
     
-#     if num != x + y:
-#         raise check50.Mismatch(num, x + y, help=f"The number in the count.txt file was different than expected, starting from count.txt contains {x} and running CountAndPrint {y} more times")
+    if num != x + y:
+        raise check50.Mismatch(num, x + y, help=f"The number in the count.txt file was different than expected, starting from count.txt contains {x} and running CountAndPrint {y} more times")
     
 # @check50.check(compiles)
 # def loops():

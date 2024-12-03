@@ -141,5 +141,3 @@ def loops():
     
     if num != x + 11:
         raise check50.Mismatch(str(x + 11), str(num), help=f"The number in the countloop.txt file was different than expected, starting from count.txt contains {x} and running CountAndPrint 2 more times with 5 and 6 loop iterations")
-
-    return f_results

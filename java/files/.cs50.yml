@@ -1,0 +1,10 @@
+check50:
+  files: &check50_files
+    - !exclude "*"
+    - !require BankAccount.java
+    - !require Bank.java
+    - !require BankClient.java
+    - !include Custom.java
+
+submit50:
+  files: *check50_files

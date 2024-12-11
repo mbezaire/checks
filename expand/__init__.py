@@ -135,5 +135,5 @@ def check5(instuff):
     for i, row in enumerate(outmeh[2:]):
         if len(row.strip()) != expw:
             raise check50.Mismatch(f"Each line of char data having {expw} chars including padding", f"But file contains this line: {row.strip()}")
-        if row[:linewidth*2] != outdata[i].strip():
-            raise check50.Mismatch(outdata[i].strip(), row[:linewidth*2], f"data row {i} did not match what is expected")
+        if row[:linewidth*2] != outdata[i].strip()[:linewidth*2]:
+            raise check50.Mismatch(outdata[i].strip()[:linewidth*2], row[:linewidth*2], f"data row {i} did not match what is expected (padding not shown here)")

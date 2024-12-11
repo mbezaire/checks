@@ -48,9 +48,14 @@ def catout():
     return outmeh, linewidth, numlines, expw, outdata
 
 @check50.check(catout)
-def check1(outmeh, linewidth, numlines, expw, outdata):
+def check1(instuff):
     """ New width is double the old one """
     # expands array.txt 2x in each direction
+    outmeh = instuff[0]
+    linewidth = instuff[1]
+    numlines = instuff[2]
+    expw = instuff[3]
+    outdata = instuff[4]
     if int(outmeh[0].strip()) != linewidth*2:
         raise check50.Mismatch(str(linewidth*2), outmeh[0].strip(), "New width must be double the old one")
     return outmeh, linewidth, numlines, expw, outdata

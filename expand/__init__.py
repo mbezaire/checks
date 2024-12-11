@@ -16,8 +16,8 @@ def compiles():
 def catout():
     """expands array.txt 2x in each direction"""
     
-    linewidth = random.randbetween(2,4)*3 - 4
-    numlines = random.randbetween(3,5)
+    linewidth = random.randint(2,4)*3 - 4
+    numlines = random.randint(3,5)
     expw = (0 if ((linewidth*2)%3) == 0  else 3 - (linewidth*2) % 3) + (linewidth*2)
     data = []
     outdata = []

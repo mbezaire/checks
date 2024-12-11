@@ -15,8 +15,7 @@ def compiles():
 @check50.check(compiles)
 def catout():
     """Program runs"""
-    
-    linewidth = random.randint(2,4)*3 - 4
+    linewidth = random.randint(2,4)*3 - random.choice([2,4])
     numlines = random.randint(3,5)
     exps = (0 if ((linewidth)%3) == 0  else 3 - (linewidth) % 3) + (linewidth)
     expw = (0 if ((linewidth*2)%3) == 0  else 3 - (linewidth*2) % 3) + (linewidth*2)

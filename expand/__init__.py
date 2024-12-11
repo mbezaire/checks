@@ -93,7 +93,12 @@ def check3(instuff):
     outdata = instuff[4]
     arr = instuff[5]
     expd = instuff[6]
-    check50.log("array.txt was:\n\n" + arr)
+    check50.log("array.txt was:")
+
+    arrlines = arr.split("\n")
+    for line in arrlines:
+        check50.log(line)
+    
     if len(outmeh) - 2 != numlines*2:
         raise check50.Mismatch(expd, "".join(outmeh))
     

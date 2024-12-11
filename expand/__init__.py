@@ -32,7 +32,7 @@ def catout():
                 thechar = chr(random.randint(65, 90))
                 rowdata += thechar
                 outrow += thechar*2
-            for h in range(expd - linewidth):
+            for h in range(expw - linewidth):
                 rowdata += 'a'
                 outrow += 'aa'
             rowdata += '\n'

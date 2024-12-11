@@ -18,6 +18,7 @@ def catout():
     
     linewidth = random.randint(2,4)*3 - 4
     numlines = random.randint(3,5)
+    exps = (0 if ((linewidth)%3) == 0  else 3 - (linewidth) % 3) + (linewidth)
     expw = (0 if ((linewidth*2)%3) == 0  else 3 - (linewidth*2) % 3) + (linewidth*2)
     data = []
     outdata = []
@@ -32,9 +33,10 @@ def catout():
                 thechar = chr(random.randint(65, 90))
                 rowdata += thechar
                 outrow += thechar*2
-            for h in range(expw - linewidth):
+            for h in range(exps - linewidth):
                 rowdata += 'a'
-                outrow += 'aa'
+            for h in range(expw - linewidth*2):
+                outrow += 'a'
             rowdata += '\n'
             outrow += '\n'
             f.writelines(rowdata)
@@ -96,14 +98,14 @@ def check3(instuff):
     outdata = instuff[4]
     arr = instuff[5]
     expd = instuff[6]
-    check50.log(str(len(outmeh)))
+    #check50.log(str(len(outmeh)))
     check50.log("array.txt was:")
 
     arrlines = arr.split("\n")
     for line in arrlines:
         check50.log(line)
     if len(outmeh) - 2 != numlines*2:
-        raise check50.Mismatch(expd, "\n".join(outmeh))
+        raise check50.Mismatch(expd, "".join(outmeh))
     
     return outmeh, linewidth, numlines, expw, outdata, arr, expd
 

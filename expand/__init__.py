@@ -21,6 +21,7 @@ def catout():
     expw = (0 if ((linewidth*2)%3) == 0  else 3 - (linewidth*2) % 3) + (linewidth*2)
     data = []
     outdata = []
+
     with open("array.txt","w") as f:
         f.write(str(linewidth) + '\n')
         f.write(str(numlines) + '\n')
@@ -38,6 +39,11 @@ def catout():
             outdata.append(outrow)
             outdata.append(outrow)
 
+    with open("array.txt","r") as f:
+        arr = f.read()
+
+    expd = f"{linewidth*2}\n{numlines*2}\n{''.join(outdata)}"
+
 
     #check50.include("array.txt")
     check50.run("./expand").exit(0)
@@ -45,7 +51,7 @@ def catout():
     with open("array2x.txt") as f:
         outmeh = f.readlines()
 
-    return outmeh, linewidth, numlines, expw, outdata
+    return outmeh, linewidth, numlines, expw, outdata, arr, expd
 
 @check50.check(catout)
 def check1(instuff):
@@ -56,9 +62,11 @@ def check1(instuff):
     numlines = instuff[2]
     expw = instuff[3]
     outdata = instuff[4]
+    arr = instuff[5]
+    expd = instuff[6]
     if int(outmeh[0].strip()) != linewidth*2:
         raise check50.Mismatch(str(linewidth*2), outmeh[0].strip(), "New width must be double the old one")
-    return outmeh, linewidth, numlines, expw, outdata
+    return outmeh, linewidth, numlines, expw, outdata, arr, expd
 
 @check50.check(check1)
 def check2(instuff):
@@ -68,10 +76,12 @@ def check2(instuff):
     numlines = instuff[2]
     expw = instuff[3]
     outdata = instuff[4]
+    arr = instuff[5]
+    expd = instuff[6]
     if int(outmeh[1].strip()) != numlines*2:
         raise check50.Mismatch(str(numlines*2), outmeh[1].strip(), "New height must be double the old one")
 
-    return outmeh, linewidth, numlines, expw, outdata
+    return outmeh, linewidth, numlines, expw, outdata, arr, expd
 
 @check50.check(check2)
 def check3(instuff):
@@ -81,10 +91,13 @@ def check3(instuff):
     numlines = instuff[2]
     expw = instuff[3]
     outdata = instuff[4]
+    arr = instuff[5]
+    expd = instuff[6]
+    check50.log("array.txt was:\n\n" + arr)
     if len(outmeh) - 2 != numlines*2:
-        raise check50.Mismatch(f"A file with {numlines*2} lines of char data", "\n".join(outmeh))
+        raise check50.Mismatch(expd, "".join(outmeh))
     
-    return outmeh, linewidth, numlines, expw, outdata
+    return outmeh, linewidth, numlines, expw, outdata, arr, expd
 
 @check50.check(check3)
 def check4(instuff):
@@ -94,10 +107,12 @@ def check4(instuff):
     numlines = instuff[2]
     expw = instuff[3]
     outdata = instuff[4]
+    arr = instuff[5]
+    expd = instuff[6]
     width = len(outmeh[2].replace("\n",""))
     if width != expw:
         raise check50.Mismatch(f"Each line of char data having {expw} chars including padding", f"Line has {width} chars: {outmeh[2].strip()}")
-    return outmeh, linewidth, numlines, expw, outdata
+    return outmeh, linewidth, numlines, expw, outdata, arr, expd
 
 @check50.check(check4)
 def check5(instuff):
@@ -107,6 +122,8 @@ def check5(instuff):
     numlines = instuff[2]
     expw = instuff[3]
     outdata = instuff[4]
+    arr = instuff[5]
+    expd = instuff[6]
     for i, row in enumerate(outmeh[2:]):
         if len(row.strip()) != expw:
             raise check50.Mismatch(f"Each line of char data having {expw} chars including padding", f"But file contains this line: {row.strip()}")

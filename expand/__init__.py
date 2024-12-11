@@ -40,7 +40,8 @@ def catout():
 
 
     #check50.include("array.txt")
-    check50.run("./expand")
+    check50.run("./expand").stdout().exit(0)
+    check50.include("array2x.txt")
     with open("array2x.txt") as f:
         outmeh = f.readlines()
     

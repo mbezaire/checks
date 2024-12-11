@@ -97,13 +97,13 @@ def check3(instuff):
     outdata = instuff[4]
     arr = instuff[5]
     expd = instuff[6]
-    #check50.log(str(len(outmeh)))
-    check50.log("array.txt was:")
 
-    arrlines = arr.split("\n")
-    for line in arrlines:
-        check50.log(line)
     if len(outmeh) - 2 != numlines*2:
+        check50.log("array.txt was:")
+        arrlines = arr.split("\n")
+        for line in arrlines:
+            check50.log(line)
+
         raise check50.Mismatch(expd, "".join(outmeh))
     
     return outmeh, linewidth, numlines, expw, outdata, arr, expd
@@ -119,8 +119,18 @@ def check4(instuff):
     arr = instuff[5]
     expd = instuff[6]
     width = len(outmeh[2].replace("\n",""))
-    if width != expw:
-        raise check50.Mismatch(f"Each line of char data having {expw} chars including padding", f"Line has {width} chars: {outmeh[2].strip()}")
+    # if width != expw:
+    #     raise check50.Mismatch(f"Each line of char data having {expw} chars including padding", f"Line has {width} chars: {outmeh[2].strip()}")
+    for i, row in enumerate(outmeh[2:]):
+        if len(row.strip()) != expw:
+            check50.log("array.txt was:")
+            arrlines = arr.split("\n")
+            for line in arrlines:
+                check50.log(line)
+    #        raise check50.Mismatch(outdata[i].strip()[:linewidth*2], row[:linewidth*2], f"data row {i} did not match what is expected (padding not shown here)")
+            raise check50.Mismatch(expd, "".join(outmeh))
+
+
     return outmeh, linewidth, numlines, expw, outdata, arr, expd
 
 @check50.check(check4)
@@ -133,8 +143,12 @@ def check5(instuff):
     outdata = instuff[4]
     arr = instuff[5]
     expd = instuff[6]
+
     for i, row in enumerate(outmeh[2:]):
-        if len(row.strip()) != expw:
-            raise check50.Mismatch(f"Each line of char data having {expw} chars including padding", f"But file contains this line: {row.strip()}")
         if row[:linewidth*2] != outdata[i].strip()[:linewidth*2]:
-            raise check50.Mismatch(outdata[i].strip()[:linewidth*2], row[:linewidth*2], f"data row {i} did not match what is expected (padding not shown here)")
+            check50.log("array.txt was:")
+            arrlines = arr.split("\n")
+            for line in arrlines:
+                check50.log(line)
+    #        raise check50.Mismatch(outdata[i].strip()[:linewidth*2], row[:linewidth*2], f"data row {i} did not match what is expected (padding not shown here)")
+            raise check50.Mismatch(expd, "".join(outmeh))

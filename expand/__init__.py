@@ -14,7 +14,7 @@ def compiles():
 
 @check50.check(compiles)
 def catout():
-    """expands array.txt 2x in each direction"""
+    """Program runs"""
     
     linewidth = random.randint(2,4)*3 - 4
     numlines = random.randint(3,5)
@@ -44,19 +44,44 @@ def catout():
     check50.log(check50.run("ls -l").stdout())
     with open("array2x.txt") as f:
         outmeh = f.readlines()
-    
+
+    return outmeh, linewidth, numlines, expw, outdata
+
+@check50.check(catout)
+def check1(outmeh, linewidth, numlines, expw, outdata):
+    """ New width is double the old one """
+    # expands array.txt 2x in each direction
     if int(outmeh[0].strip()) != linewidth*2:
         raise check50.Mismatch(str(linewidth*2), outmeh[0].strip(), "New width must be double the old one")
+    return outmeh, linewidth, numlines, expw, outdata
 
+@check50.check(check1)
+def check2(outmeh, linewidth, numlines, expw, outdata):
+    """ New height is double the old one """
     if int(outmeh[1].strip()) != numlines*2:
         raise check50.Mismatch(str(numlines*2), outmeh[1].strip(), "New height must be double the old one")
 
+    return outmeh, linewidth, numlines, expw, outdata
+
+@check50.check(check2)
+def check3(outmeh, linewidth, numlines, expw, outdata):
+    """ Actual rows of data is double the original """
     if len(outmeh) - 2 != numlines*2:
         raise check50.Mismatch(f"A file with {numlines*2} lines of char data", "\n".join(outmeh))
     
+    return outmeh, linewidth, numlines, expw, outdata
+
+@check50.check(check3)
+def check4(outmeh, linewidth, numlines, expw, outdata):
+    """ Actual width of data is double the original + necessary padding"""
     width = len(outmeh[2].replace("\n",""))
     if width != expw:
         raise check50.Mismatch(f"Each line of char data having {expw} chars including padding", f"Line has {width} chars: {outmeh[2].strip()}")
+    return outmeh, linewidth, numlines, expw, outdata
+
+@check50.check(check4)
+def check5(outmeh, linewidth, numlines, expw, outdata):
+    """ Actual data is doubled in horizontal and vertical directions"""
     
     for i, row in enumerate(outmeh[2:]):
         if len(row.strip()) != expw:

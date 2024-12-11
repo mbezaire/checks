@@ -61,33 +61,52 @@ def check1(instuff):
     return outmeh, linewidth, numlines, expw, outdata
 
 @check50.check(check1)
-def check2(outmeh, linewidth, numlines, expw, outdata):
+def check2(instuff):
     """ New height is double the old one """
+    outmeh = instuff[0]
+    linewidth = instuff[1]
+    numlines = instuff[2]
+    expw = instuff[3]
+    outdata = instuff[4]
     if int(outmeh[1].strip()) != numlines*2:
         raise check50.Mismatch(str(numlines*2), outmeh[1].strip(), "New height must be double the old one")
 
     return outmeh, linewidth, numlines, expw, outdata
 
 @check50.check(check2)
-def check3(outmeh, linewidth, numlines, expw, outdata):
+def check3(instuff):
     """ Actual rows of data is double the original """
+    outmeh = instuff[0]
+    linewidth = instuff[1]
+    numlines = instuff[2]
+    expw = instuff[3]
+    outdata = instuff[4]
     if len(outmeh) - 2 != numlines*2:
         raise check50.Mismatch(f"A file with {numlines*2} lines of char data", "\n".join(outmeh))
     
     return outmeh, linewidth, numlines, expw, outdata
 
 @check50.check(check3)
-def check4(outmeh, linewidth, numlines, expw, outdata):
+def check4(instuff):
     """ Actual width of data is double the original + necessary padding"""
+    outmeh = instuff[0]
+    linewidth = instuff[1]
+    numlines = instuff[2]
+    expw = instuff[3]
+    outdata = instuff[4]
     width = len(outmeh[2].replace("\n",""))
     if width != expw:
         raise check50.Mismatch(f"Each line of char data having {expw} chars including padding", f"Line has {width} chars: {outmeh[2].strip()}")
     return outmeh, linewidth, numlines, expw, outdata
 
 @check50.check(check4)
-def check5(outmeh, linewidth, numlines, expw, outdata):
+def check5(instuff):
     """ Actual data is doubled in horizontal and vertical directions"""
-    
+    outmeh = instuff[0]
+    linewidth = instuff[1]
+    numlines = instuff[2]
+    expw = instuff[3]
+    outdata = instuff[4]
     for i, row in enumerate(outmeh[2:]):
         if len(row.strip()) != expw:
             raise check50.Mismatch(f"Each line of char data having {expw} chars including padding", f"But file contains this line: {row.strip()}")

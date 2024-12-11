@@ -28,7 +28,7 @@ def catout():
             rowdata = ''
             outrow = ''
             for h in range(numlines):
-                thechar = chr(random.randbetween(65, 90))
+                thechar = chr(random.randint(65, 90))
                 rowdata += thechar
                 outrow += thechar*2
             rowdata += '\n'

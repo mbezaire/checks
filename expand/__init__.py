@@ -96,7 +96,7 @@ def check3(instuff):
     outdata = instuff[4]
     arr = instuff[5]
     expd = instuff[6]
-    check50.log(len(outmeh))
+    check50.log(str(len(outmeh)))
     check50.log("array.txt was:")
 
     arrlines = arr.split("\n")

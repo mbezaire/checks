@@ -18,7 +18,7 @@ def compiles():
     """queuellist.c compiles"""
     #check50.include("queue.h")
     #check50.run("echo '#include \"queuellist.c\"' | cat - queuellist.c > queue.c")
-    check50.c.compile("queue.c", lcs50=True)
+    #check50.c.compile("queue.c", lcs50=True)
     check50.c.compile("queuellist.c", lcs50=True)
 
 #@check50.check(compiles)

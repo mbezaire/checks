@@ -22,6 +22,7 @@ def contents():
     with open("ParsonLoop.java") as f:
         contents = f.read().replace('\n','').replace('{','').replace('}','')
         contents= re.sub(r"\/\*.*?(?=\*\/|\Z)\*/","",contents)
+        contents = re.sub(r'//.*?(?=\n)', '', contents)
 
     with open("Orig.java") as f:
         lines = f.readlines()

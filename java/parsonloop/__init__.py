@@ -51,5 +51,5 @@ def compiles():
 @check50.check(compiles)
 def runs():
     """Program prints out the expected output"""
-    check50.run("java ParsonLoop").stdout("J L N P R T V \nI K M O Q S U \nH J L N P R T \nG I K M O Q S \nF H J L N P R \nE G I K M O QD F H J L N P \nC E G I K M O \nB D F H J L N \nA C E G I K M ").exit(0)
+    check50.run("java ParsonLoop").stdout("J L N P R T V \nI K M O Q S U \nH J L N P R T \nG I K M O Q S \nF H J L N P R \nE G I K M O Q \nD F H J L N P \nC E G I K M O \nB D F H J L N \nA C E G I K M ").exit(0)
 

@@ -20,9 +20,10 @@ def contents():
     check50.include("Orig.java")
 
     with open("ParsonLoop.java") as f:
-        contents = f.read().replace('\n','').replace('{','').replace('}','').replace(') (',')(')
-        contents= re.sub(r"\/\*.*?(?=\*\/|\Z)\*/","",contents)
+        contents = f.read()
         contents = re.sub(r'//.*?(?=\n)', '', contents)
+        contents = contents.replace('\n','').replace('{','').replace('}','').replace(') (',')(')
+        contents= re.sub(r"\/\*.*?(?=\*\/|\Z)\*/","",contents)
 
     with open("Orig.java") as f:
         lines = f.readlines()

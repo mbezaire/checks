@@ -63,7 +63,7 @@ def runs():
     out = check50.run("java TestSplit").stdin(phrase,prompt = False).stdin(delim,prompt = False).stdout(timeout = 5).strip()
     if out != output:
         raise check50.Mismatch(output, out)
-
+ 
     #check50.run("java TestSplit").stdin(phrase,prompt = False).stdin(delim,prompt = False).stdout(output,timeout = 5)
 
 

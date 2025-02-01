@@ -32,7 +32,23 @@ def compiles():
     if "error" in out:
         raise check50.Failure("Make sure your Split.java has a split method with this header: public static String[] split(String, char)")
 
+
 @check50.check(compiles)
+def runs40():
+    """Find.java uses a your custom split method"""
+    with open("Split.java") as f:
+        content = f.read()
+    content = content.replace(" ","").replace("\n","").replace("\t","")
+    if "publicstaticString[]split(String" not in content:
+        raise check50.Failure("Looks like you forgot to write your own split method")
+    if "publicstaticvoidmain(String" not in content:
+        raise check50.Failure("That's bold - no main method to test your code?")
+    if "=split(" not in content and "Arrays.toString(split(" not in content:
+        raise check50.Failure("Make sure to actually test your split method, print out its results")
+    if ".split(" in content:
+        raise check50.Failure("Looks like you used the regular String split method - write your own logic")
+    
+@check50.check(runs40)
 def runs():
     """Split.java prints out an array of Strings"""
     phrases = ["Once upon a magical line of code","It was a dark and buggy compilation of code","Who is your favorite fearless coder"]
@@ -43,18 +59,8 @@ def runs():
     delims.remove(delim)
     phrase = phrase.replace(" ",delim)
     arr = phrase.split(delim)
-    output = '["' + '", "'.join(arr) + '"]\n' + str(len(arr))
+    output = '[' + ', '.join(arr) + ']\n' + str(len(arr))
     check50.run("java TestSplit").stdin(phrase,prompt = False).stdin(delim,prompt = False).stdout(output,timeout = 5)
 
 
-@check50.check(compiles)
-def runs40():
-    """Find.java uses a your custom split method"""
-    with open("Split.java") as f:
-        content = f.read()
-    content = content.replace(" ","").replace("\n","").replace("\t","")
-    if "=split(" not in content and "Arrays.toString(split(" not in content or ".split(" in content:
-        raise check50.Failure("Looks like you used the regular String split method instead of your own")
-    if "publicstaticString[]split(String" not in content:
-        raise check50.Failure("Looks like you forgot to write your own split method")
 

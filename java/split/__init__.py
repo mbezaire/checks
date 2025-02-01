@@ -51,7 +51,7 @@ def runs40():
 @check50.check(runs40)
 def runs():
     """Split.java prints out an array of Strings"""
-    phrases = ["Once upon a magical line of code","It was a dark and buggy compilation of code","Who is your favorite fearless coder"]
+    phrases = ["Once upon a magical line of code","It was a red and buggy compilation of code","Who is your favorite fearless coder"]
     delims = [' ',':',',','-']
     phrase = random.choice(phrases)
     delim = random.choice(delims)
@@ -59,14 +59,14 @@ def runs():
     delims.remove(delim)
     phrase = phrase.replace(" ",delim)
     arr = phrase.split(delim)
-    output = '[' + ', '.join(arr) + ']\nLength: ' + str(len(arr))
-    out = check50.run("java TestSplit").stdin(phrase,prompt = False).stdin(delim,prompt = False).stdout(timeout = 5).strip()
-    if out != output:
-        for i in range(min(len(out),len(output))):
-            if out[i] != output[i]:
-                check50.log(f'difference at character {i} which is {out[i]} or {output[i]}')
-        check50.log(f'lengths are: {len(out)}, {len(output)}')
-        raise check50.Mismatch(output.strip(), out.strip())
+    output = '[' + ', '.join(arr) + ']\nLength: ' + str(len(arr)) + '\n'
+    check50.run("java TestSplit").stdin(phrase,prompt = False).stdin(delim,prompt = False).stdout(output, timeout = 5) #.strip()
+    # if out != output:
+    #     for i in range(min(len(out),len(output))):
+    #         if out[i] != output[i]:
+    #             check50.log(f'difference at character {i} which is {out[i]} or {output[i]}')
+    #     check50.log(f'lengths are: {len(out)}, {len(output)}')
+    #     raise check50.Mismatch(output.strip(), out.strip())
 
     #check50.run("java TestSplit").stdin(phrase,prompt = False).stdin(delim,prompt = False).stdout(output,timeout = 5)
 

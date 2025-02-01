@@ -59,7 +59,7 @@ def runs():
     delims.remove(delim)
     phrase = phrase.replace(" ",delim)
     arr = phrase.split(delim)
-    output = '[' + ', '.join(arr) + ']\n:ength: ' + str(len(arr))
+    output = '[' + ', '.join(arr) + ']\nLength: ' + str(len(arr))
     check50.run("java TestSplit").stdin(phrase,prompt = False).stdin(delim,prompt = False).stdout(output,timeout = 5)
 
 

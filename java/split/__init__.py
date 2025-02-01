@@ -62,11 +62,7 @@ def runs():
     output = '[' + ', '.join(arr) + ']\nLength: ' + str(len(arr))
     out = check50.run("java TestSplit").stdin(phrase,prompt = False).stdin(delim,prompt = False).stdout(timeout = 5).strip()
     if out != output:
-        for i in range(min(len(out),len(output))):
-            if out[i] != output[i]:
-                check50.log(f'difference at character {i} which is {out[i]} or {output[i]}')
-        check50.log(f'lengths are: {len(out)}, {len(output)}')
-        raise check50.Mismatch(output.strip(), out.strip())
+        raise check50.Mismatch(output, out)
 
     #check50.run("java TestSplit").stdin(phrase,prompt = False).stdin(delim,prompt = False).stdout(output,timeout = 5)
 

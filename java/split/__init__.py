@@ -8,6 +8,7 @@ Created on Wed Sep 29 18:28:44 2021
 import re
 import check50
 import check50.c
+import random
 
 
 @check50.check()
@@ -26,11 +27,24 @@ def compiles():
             raise check50.Failure("Failed to compile due to " + result[1], help=result[0].strip())
         else:
             raise check50.Failure("Failed to compile", help=finderror)
+    check50.include("TestSplit.java")
+    out = check50.run("javac -d ./ TestSplit.java 2>&1").stdout(timeout = 60)
+    if "error" in out:
+        raise check50.Failure("Make sure your Split.java has a split method with this header: public static String[] split(String, char)")
 
 @check50.check(compiles)
 def runs():
     """Split.java prints out an array of Strings"""
-    check50.run("java Split").stdout('["one", "two", "three", "four"]',timeout = 5);
+    phrases = ["Once upon a magical line of code","It was a dark and buggy compilation of code","Who is your favorite fearless coder"]
+    delims = [' ',':',',','-']
+    phrase = random.choice(phrases)
+    delim = random.choice(delims)
+    phrases.remove(phrase)
+    delims.remove(delim)
+    phrase = phrase.replace(" ",delim)
+    arr = phrase.split(delim)
+    output = '["' + '", "'.join(arr) + '"]\n' + str(len(arr))
+    check50.run("java TestSplit").stdin(phrase,prompt = False).stdin(delim,prompt = False).stdout(output,timeout = 5)
 
 
 @check50.check(compiles)
@@ -39,8 +53,8 @@ def runs40():
     with open("Split.java") as f:
         content = f.read()
     content = content.replace(" ","").replace("\n","").replace("\t","")
-    if "=split(" not in content and "Arrays.toString(split(" not in content:
+    if "=split(" not in content and "Arrays.toString(split(" not in content or ".split(" in content:
         raise check50.Failure("Looks like you used the regular String split method instead of your own")
-    if "publicstaticString[]split(Stringwhole,chardelimiter){}" in content:
+    if "publicstaticString[]split(String" not in content:
         raise check50.Failure("Looks like you forgot to write your own split method")
 

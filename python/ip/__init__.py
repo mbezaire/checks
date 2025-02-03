@@ -52,7 +52,7 @@ def usere():
                 if not line.strip().startswith('#') and len(line.strip()) > 1:
                     check += line
                     count += 1
-            check50.log(f'count: {count}, check: {check}')
+            check50.log(f'count: {count}, check: {len(check)}')
             if count <= 20 and len(check) < 100:
                 ok = True
     if not ok:

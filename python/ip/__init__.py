@@ -29,14 +29,14 @@ def run():
     """ File runs without syntax errors and finds a valid IP address"""
     ans = getrandinfo(2)
     out = check50.run("python find.py").stdout(timeout=30)
-    raise check50.Mismatch(ans, out)
+    raise check50.Mismatch(ans.strip(), out.strip())
 
 @check50.check(run)
 def run2():
     """ Program finds another valid IP address"""
     ans = getrandinfo(1)
     out = check50.run("python find.py").stdout(timeout=30)
-    raise check50.Mismatch(ans, out)
+    raise check50.Mismatch(ans.strip(), out.strip())
 
 @check50.check(run2)
 def usere():

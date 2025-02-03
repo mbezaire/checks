@@ -53,7 +53,7 @@ def usere():
                     check += line
                     count += 1
             check50.log(f'count: {count}, check: {len(check)}')
-            if count <= 20 and len(check) < 100:
+            if count <= 20 and len(check) < 450:
                 ok = True
     if not ok:
-        check50.Failure("Your code may not be efficiently using the re module, for each loops, and join to achieve its functionality")
+        raise check50.Failure("Your code may not be efficiently using the re module, for each loops, and join to achieve its functionality")

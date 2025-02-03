@@ -4,7 +4,7 @@ import random
 def getrandinfo():
     nums = []
     for i in range(8):
-        nums.append(random.randint(0,255))
+        nums.append(str(random.randint(0,255)))
     
     if nums[0] % 2 == 0:
         i = 3

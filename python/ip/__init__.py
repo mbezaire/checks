@@ -27,14 +27,12 @@ def exists():
 @check50.check(exists)
 def run():
     """ File runs without syntax errors and finds a valid IP address"""
-    check50.include("info.txt")
     ans = getrandinfo()
     check50.run("python find.py").stdout(ans + "\n", timeout=30).exit(0)
 
 @check50.check(run)
 def run2():
     """ Program finds another valid IP address"""
-    check50.include("info.txt")
     ans = getrandinfo()
     check50.run("python find.py").stdout(ans + "\n", timeout=30).exit(0)
 

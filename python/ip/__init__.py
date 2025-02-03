@@ -6,14 +6,14 @@ def getrandinfo():
     for i in range(8):
         nums.append(str(random.randint(0,255)))
     
-    if nums[0] % 2 == 0:
+    if int(nums[0]) % 2 == 0:
         i = 3
         ans = ".".join(nums[4:])
     else:
         i = 5
         ans = ".".join(nums[:4])
     
-    nums[i] += 256
+    nums[i] = str(int(nums[i]) + 256)
     with open("info.txt","w") as f:
         f.write(f'How many are in here? 12.124.32 and also {nums[0]}.{nums[1]}.{nums[2]}.{nums[3]} and lastly {nums[4]}.{nums[5]}.{nums[6]}.{nums[7]}')
 

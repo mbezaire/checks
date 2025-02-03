@@ -28,7 +28,7 @@ def exists():
 def run():
     """ File runs without syntax errors and finds a valid IP address"""
     ans = getrandinfo(2)
-    out = check50.run("python find.py").stdout(ans, timeout=30)
+    out = check50.run("python find.py").stdout(timeout=30)
     check50.log(out)
     check50.log("-"*30)
     check50.log(ans)
@@ -37,7 +37,7 @@ def run():
 def run2():
     """ Program finds another valid IP address"""
     ans = getrandinfo(1)
-    out = check50.run("python find.py").stdout(ans, timeout=30)
+    out = check50.run("python find.py").stdout(timeout=30)
     check50.log(out)
     check50.log("-"*30)
     check50.log(ans)

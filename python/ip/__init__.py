@@ -27,7 +27,7 @@ def exists():
 @check50.check(exists)
 def run():
     """ File runs without syntax errors and finds a valid IP address"""
-    ans = getrandinfo()
+    ans = getrandinfo(2)
     out = check50.run("python find.py").stdout(ans, timeout=30)
     check50.log(out)
     check50.log("-"*30)
@@ -36,12 +36,12 @@ def run():
 @check50.check(run)
 def run2():
     """ Program finds another valid IP address"""
-    ans = getrandinfo()
+    ans = getrandinfo(1)
     out = check50.run("python find.py").stdout(ans, timeout=30)
     check50.log(out)
     check50.log("-"*30)
     check50.log(ans)
-    
+
 @check50.check(run2)
 def usere():
     """ Program uses re's findall and for each loops without excessive logic"""

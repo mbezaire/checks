@@ -54,7 +54,10 @@ def usere():
                 lines = f.readlines()
             for line in lines:
                 if not line.strip().startswith('#') and len(line.strip()) > 1:
-                    check += line
+                    if '#' in line:
+                        check += line.split('#')[0]
+                    else:
+                        check += line
                     count += 1
             if count <= 20 and len(check) < 450:
                 ok = True

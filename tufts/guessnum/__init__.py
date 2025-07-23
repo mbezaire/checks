@@ -13,7 +13,7 @@ def run():
 @check50.check(run)
 def run2():
     """ Check that you are using random.randint"""
-    with open('decision.py') as f:
+    with open('guess_a_number.py') as f:
         contents = f.read()
 
     if contents.count("random.randint(") < 1:
@@ -22,7 +22,7 @@ def run2():
 @check50.check(run2)
 def run3():
     """ Check that you are using a loop to give the user up to 7 chances"""
-    with open('decision.py') as f:
+    with open('guess_a_number.py') as f:
         contents = f.read()
 
     if (contents.count("for ") + contents.count("if ")) < 1:

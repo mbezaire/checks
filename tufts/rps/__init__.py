@@ -4,3 +4,4 @@ import check50
 def exists():
     """ Check that rps.py exists """
     check50.exists("rps.py")
+

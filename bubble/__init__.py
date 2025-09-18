@@ -19,7 +19,8 @@ def test_valid_tri():
     """Bubble sorter sorts alright"""
     mynums = ""
     nums = []
-    for _ in range(random.randint(3,7)):
+    length = random.randint(3,7)
+    for _ in range(length):
         val = random.randint(10,500)
         mynums += " " + str(val)
         nums.append(val)

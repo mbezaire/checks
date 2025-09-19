@@ -20,7 +20,7 @@ def test_valid_tri():
 
     worddata = random.choice([['recursion', 4], ['coding', 2], ['education', 5],['instrument', 3]])
 
-    check50.run("./vowels" + worddata[0]).stdout(str(worddata[1]) + '\n').exit(0)
+    check50.run("./vowels " + worddata[0]).stdout(str(worddata[1]) + '\n').exit(0)
 
 
 @check50.check(test_valid_tri)

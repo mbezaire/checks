@@ -1,7 +1,7 @@
 check50:
   files: &check50_files
     - !exclude "*"
-    - !require bubblesort.c
+    - !require bubblep.c
 
 submit50:
   files: *check50_files

@@ -28,12 +28,15 @@ def runs2():
 def runs():
     """adjacency function looks good"""
     check50.include('test1.c')
+    check50.c.compile("test1.c", lcs50=True)
+
     check50.c.run("./test1").stdout("3432454244412231\n").exit(0)
 
 
 @check50.check(compiles)
-def runs():
+def runs3():
     """adjacency function works for another table"""
     check50.include('test2.c')
+    check50.c.compile("test2.c", lcs50=True)
     check50.c.run("./test2").stdout("1232246436962464\n").exit(0)
 

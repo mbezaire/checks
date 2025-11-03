@@ -28,13 +28,14 @@ def runs2():
 def runs():
     """adjacency function looks good"""
     check50.include('test1.c')
-    with open('test1.c') as f:
+    with open('adjacency.c') as f:
         data = f.read()
 
     data = data.replace("int main(void)","void other()")
-    with open('test1.c','w') as f:
+    with open('adjacency.c','w') as f:
         f.write(data)
 
+    check50.c.run("clang -c adjacency.c -o adjacency.o")
     check50.c.compile("test1.c", lcs50=True)
 
     check50.c.run("./test1").stdout("3432454244412231\n").exit(0)
@@ -44,13 +45,14 @@ def runs():
 def runs3():
     """adjacency function works for another table"""
     check50.include('test2.c')
-    with open('test2.c') as f:
+    with open('adjacency.c') as f:
         data = f.read()
 
     data = data.replace("int main(void)","void other()")
-    with open('test2.c','w') as f:
+    with open('adjacency.c','w') as f:
         f.write(data)
 
+    check50.c.run("clang -c adjacency.c -o adjacency.o")
     check50.c.compile("test2.c", lcs50=True)
     check50.c.run("./test2").stdout("1232246436962464\n").exit(0)
 

@@ -2,11 +2,11 @@
 #include <stdio.h>
 
 
-/* 
-3 4 3 2 
-4 5 4 2 
-4 4 4 1 
-2 2 3 1 
+/*
+3 4 3 2
+4 5 4 2
+4 4 4 1
+2 2 3 1
 
 void adjacency(int tbl[4][4], int (*adjtbl)[4]);
 

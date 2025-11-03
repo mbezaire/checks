@@ -2,15 +2,13 @@
 #include <stdio.h>
 
 
-/* 
-3 4 3 2 
-4 5 4 2 
-4 4 4 1 
-2 2 3 1 
-
-void adjacency(int tbl[4][4], int (*adjtbl)[4]);
-
+/*
+3 4 3 2
+4 5 4 2
+4 4 4 1
+2 2 3 1
 */
+void adjc(int tbl[4][4], int (*adjtbl)[4]);
 
 int main(void) {
     int table[4][4]  =

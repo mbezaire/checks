@@ -44,4 +44,5 @@ def runs2():
     #check50.c.compile("time_program.c", lcs50=True)
     check50.c.compile("test_time.c", lcs50=True)
     check50.log('Checking for a data structure of type time with fields: hours, minutes, seconds')
+    check50.log('and an elapsed_time function that takes in an early time and a later time')
     check50.c.run("./test_time").stdout("00:04:10\n").exit(0)

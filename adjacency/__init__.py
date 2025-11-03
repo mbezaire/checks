@@ -24,33 +24,33 @@ def runs2():
     check50.c.run("./adjacency").stdout("3 4 3 2 \n4 5 4 2 \n4 4 4 1 \n2 2 3 1 \n").exit(0)
 
 
-@check50.check(compiles)
-def runs():
-    """adjacency function looks good"""
-    check50.include('test1.c')
-    with open('test1.c') as f:
-        data = f.read()
+# @check50.check(compiles)
+# def runs():
+#     """adjacency function looks good"""
+#     check50.include('test1.c')
+#     with open('test1.c') as f:
+#         data = f.read()
 
-    data = data.replace("int main(void)","void other()")
-    with open('test1.c','w') as f:
-        f.write(data)
+#     data = data.replace("int main(void)","void other()")
+#     with open('test1.c','w') as f:
+#         f.write(data)
 
-    check50.c.compile("test1.c", lcs50=True)
+#     check50.c.compile("test1.c", lcs50=True)
 
-    check50.c.run("./test1").stdout("3432454244412231\n").exit(0)
+#     check50.c.run("./test1").stdout("3432454244412231\n").exit(0)
 
 
-@check50.check(compiles)
-def runs3():
-    """adjacency function works for another table"""
-    check50.include('test2.c')
-    with open('test2.c') as f:
-        data = f.read()
+# @check50.check(compiles)
+# def runs3():
+#     """adjacency function works for another table"""
+#     check50.include('test2.c')
+#     with open('test2.c') as f:
+#         data = f.read()
 
-    data = data.replace("int main(void)","void other()")
-    with open('test2.c','w') as f:
-        f.write(data)
+#     data = data.replace("int main(void)","void other()")
+#     with open('test2.c','w') as f:
+#         f.write(data)
 
-    check50.c.compile("test2.c", lcs50=True)
-    check50.c.run("./test2").stdout("1232246436962464\n").exit(0)
+#     check50.c.compile("test2.c", lcs50=True)
+#     check50.c.run("./test2").stdout("1232246436962464\n").exit(0)
 

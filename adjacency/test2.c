@@ -28,7 +28,10 @@ int main(void) {
     adjacency(table, adj);
 
     int i = 0;
-    while (i < 16) printf("%i", *(adj + i++)); // 
+    while (i < 16) {
+        printf("%i", adj[i/4][i%4]);
+        i++;
+    }
     printf("\n");
 
 }

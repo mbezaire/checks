@@ -22,7 +22,7 @@ def compiles():
 def runs2():
     """nametree.c prints a list of Jonas Brothers"""
     check50.include("names.csv")
-    check50.c.run("./nametree").stdout("Album\nFrankie\nKevin\nJoe\nNick\n").exit(0)
+    check50.c.run("./nametree").stdout("Album\nFrankie\nJoe\nKevin\nNick\n").exit(0)
 
 
 @check50.check(runs2)

@@ -49,9 +49,14 @@ def runs3():
     with open('nametree.c','w') as f:
         f.write(data)
 
-    check50.run("clang -c nametree.c").exit(0)
-    check50.run("clang test_time.c -lcs50 nametree.o -o test_time").exit(0)
+    out1 = check50.run("clang -c nametree.c") #.exit(0)
+    check50.log(out1)
+    output = check50.run("clang test_time.c -lcs50 nametree.o -o test_time") #.exit(0)
+    check50.log(output)
+    out2 = check50.c.run("./test_time").stdout("Found Martin\n") #.exit(0)
+    check50.log(out2)
     check50.c.run("./test_time").stdout("Found Martin\n").exit(0)
+
 
 
 

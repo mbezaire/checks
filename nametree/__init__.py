@@ -34,8 +34,6 @@ def runs():
 
     check50.c.run("./nametree").stdout("Blanchard\nBriga\nJay\nKara\nMartin\nMichael\nRyan\n").exit(0)
 
-
-
 @check50.check(runs)
 def runs3():
     """nametree.c finds a name correctly and has the correct functions and headers"""
@@ -51,10 +49,7 @@ def runs3():
 
     check50.run("clang -c nametree.c").stdout() #.exit(0)
     check50.c.compile("test_time.c", lcs50=True)
-    check50.c.run("./test_time").stdout("Found Martin\n").exit(0)
-
-
-
+    check50.c.run("./test_time").stdin("Martin").stdout("Found Martin\n").exit(0)
 
 @check50.check(runs3)
 def runs4():
@@ -71,4 +66,4 @@ def runs4():
 
     check50.run("clang -c nametree.c").stdout() #.exit(0)
     check50.c.compile("test_time.c", lcs50=True)
-    check50.c.run("./test_time").stdout("Did not find Morticia\n").exit(0)
+    check50.c.run("./test_time").stdin("Morticia").stdout("Did not find Morticia\n").exit(0)

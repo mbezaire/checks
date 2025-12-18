@@ -1,7 +1,8 @@
 check50:
-  files:
-    - !exclude "*"
-    - !include "./"
+  checks:
+    smoke:
+      - run: echo "Files received:"
+      - run: ls
 
 submit50:
   files: *check50_files

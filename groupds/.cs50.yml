@@ -1,5 +1,4 @@
 check50:
   checks:
-    smoke:
-      - run: echo 'Files received:'
-      - run: ls
+    submitted:
+      - run: echo 'Files received'

@@ -1,7 +1,7 @@
 check50:
-2  files:
-3    - !exclude "*"
-4    - !include "./"
+  files:
+    - !exclude "*"
+    - !include "./"
 
 submit50:
   files: *check50_files

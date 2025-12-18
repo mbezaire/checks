@@ -1,7 +1,11 @@
 check50:
+  files: &check50_files
+    - !exclude "*vgcore.*"
+
   checks: &check50_checks
     submitted:
       - run: echo 'Files received'
 
 submit50:
   checks: *check50_checks
+  files: &check50_files

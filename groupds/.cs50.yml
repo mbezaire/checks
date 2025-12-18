@@ -3,6 +3,3 @@ check50:
     smoke:
       - run: echo "Files received:"
       - run: ls
-
-submit50:
-  files: *check50_files

@@ -1,0 +1,8 @@
+check50:
+  files: &check50_files
+    - !exclude "*"
+    - !require stocktax.py
+    - !include "*.csv"
+
+submit50:
+  files: *check50_files

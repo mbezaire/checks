@@ -29,7 +29,6 @@ def runs():
     """time_program.c computes different elapsed time"""
     check50.c.run("./time_program").stdin("02:31:15").stdin("12:05:00").stdout("09:33:45\n").exit(0)
 
-
 @check50.check(runs)
 def runs2():
     """time_program.c has a 'time' data type with fields: hours, minutes, seconds"""

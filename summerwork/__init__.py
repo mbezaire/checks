@@ -8,4 +8,4 @@ def exists():
     has_md = len(glob.glob("*.md")) > 0
     
     if not (has_zip or has_md):
-        raise check50.Failure("Missing required files: You must include all your code as a .zip file with the README in it or make sure a README.md file exists in this folder with your other summer project files.")
+        raise check50.Failure("Missing required files: You must include all your code as a .zip file with the README in it or make sure one of the files you're submitting is a README.md file.")
